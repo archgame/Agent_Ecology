@@ -2,24 +2,24 @@
 ## AGENT 000
 * Geometrical Constraints
 
->Drone Example: physical size is between 3" - 24" radius. Additionally, it has a 4' buffer radius for pedestrians given the possibility for sporadic movement.
+>Tram: physical size is up to 230' (usually around 104') X 0.2''.
 
 * Turning Radius
 
->Car Example: While at full speed, the vehicle has a turning radius of 10.82 m. While driving slowly the turning radius is 1 m.
+>Tram: minimum turning radius of 82' for a regular 104' long tram.
 
 * Acceleration/Deceleration
 
->Motorcycle Example: At full acceleration, the bike reaches 100 km/h in 3 seconds. at 32 km/h, the bike's stopping distance is 12 m, while at 112 km/h the bike's stopping distance is 96 m.
+>Tram: Regular speed in an urban environment 25-35 mph, the distance a tram needs in order to stop is around 91' for a speed of 25 mph (doudle the distance a regular bus needs in order to stop).
 
 * Obstacle Interaction
 
->Bike Example: Bicycles will stop for moving vehicles with a larger mass, but will weave through stopped vehicles and moving pedestrians.
+>Tram: Trams operate on a designated railway which practiacally means that they do not have to interact with obstacles. Due to their slow deceleration they are also safer not to.
 
 * Trajectory
 
->Bus Example: Buses follow roads, typically staying to towards the outermost lane. A bus will pull over and stop at bus stops with waiting pedestrians or at a departure point designated by a rider.
+>Tram: Tram routes start from a depatrure point, stop at designated stations to pick-up or drop passengers and in a terminal when they most probably loop from to follow the same root again
 
 * Pathways
 
->Dog Walker Example: Dog Walkers typically follow the path of other pedestrians, however they are more prone to venture into grassy areas to relieve their pets.
+>Tram: Tram is a set-track means of transportation, which means that it only moves on a designated railway and is not allowed to deviate from it.
