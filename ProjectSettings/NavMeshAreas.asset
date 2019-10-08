@@ -21,18 +21,18 @@ NavMeshProjectSettings:
     cost: 1
   - name: Street
     cost: 1
-  - name: 
+  - name: Bikelane
     cost: 1
-  - name: 
+  - name: Tramway
     cost: 1
-  - name: 
+  - name: Plaza
     cost: 1
-  - name: 
+  - name: ParkingLot
     cost: 1
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
+  - name: BikelaneCrosswalk
+    cost: 2
+  - name: TramwayCrosswalk
+    cost: 2
   - name: 
     cost: 1
   - name: 
