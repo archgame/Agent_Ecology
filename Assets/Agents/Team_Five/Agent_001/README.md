@@ -2,11 +2,11 @@
 ## AGENT 001 - Electric WheelChair
 * Geometrical Constraints
 
->Electrical Wheel Chair: physical size is between 35" (length) - 23"(breadth) and height about 35" (without the user on it).
+>Electrical Wheel Chair: physical size is 0.8m (length), 0.6m(breadth) and height about 0.8m (without the user on it).
 
 * Speed
 
->Electrical Wheel Chair: Most power wheelchairs average a top speed of approximately 5 mph. However, some power chair models can achieve maximum speeds of 10 mph and more. Therefore 5-10mph.
+>Electrical Wheel Chair: Most power wheelchairs average a top speed of approximately 8 kmph. However, some power chair models can achieve maximum speeds of 12 kmph and more. Therefore 8-12 kmph.
 * Acceleration/Deceleration
 
 >Electrical Wheel Chair: Stopping distance is almost instant.
@@ -25,5 +25,5 @@
 
 * Weight
 
->Electrical Wheel Chair: With batteries, such a wheelchair may weigh about 400 lbs.
-Add 200 lbs. for the user and the total weight can equal 600 lbs.
+>Electrical Wheel Chair: With batteries, such a wheelchair may weigh about 7-27kgs.
+Add 80kgs, for the user and the total weight can equal 87-107kgs.

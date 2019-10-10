@@ -1,16 +1,16 @@
 ----
-## AGENT 000
+## AGENT 003 Tram
 * Geometrical Constraints
 
->Tram: physical size is up to 230' (usually around 104') X 0.2''.
+>Tram: physical size is up to 70m (usually around 20m) X 2.4m''.
 
 * Turning Radius
 
->Tram: minimum turning radius of 82' for a regular 104' long tram.
+>Tram: minimum turning radius of 25m for a regular 20m long tram.
 
 * Acceleration/Deceleration
 
->Tram: Regular speed in an urban environment 25-35 mph, the distance a tram needs in order to stop is around 91' for a speed of 25 mph (doudle the distance a regular bus needs in order to stop).
+>Tram: Regular speed in an urban environment 40-50 kph, the distance a tram needs in order to stop is around 25m for a speed of 40 kph (doudle the distance a regular bus needs in order to stop).
 
 * Obstacle Interaction
 
@@ -22,4 +22,4 @@
 
 * Pathways
 
->Tram: Tram is a set-track means of transportation, which means that it only moves on a designated railway and is not allowed to deviate from it.
+>Tram: Tram is a set-track means of transportation, which means that it only moves on a designated railway  and is not allowed to deviate from it.
