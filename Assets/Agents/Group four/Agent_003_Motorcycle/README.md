@@ -2,7 +2,7 @@
 ## AGENT Motorcycle
 * Geometrical Constraints
 
->Physical size is between 16.1" ¨C 41.9" radius. Additionally, it has a 59" buffer radius for pedestrians given the possibility for sporadic movement.
+>Physical size is between 0.41m ¨C 1.06m radius. Additionally, it has a 2.50m buffer radius for pedestrians given the possibility for sporadic movement.
 
 * Turning Radius
 
