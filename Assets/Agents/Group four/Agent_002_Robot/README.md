@@ -2,7 +2,7 @@
 ## AGENT Robot_Starship
 * Geometrical Constraints
 
->Physical size is between 11.2" ¨C 13.3" radius. Additionally, it has a 4" buffer radius for pedestrians given the possibility for sporadic movement.
+>Physical size is between 0.28m ¨C 0.34m radius. Additionally, it has a 1.2m buffer radius for pedestrians given the possibility for sporadic movement.
 
 * Turning Radius
 
