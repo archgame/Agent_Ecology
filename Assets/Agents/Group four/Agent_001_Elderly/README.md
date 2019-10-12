@@ -2,7 +2,7 @@
 ## AGENT Elderyly
 * Geometrical Constraints
 
->Physical size is between 7" - 9" radius. Additionally, it has a 39" buffer radius for pedestrians given the possibility for sporadic movement.
+>Physical size is between 0.17m - 0.22m radius. Additionally, it has a 0.95m buffer radius for pedestrians given the possibility for sporadic movement.
 
 * Turning Radius
 

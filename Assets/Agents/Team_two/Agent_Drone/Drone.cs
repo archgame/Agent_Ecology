@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Onewheel : MonoBehaviour
+public class Drone : MonoBehaviour
 {
     Transform target;
     NavMeshAgent agent;
     public GameObject[] targets;
-    public float changeTargetDistance = 3;
+    public float changeTargetDistance = 10;
     int t;
     public bool shuffleTargets = true;
 
@@ -38,8 +38,12 @@ public class Onewheel : MonoBehaviour
         Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
         float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
+        //Debug.Log("Drone to target: " + distanceToTarget + " " + agent.transform.position.x + " " + agent.transform.position.y + " " + agent.transform.position.z);
+        //Debug.Log("Drone to target: " + distanceToTarget + " " + target.transform.position.x + " " + target.transform.position.y + " " + target.transform.position.z);
+        //Debug.Log("change T D: " + changeTargetDistance);
         if (changeTargetDistance > distanceToTarget)
         {
+            //Debug.Log("I blieve i can fly");
             t++;
             if(t == targets.Length)
             {
@@ -47,6 +51,7 @@ public class Onewheel : MonoBehaviour
             }
             Debug.Log(this.name + " Change Target: " + t);
             target = targets[t].transform;
+            //Debug.Log("Drone to target: " + distanceToTarget + " " + target.transform.position.x + " " + target.transform.position.y + " " + target.transform.position.z);
             agent.SetDestination(target.position); //each frame set the agent's destination to the target position
         }        
     }
