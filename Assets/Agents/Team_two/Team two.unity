@@ -687,7 +687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &551334172
 Transform:
   m_ObjectHideFlags: 0
@@ -1388,6 +1388,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7414259685450763198, guid: 3f3ccafbb4269de40907d86710d2341a,
+        type: 3}
+      propertyPath: m_Name
+      value: Delivery
+      objectReference: {fileID: 0}
     - target: {fileID: 1877545469278550492, guid: 3f3ccafbb4269de40907d86710d2341a,
         type: 3}
       propertyPath: m_Speed
@@ -1407,11 +1412,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BaseOffset
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7414259685450763198, guid: 3f3ccafbb4269de40907d86710d2341a,
-        type: 3}
-      propertyPath: m_Name
-      value: Delivery
       objectReference: {fileID: 0}
     - target: {fileID: 3371727669206648451, guid: 3f3ccafbb4269de40907d86710d2341a,
         type: 3}
