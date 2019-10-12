@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Drone : MonoBehaviour
+public class IceCreamTruck : MonoBehaviour
 {
     Transform target;
     NavMeshAgent agent;
     public GameObject[] targets;
-    public float changeTargetDistance = 10;
+    public float changeTargetDistance = 3;
     int t;
     public bool shuffleTargets = true;
+    public bool _patrolWaiting;
+    public float _totalWaitTime = 3f;
+    bool _travelling = true;
+    bool _waiting;
+    float _waitTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -38,21 +43,39 @@ public class Drone : MonoBehaviour
         Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
         float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
-        //Debug.Log("Drone to target: " + distanceToTarget + " " + agent.transform.position.x + " " + agent.transform.position.y + " " + agent.transform.position.z);
-        //Debug.Log("Drone to target: " + distanceToTarget + " " + target.transform.position.x + " " + target.transform.position.y + " " + target.transform.position.z);
-        //Debug.Log("change T D: " + changeTargetDistance);
         if (changeTargetDistance > distanceToTarget)
         {
-            //Debug.Log("I blieve i can fly");
-            t++;
-            if(t == targets.Length)
+            //Check if we're close to the destination.
+            if (_travelling && agent.remainingDistance <= 1.0f)
             {
-                t = 0;
+                _travelling = false;
+
+                if (_patrolWaiting)
+                {
+                    _waiting = true;
+                    _waitTimer = 0f;
+                }
             }
-            Debug.Log(this.name + " Change Target: " + t);
-            target = targets[t].transform;
-            //Debug.Log("Drone to target: " + distanceToTarget + " " + target.transform.position.x + " " + target.transform.position.y + " " + target.transform.position.z);
-            agent.SetDestination(target.position); //each frame set the agent's destination to the target position
+            if (_waiting)
+            {
+                _waitTimer += Time.deltaTime;
+                if (_waitTimer >= _totalWaitTime)
+                {
+                    _waiting = false;
+                    
+
+                    t++;
+                    if (t == targets.Length)
+                    {
+                        t = 0;
+                    }
+                    Debug.Log(this.name + " Change Target: " + t);
+                    target = targets[t].transform;
+                    agent.SetDestination(target.position); //each frame set the agent's destination to the target position
+                    _travelling = true;
+                }
+            }
+            
         }        
     }
 

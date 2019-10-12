@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SampleAgent : MonoBehaviour
+public class Jaywalker : MonoBehaviour
 {
     Transform target;
     NavMeshAgent agent;
