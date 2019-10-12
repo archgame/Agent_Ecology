@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DogWalker : MonoBehaviour
+public class Scooter : MonoBehaviour
 {
     Transform target;
     NavMeshAgent agent;
@@ -11,11 +11,6 @@ public class DogWalker : MonoBehaviour
     public float changeTargetDistance = 3;
     int t;
     public bool shuffleTargets = true;
-    public bool _patrolWaiting;
-    public float _totalWaitTime = 3f;
-    private float _waitTimer;
-    private bool _travelling = true;
-    private bool _waiting;
 
     // Start is called before the first frame update
     void Start()
@@ -45,40 +40,21 @@ public class DogWalker : MonoBehaviour
         float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
         if (changeTargetDistance > distanceToTarget)
         {
-            if (_travelling && agent.remainingDistance <= 1.0f)
+            t++;
+            if(t == targets.Length)
             {
-                _travelling = false;
-
-                if (_patrolWaiting)
-                {
-                    _waiting = true;
-                    _waitTimer = 0f;
-                }
+                t = 0;
             }
-            if (_waiting)
-            {
-                _waitTimer += Time.deltaTime;
-                if (_waitTimer >= _totalWaitTime)
-                {
-                    _waiting = false;
-
-                    t++;
-                    if (t == targets.Length)
-                    {
-                        t = 0;
-                    }
-                    Debug.Log(this.name + " Change Target: " + t);
-                    target = targets[t].transform;
-                    agent.SetDestination(target.position); //each frame set the agent's destination to the target position
-                    _travelling = true;
-                }
-            }
-        }
+            Debug.Log(this.name + " Change Target: " + t);
+            target = targets[t].transform;
+            agent.SetDestination(target.position); //each frame set the agent's destination to the target position
+        }        
     }
+
     GameObject[] Shuffle(GameObject[] objects)
     {
         GameObject tempGO;
-        for (int i = 0; i < objects.Length; i++)
+        for(int i = 0; i < objects.Length; i++)
         {
             Debug.Log("i: " + i);
             int rnd = Random.Range(0, objects.Length);
