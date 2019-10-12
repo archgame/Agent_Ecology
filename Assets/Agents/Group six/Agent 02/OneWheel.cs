@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TrashTruck : MonoBehaviour
+
+public class OneWheel : MonoBehaviour
 {
+    // Start is called before the first frame update
     Transform target;
     NavMeshAgent agent;
     public GameObject[] targets;
     public float changeTargetDistance = 3;
     int t;
-    public bool shuffleTargets = true;
+    public bool shuffletargets = true;
 
-    // Start is called before the first frame update
+    //Star is called before the first frame update
     void Start()
     {
         //grab targets using tags
@@ -20,16 +22,19 @@ public class TrashTruck : MonoBehaviour
         {
             targets = GameObject.FindGameObjectsWithTag("Target");
         }
-        if (shuffleTargets)
+        if (shuffletargets)
         {
-            targets = Shuffle(targets);
+            targets = shuffle(targets);
         }
-        //Debug.Log(this.name + " has " + targets.Length + "Targets");
+
+        //Debug.Log(this.name + hideFlags + " has " + targets.Length + "Target");
 
         agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
         t = 0;
         target = targets[t].transform;
         agent.SetDestination(target.position);
+        //target = targets[0];
+        //agent.SetDestination(target.transform.position);
     }
 
     // Update is called once per frame
@@ -37,32 +42,35 @@ public class TrashTruck : MonoBehaviour
     {
         Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
-        float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
-        if (changeTargetDistance > distanceToTarget)
+        float distancetoTarget = Vector3.Distance(agent.transform.position, target.position);
+        if (changeTargetDistance > distancetoTarget)
         {
             t++;
-            if(t == targets.Length)
+            if (t == targets.Length)
             {
                 t = 0;
             }
-            Debug.Log(this.name + " Change Target: " + t);
+            Debug.Log(this.name + "change Target: " + t);
             target = targets[t].transform;
-            agent.SetDestination(target.position); //each frame set the agent's destination to the target position
-        }        
-    }
+            agent.SetDestination(target.transform.position);
+        }
 
-    GameObject[] Shuffle(GameObject[] objects)
+        // agent.SetDestination(target.transform.position);
+    }
+    // AnimatorUpdateMode one per frame
+
+    GameObject[] shuffle(GameObject[] objects)
     {
         GameObject tempGO;
-        for(int i = 0; i < objects.Length; i++)
+        for (int i = 0; i < objects.Length; i++)
         {
             Debug.Log("i: " + i);
             int rnd = Random.Range(0, objects.Length);
             tempGO = objects[rnd];
             objects[rnd] = objects[i];
             objects[i] = tempGO;
-
         }
         return objects;
     }
+
 }
