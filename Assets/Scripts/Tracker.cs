@@ -13,7 +13,7 @@ public class Tracker : MonoBehaviour
 
     float cameraY = 60f;
     float minY = 20;
-    float maxY = 120;
+    float maxY = 220;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +58,7 @@ public class Tracker : MonoBehaviour
         //Right mouse button click example
         if (Input.GetMouseButtonDown(1))
         {
-            //Debug.Log("Right Click");
+            Debug.Log("Right Click");
             Vector3 hit = GetClickHit("ground");
             if (hit != Vector3.zero)
             {
