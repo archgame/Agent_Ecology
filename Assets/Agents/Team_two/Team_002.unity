@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: drone
       objectReference: {fileID: 0}
+    - target: {fileID: 9221989835374920653, guid: c3cae6c70dd720544addf0f0c487c045,
+        type: 3}
+      propertyPath: m_TagString
+      value: Drone
+      objectReference: {fileID: 0}
     - target: {fileID: 5915531381344653611, guid: c3cae6c70dd720544addf0f0c487c045,
         type: 3}
       propertyPath: m_LocalPosition.x
