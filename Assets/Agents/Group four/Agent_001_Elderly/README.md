@@ -4,6 +4,11 @@
 
 >Physical size is between 0.17m - 0.22m radius. Additionally, it has a 0.95m buffer radius for pedestrians given the possibility for sporadic movement.
 
+* Random Scale
+> xmin = 0.2; xmax = 0.6;
+  ymin = 1.4; ymax = 1.7;
+  zmin = 0.2; zmax = 0.6;
+
 * Turning Radius
 
 >While at full speed, the elderly has a turning radius of 0.45 m. While driving slowly the turning radius is 0 m.
@@ -23,3 +28,5 @@
 * Pathways
 
 >Elderly typically follow the path of other pedestrian, however they are more prone to walk inside the sidewalks for safety.
+
+
