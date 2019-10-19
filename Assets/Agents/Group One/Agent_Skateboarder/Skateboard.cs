@@ -45,7 +45,7 @@ public class Skateboard : MonoBehaviour
             {
                 t = 0;
             }
-            Debug.Log(this.name + " Change Target: " + t);
+           // Debug.Log(this.name + " Change Target: " + t);
             target = targets[t].transform;
             agent.SetDestination(target.position); //each frame set the agent's destination to the target position
         }
