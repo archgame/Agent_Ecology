@@ -13,10 +13,30 @@ public class Runner : MonoBehaviour
     public float changeTargetDistance = 3;
     int t;
     public bool shuffletargets = true;
-   
+
+    //Min and Max Scale factor
+    public bool randomScale = false;
+    public float xmin = 1;
+    public float xmax = 1;
+    public float ymin = 1;
+    public float ymax = 1;
+    public float zmin = 1;
+    public float zmax = 1;
+
+    private int obstacles = 0;
+
     //Star is called before the first frame update
     void Start()
     {
+        // Random sclae on start
+        if (randomScale == true)
+        {
+            float x = Random.Range(xmin, xmax);
+            float y = Random.Range(ymin, ymax);
+            float z = Random.Range(zmin, zmax);
+            transform.localScale = new Vector3(x, y, z);
+        }
+
         //grab targets using tags
         if (targets == null || targets.Length == 0)
         {
@@ -58,7 +78,30 @@ public class Runner : MonoBehaviour
        // agent.SetDestination(target.transform.position);
     }
     // AnimatorUpdateMode one per frame
-    
+
+    void OnTriggerEnter(Collider collision)
+    {
+        Debug.Log("collision: " + collision.gameObject.name);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("LargeVehicle"))
+        {
+            agent.isStopped = true;
+            obstacles++; //obstacles + 1 || or
+        }
+
+    }
+    void OnTriggerExit(Collider collision)
+    {
+        Debug.Log("exited");
+        if (collision.gameObject.layer == LayerMask.NameToLayer("LargeVehicle"))
+        {
+            obstacles--;
+        }
+        if (obstacles == 0)
+        {
+            agent.isStopped = false;
+        }
+    }
+
     GameObject[] shuffle(GameObject[] objects) 
     {
         GameObject tempGO;
