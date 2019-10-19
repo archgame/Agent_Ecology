@@ -1,8 +1,9 @@
+
 ----
 ## Group Scene Overview
 * Dog Walker
 
->The dog walker typically follow the path of other pedestrians, however they are more prone to venture into grassy areas to relieve their pets.
+>The dog walker walks on
 
 * Scooter Walks typically follow the path of other pedestrians, however they are more prone to venture into grassy areas to relieve their pets.
 
