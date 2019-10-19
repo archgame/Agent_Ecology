@@ -6,7 +6,10 @@ public class Tracker : MonoBehaviour
 {
     public bool run = false;
     public GameObject target;
-    
+
+    private GameObject[] taggedGameObjects;
+    bool followGameObject = false;
+
     public float smoothSpeed = 0.125f;
     private Vector3 newPosition = Vector3.zero;
     //float example = 0;
@@ -20,13 +23,160 @@ public class Tracker : MonoBehaviour
     {
         //Debug.Log("Start");
         newPosition = Camera.main.transform.position;
-        Debug.Log("addition example: " + CoolAddition(2, 3));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.mouseScrollDelta != Vector2.zero)
+        #region FOLLOW BY TAG
+        //x key click example
+        if (Input.GetKeyDown("q"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("SchoolChildren");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("w"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Skateboarder");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Bus");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("r"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Jaywalker");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("t"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Drone");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("y"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Delivery");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("u"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Elderly");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("i"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Robot");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("o"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Motorcycle");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("p"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("DogWalker");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("a"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Scooter");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("s"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("IceCreamTruck");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("d"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Wheelchair");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("f"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("RollerSkates");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("g"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Tram");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("h"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("Runner");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("j"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("OneWheel");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        if (Input.GetKeyDown("k"))
+        {
+            taggedGameObjects = GameObject.FindGameObjectsWithTag("TrashTruck");
+            if (taggedGameObjects.Length > 0)
+            {
+                followGameObject = true;
+            }
+        }
+        #endregion
+
+        if (Input.mouseScrollDelta != Vector2.zero)
         {
             Debug.Log("scroll: " + Input.mouseScrollDelta);
             cameraY = Mathf.Clamp(cameraY + Input.mouseScrollDelta.y*-2, minY, maxY);
@@ -38,6 +188,10 @@ public class Tracker : MonoBehaviour
         //Debug.Log("after example: " + example);
 
         //smoothly move camera
+        if(followGameObject)
+        {
+            newPosition = taggedGameObjects[0].transform.position;
+        }
         Vector3 cameraPosition = Camera.main.transform.position;
         newPosition.y = cameraY;
         Vector3 smoothedPosition = Vector3.Lerp(cameraPosition, newPosition, smoothSpeed);      
@@ -48,11 +202,11 @@ public class Tracker : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Debug.Log("Left Click");
-            Vector3 hit = GetClickHit("ground");
-            if(hit != Vector3.zero)
-            {
-                target.transform.position = hit;
-            }
+            //Vector3 hit = GetClickHit("ground");
+            //if(hit != Vector3.zero)
+            //{
+                //target.transform.position = hit;
+            //}
         }
 
         //Right mouse button click example
@@ -63,6 +217,7 @@ public class Tracker : MonoBehaviour
             if (hit != Vector3.zero)
             {
                 newPosition = hit;
+                followGameObject = false;
             }
         }
 
@@ -85,11 +240,6 @@ public class Tracker : MonoBehaviour
         }
     }
 
-    int CoolAddition(int a, int b)
-    {
-        return a + b;
-    }
-
     Vector3 GetClickHit(string tag)
     {
         //creates a ray from the camera
@@ -109,4 +259,5 @@ public class Tracker : MonoBehaviour
 
         return Vector3.zero;
     }
+
 }

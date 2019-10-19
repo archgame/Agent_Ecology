@@ -5,6 +5,10 @@
 
 >The length of vehicle is 4.8 m, width is 1.9 m, and the height is 2.9 m. The path requires a minimum width of 2.3 m.
 
+*Scale Range
+
+>X:1.9-2.2m Y:2.8-3.5m Z:4.8-5.2m
+
 * Turning Radius
 
 >A minimum inner radius of 3.5 m and minimum outer radius of 5.85 m should be provided.

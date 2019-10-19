@@ -2,8 +2,8 @@
 ## AGENT 002 - Roller Skates
 * Geometrical Constraints
 
->Roller Skates: physical size is same as of a human - 0.45 - 0.90m. About 0.45 might be required on each side to extend the arms to balance. 
-Total diameter of the circle would be about 72". Additionally, a buffer space of 0.45 - 0.60m would be required all around.
+>Roller Skates: physical size is same as of a human - 0.45 - 0.60m. About 0.45 might be required on each side to extend the arms to balance. 
+Total diameter of the circle would be about 1.8m. Additionally, a buffer space of 0.30 - 0.45m would be required all around.
 
 * Turning Radius
 

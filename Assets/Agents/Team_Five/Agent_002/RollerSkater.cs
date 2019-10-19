@@ -11,15 +11,77 @@ public class RollerSkater : MonoBehaviour
     public float changeTargetDistance = 3;
     int t;
     public bool shuffleTargets = true;
+    public string[] targetNames;
+
+    public bool randomScale = false;
+    public float xmin = 1;
+    public float xmax = 1;
+    public float ymin = 1;
+    public float ymax = 1;
+    public float zmin = 1;
+    public float zmax = 1;
+
+    public float waitTime = 0;
+    private bool waiting = false;
+    private float waited = 0;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.tag = "RollerSkates";
+
+        //scale the gameobject randomly
+        if (randomScale)
+        {
+            float x = Random.Range(xmin, xmax);
+            float y = Random.Range(ymin, ymax);
+            float z = Random.Range(zmin, zmax);
+            transform.localScale = new Vector3(x, y, z);
+        }
+
+        /*
         //grab targets using tags
         if (targets == null || targets.Length == 0)
         {
             targets = GameObject.FindGameObjectsWithTag("Target");
         }
+        if (shuffleTargets)
+        {
+            targets = Shuffle(targets);
+        }
+        //Debug.Log(this.name + " has " + targets.Length + "Targets");
+
+        agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
+        t = 0;
+        target = targets[t].transform;
+        agent.SetDestination(target.position); 
+        */
+
+        //grab targets using names
+        if (targets.Length == 0)
+        {
+            //get all game objects tagged with "Target"
+            targets = GameObject.FindGameObjectsWithTag("target");
+
+            List<GameObject> targetList = new List<GameObject>();
+            foreach (GameObject go in targets) //search all "Target" game objects
+            {
+                //Debug.Log("go: " + go.name);
+                foreach (string targetName in targetNames)
+                {
+                    //Debug.Log("targetName: " + targetName);
+                    // "Target" contains: "Tar", "Targ", "get", ! "Trgt"
+                    if (go.name.Contains(targetName)) //if GameObject has the same name as targetName, add to list
+                    {
+                        targetList.Add(go);
+                    }
+                }
+            }
+            targets = targetList.ToArray(); //Convert List to Array, because other code is still using array
+        }
+
+        //shuffle targets
         if (shuffleTargets)
         {
             targets = Shuffle(targets);

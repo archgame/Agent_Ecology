@@ -5,6 +5,10 @@
 
 >The size of a scooter is 107 cm long and 117 cm high and riders need a 1.5 m × 2.5 m buffer area to avoid danger.
 
+*Scale Range
+
+>X:0.6m Y:1.7~1.9m Z:1.06~1.09m
+
 * Turning Radius
 
 >The turning radius of a scooter is 1 m. 
