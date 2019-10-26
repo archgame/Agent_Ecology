@@ -7,16 +7,11 @@ public class TrashTruck : MonoBehaviour
 {
     Transform target;
     NavMeshAgent agent;
-    //public string[] targetNames;
 
-    public float changeTargetDistance = 3;
-    private int t;
-    public bool shuffleTargets = true;
     public GameObject[] targets;
-
-    public float waitTime = 0;
-    private bool waiting = false; // to know id they are waiting 
-    private float waited = 0; // to know how have they been waiting
+    public float changeTargetDistance = 3;
+    int t;
+    public bool shuffleTargets = true;
 
     //Min and Max Scale factor
     public bool randomScale = false;
@@ -43,105 +38,50 @@ public class TrashTruck : MonoBehaviour
 
 
         //grab targets using tags
-        if (targets == null || targets.Length == 0)
+        if (targets == null || targets.Length == 0)   //(DELETE IF NOT CHANGUIN  TARGET)
         {
             targets = GameObject.FindGameObjectsWithTag("target");
         }
-        // shuffle targets
-        if (shuffleTargets)
-        {
-            targets = Shuffle(targets);
-        }
-        //Debug.Log(this.name + " has " + targets.Length + "Targets");
-
-        agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
-        t = 0;
-        target = targets[t].transform;
-        agent.SetDestination(target.position);
         
-
-        //target = targets[0];
-        //agent.SetDestination(target.transform.position);
-        /*
-        //grab targets using tags
-        if (targets.Length == 0)  //(targets == null || targets.Length == 0)
-        {
-            // get all game objects tagged with "targets"
-            targets = GameObject.FindGameObjectsWithTag("target");
-
-            List<GameObject> targetList = new List<GameObject>();
-            foreach (GameObject go in targets) // search all "tagetName" game objects
-            {
-                Debug.Log("go: " + go.name);
-                foreach (string targetName in targetNames) 
-                {
-                    Debug.Log("targetName: " + targetNames);
-                    if (go.name.Contains("targetNames")) //if GameObject has the same name as targetNAme, add to list
-                    {
-                        targetList.Add(go);
-                    }
-                }
-            }
-            targets = targetList.ToArray();
-        }
-        // shuffle targets
         if (shuffleTargets)
         {
             targets = Shuffle(targets);
         }
-        //Debug.Log(this.name + " has " + targets.Length + "Targets");
+        
+        Debug.Log(this.name + " has " + targets.Length + "Targets"); //this name means the name of the object
 
         agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
         t = 0;
         target = targets[t].transform;
         agent.SetDestination(target.position);
-        */
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (waiting) // if (waiting == false)
-       
-        {
-            // see targets next destination
-            Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+        Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
-            float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
-            //changeed target one it is reached
-            if (changeTargetDistance > distanceToTarget)
-            {
-                t++;
-                if (t == targets.Length)
-                {
-                    t = 0;
-                }
-                Debug.Log(this.name + " Change Target: " + t);
-                target = targets[t].transform;
-                agent.SetDestination(target.position); //each frame set the agent's destination to the target position
-                waiting = true;
-                agent.isStopped = true;
-            } // change target distace test
-        } // if waiting equate false
-        else
+        float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
+        if (changeTargetDistance > distanceToTarget)
         {
-            if (waited > waitTime)
+            t++;
+            if (t == targets.Length) // Reseat target list onece Gameobject goes to all
             {
-                waiting = false;
-                agent.isStopped = false;
-                waited = 0;
+                t = 0;
             }
-            else
-            {
-                waited += Time.deltaTime; // operation that add how much time has it waited
-            }
+            Debug.Log(this.name + "change Target to: " + t);
+            target = targets[t].transform;
+            agent.SetDestination(target.position);
         }
     }
+    
+    /*
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("collision: " + collision.gameObject.name);
-        if (collision.gameObject.layer == LayerMask.NameToLayer("LargeVehicle"))
+        //Debug.Log("collision: " + collision.gameObject.name);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
             obstacles++; //obstacles + 1 || or
@@ -150,8 +90,8 @@ public class TrashTruck : MonoBehaviour
     }
     void OnTriggerExit(Collider collision)
     {
-        Debug.Log("exited");
-        if (collision.gameObject.layer == LayerMask.NameToLayer("LargeVehicle"))
+        //Debug.Log("exited");
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             obstacles--;
         }
@@ -161,19 +101,19 @@ public class TrashTruck : MonoBehaviour
         }
     }
 
-
-        GameObject[] Shuffle(GameObject[] objects)
+    */
+    GameObject[] Shuffle(GameObject[] objects)
     {
-        GameObject tempGO;
-        for(int i = 0; i < objects.Length; i++)
+        GameObject temGO;
+        for (int i = 0; i < objects.Length; i++) 
         {
-            Debug.Log("i: " + i);
+            Debug.Log("i:" + i);
             int rnd = Random.Range(0, objects.Length);
-            tempGO = objects[rnd];
-            objects[rnd] = objects[i];
-            objects[i] = tempGO;
-
+            temGO = objects[rnd];
+            objects[i] = temGO;
         }
         return objects;
     }
+
+  
 }

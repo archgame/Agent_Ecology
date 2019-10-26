@@ -9,6 +9,7 @@ public class Runner : MonoBehaviour
     // Start is called before the first frame update
     Transform target;
     NavMeshAgent agent;
+
     public GameObject[] targets;
     public float changeTargetDistance = 3;
     int t;
@@ -42,7 +43,8 @@ public class Runner : MonoBehaviour
         {
             targets = GameObject.FindGameObjectsWithTag("Target");
         }
-            if (shuffletargets)
+        //shuffle targets
+        if (shuffletargets)
         {
             targets = shuffle(targets);
         }
@@ -70,7 +72,7 @@ public class Runner : MonoBehaviour
             {
                 t = 0;
             }
-            Debug.Log(this.name + "change Target: " + t);
+            //Debug.Log(this.name + "change Target: " + t);
             target = targets[t].transform;
             agent.SetDestination(target.transform.position);
         }
@@ -81,7 +83,7 @@ public class Runner : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("collision: " + collision.gameObject.name);
+        //Debug.Log("collision: " + collision.gameObject.name);
         if (collision.gameObject.layer == LayerMask.NameToLayer("LargeVehicle"))
         {
             agent.isStopped = true;
@@ -91,7 +93,7 @@ public class Runner : MonoBehaviour
     }
     void OnTriggerExit(Collider collision)
     {
-        Debug.Log("exited");
+        //Debug.Log("exited");
         if (collision.gameObject.layer == LayerMask.NameToLayer("LargeVehicle"))
         {
             obstacles--;
@@ -107,7 +109,7 @@ public class Runner : MonoBehaviour
         GameObject tempGO;
         for (int i=0; i <objects.Length; i++)
         {
-            Debug.Log("i: " + i);
+            //Debug.Log("i: " + i);
             int rnd = Random.Range(0, objects.Length);
             tempGO = objects[rnd];
             objects[rnd] = objects[i];
