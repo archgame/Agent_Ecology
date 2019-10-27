@@ -16,5 +16,6 @@ public class shake : MonoBehaviour
     {
         float angle = Mathf.Sin(Time.time) * 30;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+        //transform.position = new Vector3(0,angle,0);
     }
 }

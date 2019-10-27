@@ -3,7 +3,7 @@
 ## AGENT 001: Dog Walker
 * Geometrical Constraints
 
->Physical size is 0.45 m × 1.70 m × 0.15 m. Additionally, it has a 1-3 m buffer radius for dogs given the possibility for sporadic movement.
+>Physical size is 0.45(±0.05) m × 1.70(±0.05) m × 0.15(±0.05) m. Additionally, it has a 1-3 m buffer radius for dogs given the possibility for sporadic movement.
 
 * Turning Radius
 
