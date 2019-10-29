@@ -9,6 +9,7 @@ public class Tracker : MonoBehaviour
 
     private GameObject[] taggedGameObjects;
     bool followGameObject = false;
+    bool toggleViewType = false;
 
     public float smoothSpeed = 0.125f;
     private Vector3 newPosition = Vector3.zero;
@@ -23,6 +24,7 @@ public class Tracker : MonoBehaviour
     {
         //Debug.Log("Start");
         newPosition = Camera.main.transform.position;
+        Camera.main.transform.forward = Vector3.down;
     }
 
     // Update is called once per frame
@@ -182,20 +184,52 @@ public class Tracker : MonoBehaviour
             cameraY = Mathf.Clamp(cameraY + Input.mouseScrollDelta.y*-2, minY, maxY);
         }
 
-        //float example = 0;
-        //Debug.Log("before example: " + example);
-        //example = Mathf.Lerp(example, 10, 0.5f);
-        //Debug.Log("after example: " + example);
-
         //smoothly move camera
         if(followGameObject)
-        {
+        {                    
+            //change view type by clicking space
+            if (Input.GetKeyDown("space"))
+            {
+                toggleViewType = !toggleViewType;
+            }
+
             newPosition = taggedGameObjects[0].transform.position;
+
+            if (toggleViewType)
+            {
+                newPosition = newPosition 
+                    - (taggedGameObjects[0].transform.forward * taggedGameObjects[0].transform.localScale.z)
+                    + new Vector3(0, taggedGameObjects[0].transform.localScale.y, 0);
+            }
         }
+
         Vector3 cameraPosition = Camera.main.transform.position;
-        newPosition.y = cameraY;
+
+        if (!toggleViewType)
+        {
+            newPosition.y = cameraY;
+        }
         Vector3 smoothedPosition = Vector3.Lerp(cameraPosition, newPosition, smoothSpeed);      
         Camera.main.transform.position = smoothedPosition;
+
+        //look at gameobject
+        //if(followGameObject)
+        //{
+            if (!toggleViewType)
+            {
+                //transform.LookAt(taggedGameObjects[0].transform, new Vector3(0, 1, 0));
+                Vector3 towardsTop = new Vector3(0, 0, 1);
+                Vector3 smoothedUp = Vector3.Lerp(Camera.main.transform.up, towardsTop, smoothSpeed);
+                Camera.main.transform.up = smoothedUp;
+                
+                //Camera.main.transform.up = towardsTop;
+                //Debug.DrawRay(Camera.main.transform.position, towardsTop * 10, Color.red);
+            }
+            else
+            {
+                transform.LookAt(taggedGameObjects[0].transform, Vector3.up);
+            }
+        //}
 
         Vector3 clickPosition = Vector3.zero;
         //Left mouse button click example
@@ -218,6 +252,7 @@ public class Tracker : MonoBehaviour
             {
                 newPosition = hit;
                 followGameObject = false;
+                toggleViewType = false;
             }
         }
 
@@ -227,17 +262,6 @@ public class Tracker : MonoBehaviour
             Debug.Log("Middle Click");
         }
 
-        //x key click example
-        if (Input.GetKeyDown("x"))
-        {
-            Debug.Log("x pressed.");
-        }
-
-        //Space key click example
-        if (Input.GetKeyDown("space"))
-        {
-            Debug.Log("space pressed.");
-        }
     }
 
     Vector3 GetClickHit(string tag)
