@@ -12,6 +12,12 @@ public class Skateboard : MonoBehaviour
     int t;
     public bool shuffleTargets = true;
 
+    //float time = 4f;
+    //float countTime = 0;
+
+    //Rigidbody rb;
+    //NavMeshAgent na;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,12 +36,35 @@ public class Skateboard : MonoBehaviour
         t = 0;
         target = targets[t].transform;
         agent.SetDestination(target.position);
+
+        //get rigidbody
+        //rb = GetComponent<Rigidbody>();
+        //na = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+        //Jump
+        /*
+        if(countTime > time)
+        {
+            na.enabled = false;
+            rb.isKinematic = false;
+            rb.useGravity = true;
+
+            rb.AddForce(new Vector3(0, 0, 0.2f), ForceMode.Impulse);
+
+            //rb.AddRelativeForce(new Vector3(0, 5, 5), ForceMode.Impulse);
+            
+        }
+        else
+        {
+            countTime += Time.deltaTime;
+        }
+        */
+        //Debug.Log("countTime" + countTime);
+        //Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
         float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
         if (changeTargetDistance > distanceToTarget)

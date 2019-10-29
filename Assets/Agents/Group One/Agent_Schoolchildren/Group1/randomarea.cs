@@ -36,10 +36,10 @@ public class randomarea : MonoBehaviour
             if (Time.frameCount == n)
             {
                 GameObject obj = (GameObject)Instantiate(child);
-                int x = Random.Range(-263, -258);
-                int y = Random.Range(-102, -98);
+                int x = Random.Range(-258, -256);
+                int y = Random.Range(-142, -139);
               //  Debug.Log(x);
-                child.transform.position = new Vector3(x, 3, y);
+                child.transform.position = new Vector3(x, 2, y);
                 
 
             }
