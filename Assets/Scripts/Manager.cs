@@ -38,6 +38,16 @@ public class Manager : MonoBehaviour
         {
             CheckScene("Team_006");
         }
+
+        if (Input.GetKeyUp("0"))
+        {
+            SceneManager.LoadScene("Team_001", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Team_002", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Team_003", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Team_004", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Team_005", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Team_006", LoadSceneMode.Additive);
+        }
     }
 
     void CheckScene(string name)
