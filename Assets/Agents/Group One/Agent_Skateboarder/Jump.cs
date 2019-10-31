@@ -1,37 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Jump : MonoBehaviour
 {
-    float time = 4f;
-    float countTime = 0;
+    float pi;
+    public int i = 1;
+    double waited1 = 0;
+    double waited2 = 0;
+    public int frequency = 1;
+    double waitTime1;
+    double waitTime2;
 
-    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        pi = Mathf.PI;
+        waitTime2 = pi ;
+        waitTime1 = pi ;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (countTime > time)
+        if (waited1 > waitTime1)
         {
-            //na.enabled = false;
-            rb.isKinematic = false;
-            rb.useGravity = true;
-
-            rb.AddForce(new Vector3(0, 0.02f, 0), ForceMode.Impulse);
-            countTime = 0;
-            //rb.AddRelativeForce(new Vector3(0, 5, 5), ForceMode.Impulse);
-
+            float height = Mathf.Sin(( Time.time * 2 - pi / 2 ) * frequency )  + 2;
+            gameObject.GetComponent<NavMeshAgent>().baseOffset = height;
+            if(waited2 > waitTime2)
+            {
+                waited1 = 0;
+                waited2 = 0;
+            }
+            else
+            {
+                waited2 += Time.deltaTime;
+            }
         }
         else
         {
-            countTime += Time.deltaTime;
+            waited1 += Time.deltaTime;
         }
-        Debug.Log(countTime);
     }
 }
