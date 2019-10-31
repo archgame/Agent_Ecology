@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class SpawnerLandDrone : MonoBehaviour
 {
     public GameObject[] enemies;
     public Vector3 spawnValues;
