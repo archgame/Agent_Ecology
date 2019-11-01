@@ -14,7 +14,7 @@ public class droneControlV3 : MonoBehaviour
 
     //public float lerpTime = 5;
     //private float currentlerpTime = 0;
-    private bool keyHit = false;
+    //private bool keyHit = false;
     private float h;
     
     private Vector3 localdronestartPos;
@@ -67,11 +67,24 @@ public class droneControlV3 : MonoBehaviour
         //Debug.Log("localdronestartPos " + localdronestartPos);
         //Debug.Log("localdroneendPo " + localdroneendPos);
 
-        if ( gameObject.GetComponent<droneControlV2>().finishTour == true && drone.transform.position.y==0)
+        if ( GetComponent<droneControlV2>().finishTour == true && drone.transform.position.y==0)
         {
             //gameObject.GetComponent<droneControlV1>().enabled = true;
-            gameObject.GetComponent<droneControlV2>().enabled = false;         
             
+            GetComponent<droneControlV2>().enabled = false;
+            GetComponent<droneControlV2>().finishTour = false;
+
+            GetComponent<droneControlV1>().enabled = true;
+            GetComponent<droneControlV1>().currentlerpTime = 0;
+            
+
+            GetComponent<droneControlV3>().enabled = false;
+
+
+
+            
+
+
         }
         
 

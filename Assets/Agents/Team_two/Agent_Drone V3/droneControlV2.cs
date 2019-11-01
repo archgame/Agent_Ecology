@@ -43,6 +43,7 @@ public class droneControlV2 : MonoBehaviour
     {
         if (gameObject.GetComponent<droneControlV1>().getheight == true)
         {
+            gameObject.GetComponent<droneControlV1>().keyHit = false;
             gameObject.GetComponent<droneControlV1>().enabled = false;
 
             //hangingpoint = GetComponent<droneControlV1>().drone.transform.position;
@@ -128,7 +129,8 @@ public class droneControlV2 : MonoBehaviour
             {               
                 finishTour = true;
                 gameObject.GetComponent<droneControlV3>().enabled = true;
-
+                gameObject.GetComponent<droneControlV1>().getheight = false;
+                
             }
 
 
