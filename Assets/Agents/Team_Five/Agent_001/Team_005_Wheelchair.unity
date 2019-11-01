@@ -346,7 +346,7 @@ MonoBehaviour:
   targetNames: []
   position: {x: 0, y: 0, z: 0}
   changeTargetDistance: 3
-  shuffleTargets: 1
+  shuffleTargets: 0
   targets:
   - {fileID: 1412395712}
   - {fileID: 1123337657}
@@ -841,7 +841,7 @@ MonoBehaviour:
   targetNames: []
   position: {x: 0, y: 0, z: 0}
   changeTargetDistance: 3
-  shuffleTargets: 1
+  shuffleTargets: 0
   targets:
   - {fileID: 1299895828}
   - {fileID: 2045539323}
@@ -979,7 +979,7 @@ MonoBehaviour:
   targetNames: []
   position: {x: 0, y: 0, z: 0}
   changeTargetDistance: 3
-  shuffleTargets: 1
+  shuffleTargets: 0
   targets:
   - {fileID: 617001165}
   - {fileID: 28352957}
@@ -2760,7 +2760,7 @@ MonoBehaviour:
   targetNames: []
   position: {x: 0, y: 0, z: 0}
   changeTargetDistance: 3
-  shuffleTargets: 1
+  shuffleTargets: 0
   targets:
   - {fileID: 2070821054}
   - {fileID: 1090189319}
