@@ -7,8 +7,8 @@ Total diameter of the circle would be about 1.8m. Additionally, a buffer space o
 
 * Turning Radius
 
->Roller Skates: While at full speed, roller skates have a turning radius of 2.1m. 
-While moving slowly, turning radius is 1.2m.
+>Roller Skates: While at full speed, roller skates have a turning radius of 1.0m. 
+While moving slowly, turning radius is 0.45m.
 
 * Acceleration/Deceleration
 
