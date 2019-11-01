@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Buses : MonoBehaviour
+public class WheelChairb : MonoBehaviour
 {
     #region GLOBAL VARIABLES
     GameObject target;
@@ -38,15 +38,12 @@ public class Buses : MonoBehaviour
     public float ymax = 1;
     public float zmin = 1;
     public float zmax = 1;
-
-    [Header("Agent Size")]
-    public float TurningMultiplier = 1;
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.tag = "Bus";
+        gameObject.tag = "Agent";
 
         //scale the gameobject randomly
         if (randomScale)
@@ -63,8 +60,8 @@ public class Buses : MonoBehaviour
             //get all game objects tagged with "Target"
             targets = GameObject.FindGameObjectsWithTag("Target");
 
-            List<GameObject> targetList = new List<GameObject>();           
-            foreach(GameObject go in targets) //search all "Target" game objects
+            List<GameObject> targetList = new List<GameObject>();
+            foreach (GameObject go in targets) //search all "Target" game objects
             {
                 //Debug.Log("go: " + go.name);
                 foreach (string targetName in targetNames)
@@ -128,20 +125,24 @@ public class Buses : MonoBehaviour
             {
                 //see agent's next destination
                 Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+                Debug.DrawLine(transform.position, agent.pathEndPosition, Color.cyan);
+                Debug.DrawRay(agent.pathEndPosition, Vector3.up * 40, Color.red);
+                Debug.DrawRay(target.transform.position, Vector3.up * 40, Color.yellow);
 
                 float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
                 //change target once it is reached
                 if (changeTargetDistance > distanceToTarget) //have we reached our target
                 {
                     PickUp[] pickups = gameObject.GetComponentsInChildren<PickUp>();
-                    if(pickups.Length > 0)
+                    if (pickups.Length > 0)
                     {
                         int riderCount = pickups[0].peopleAtStop;
                         Debug.Log("riderCount: " + riderCount);
                         if (riderCount > 0)
-                        {                          
+                        {
                             waitTime = waitTimeShortMax * riderCount;
-                        }else
+                        }
+                        else
                         {
                             waitTime = waitTimeShortMin;
                         }
@@ -177,11 +178,12 @@ public class Buses : MonoBehaviour
                     agent.isStopped = true;
 
                 } // changeTargetDistance test
-                if (agent.hasPath)
+
+                Debug.Log(gameObject.name + " : " + agent.hasPath);
+                if (!agent.hasPath) //cath agent error when agent doesn't resume
                 {
-                    Vector3 toSteeringTarget = agent.steeringTarget - transform.position;
-                    float turnAngle = Vector3.Angle(transform.forward, toSteeringTarget);
-                    agent.acceleration = turnAngle * agent.speed * TurningMultiplier;
+                    position = target.transform.position;
+                    agent.SetDestination(position);
                 }
             }
         }
@@ -190,11 +192,11 @@ public class Buses : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
         //Debug.Log("collision: " + collision.gameObject.name);
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
             obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
-        }       
+        }
     }
 
     void OnTriggerExit(Collider collision)
