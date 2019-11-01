@@ -25,10 +25,10 @@ public class PickUp : MonoBehaviour
     void Update()
     {
         //first stop frame
-        if(agent.isStopped == true && isStopped == false)
+        if (agent.isStopped == true && isStopped == false)
         {
             //adding each rider on the list
-            foreach(GameObject rider in riders)
+            foreach (GameObject rider in riders)
             {
                 rider.transform.SetParent(parent.transform);
                 rider.GetComponent<NavMeshAgent>().enabled = false;
@@ -40,13 +40,13 @@ public class PickUp : MonoBehaviour
 
             //deboarding
             List<int> removeIndexes = new List<int>();
-            for(int i = 0; i< passengerStops.Count;i++)
+            for (int i = 0; i < passengerStops.Count; i++)
             {
                 passengerStops[i]++;
                 //*
-                if(passengerStops[i] == 3)
+                if (passengerStops[i] == 3)
                 {
-                   
+
                     GameObject passenger = riders[i];
                     Debug.Log("agent deboards: " + passenger.name);
                     NavMeshAgent a = passenger.GetComponent<NavMeshAgent>();
@@ -72,7 +72,7 @@ public class PickUp : MonoBehaviour
         }
 
         //reste isStopped variable for next stop
-        if(!agent.isStopped)
+        if (!agent.isStopped)
         {
             isStopped = false;
         }
@@ -88,29 +88,29 @@ public class PickUp : MonoBehaviour
             //make sure the collision is not already a child of the bus
             //if (agent.isStopped)
             //{
-                if (passenger.GetComponent<Buses>().isRider == false)
-                {
-                    passenger.GetComponent<Buses>().isRider = true;
-                    //Debug.Log("passenger added");
-                    //passenger.transform.SetParent(parent.transform);
-                    //passenger.GetComponent<NavMeshAgent>().enabled = false;
-                    //passenger.GetComponent<MeshRenderer>().enabled = false;
-                    //passenger.GetComponent<Collider>().enabled = false;
+            if (passenger.GetComponent<Buses>().isRider == false)
+            {
+                passenger.GetComponent<Buses>().isRider = true;
+                //Debug.Log("passenger added");
+                //passenger.transform.SetParent(parent.transform);
+                //passenger.GetComponent<NavMeshAgent>().enabled = false;
+                //passenger.GetComponent<MeshRenderer>().enabled = false;
+                //passenger.GetComponent<Collider>().enabled = false;
 
-                    riders.Add(passenger);
-                    passengerStops.Add(0);
-                    
-                }
+                riders.Add(passenger);
+                passengerStops.Add(0);
+
+            }
             //}
-            
+
         }
     }
 
     void OnTriggerExit(Collider collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
-            
+
             GameObject passenger = collision.gameObject;
             Debug.Log("exit triggered: " + passenger.name);
             passenger.GetComponent<Buses>().isRider = false;

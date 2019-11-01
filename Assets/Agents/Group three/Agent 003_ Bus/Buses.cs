@@ -38,6 +38,9 @@ public class Buses : MonoBehaviour
     public float ymax = 1;
     public float zmin = 1;
     public float zmax = 1;
+
+    [Header("Agent Size")]
+    public float TurningMultiplier = 1;
     #endregion
 
     // Start is called before the first frame update
@@ -174,6 +177,12 @@ public class Buses : MonoBehaviour
                     agent.isStopped = true;
 
                 } // changeTargetDistance test
+                if (agent.hasPath)
+                {
+                    Vector3 toSteeringTarget = agent.steeringTarget - transform.position;
+                    float turnAngle = Vector3.Angle(transform.forward, toSteeringTarget);
+                    agent.acceleration = turnAngle * agent.speed * TurningMultiplier;
+                }
             }
         }
     }
