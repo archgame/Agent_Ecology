@@ -43,7 +43,7 @@ public class OneWheel2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.tag = "Agent";
+        //gameObject.tag = "Agent";
 
         //scale the gameobject randomly
         if (randomScale)
