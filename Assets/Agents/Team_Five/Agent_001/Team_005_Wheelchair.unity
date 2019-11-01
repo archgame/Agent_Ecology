@@ -250,7 +250,7 @@ PrefabInstance:
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -286.9
+      value: -514
       objectReference: {fileID: 0}
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
@@ -260,7 +260,7 @@ PrefabInstance:
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.62
+      value: -195.801
       objectReference: {fileID: 0}
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
@@ -322,6 +322,11 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 3655740215226017647, guid: 10e82b69cffa2ef4f9a93c97a7631739,
+        type: 3}
+      propertyPath: m_Speed
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10e82b69cffa2ef4f9a93c97a7631739, type: 3}
 --- !u!1 &43827101 stripped
@@ -351,8 +356,8 @@ MonoBehaviour:
   - {fileID: 1412395712}
   - {fileID: 1123337657}
   - {fileID: 1211293376}
-  waitTimeShortMin: 0
-  waitTimeShortMax: 0
+  waitTimeShortMin: 10
+  waitTimeShortMax: 10
   waitTimeLongMin: 0
   waitTimeLongMax: 0
   waitTime: 0
@@ -740,7 +745,7 @@ PrefabInstance:
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -76.7
+      value: -394.1
       objectReference: {fileID: 0}
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
@@ -750,7 +755,7 @@ PrefabInstance:
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.63
+      value: -52.7
       objectReference: {fileID: 0}
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
@@ -810,7 +815,7 @@ PrefabInstance:
     - target: {fileID: 3655740215226017647, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
       propertyPath: m_Speed
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3655740215226017647, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
@@ -846,8 +851,8 @@ MonoBehaviour:
   - {fileID: 1299895828}
   - {fileID: 2045539323}
   - {fileID: 636900282}
-  waitTimeShortMin: 0
-  waitTimeShortMax: 0
+  waitTimeShortMin: 10
+  waitTimeShortMax: 10
   waitTimeLongMin: 0
   waitTimeLongMax: 0
   waitTime: 0
@@ -883,7 +888,7 @@ PrefabInstance:
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -76
+      value: -283.614
       objectReference: {fileID: 0}
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
@@ -893,7 +898,7 @@ PrefabInstance:
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -173.99
+      value: 29.9
       objectReference: {fileID: 0}
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
@@ -955,6 +960,11 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 3655740215226017647, guid: 10e82b69cffa2ef4f9a93c97a7631739,
+        type: 3}
+      propertyPath: m_Speed
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10e82b69cffa2ef4f9a93c97a7631739, type: 3}
 --- !u!1 &487443328 stripped
@@ -984,8 +994,8 @@ MonoBehaviour:
   - {fileID: 617001165}
   - {fileID: 28352957}
   - {fileID: 1211391406}
-  waitTimeShortMin: 0
-  waitTimeShortMax: 0
+  waitTimeShortMin: 10
+  waitTimeShortMax: 10
   waitTimeLongMin: 0
   waitTimeLongMax: 0
   waitTime: 0
@@ -2768,7 +2778,7 @@ PrefabInstance:
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -192.8
+      value: -167.357
       objectReference: {fileID: 0}
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
@@ -2778,7 +2788,7 @@ PrefabInstance:
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -196
+      value: -277.7
       objectReference: {fileID: 0}
     - target: {fileID: 4264152278247265082, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
@@ -2838,7 +2848,7 @@ PrefabInstance:
     - target: {fileID: 3655740215226017647, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
       propertyPath: m_Speed
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3655740215226017647, guid: 10e82b69cffa2ef4f9a93c97a7631739,
         type: 3}
@@ -2874,8 +2884,8 @@ MonoBehaviour:
   - {fileID: 2070821054}
   - {fileID: 1090189319}
   - {fileID: 206145774}
-  waitTimeShortMin: 0
-  waitTimeShortMax: 0
+  waitTimeShortMin: 10
+  waitTimeShortMax: 10
   waitTimeLongMin: 0
   waitTimeLongMax: 0
   waitTime: 0
