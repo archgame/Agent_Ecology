@@ -12,12 +12,14 @@ public class PickThemUp : MonoBehaviour
     public List<int> passengerStops = new List<int>();
     private bool isStopped = false;
     public int peopleAtStop = 0;
+        
 
     // Start is called before the first frame update
     void Start()
     {
         parent = gameObject.transform.parent.gameObject;
         agent = gameObject.GetComponentInParent<NavMeshAgent>();
+
 
     }
 
@@ -44,9 +46,8 @@ public class PickThemUp : MonoBehaviour
             {
                 passengerStops[i]++;
                 //*
-                if (passengerStops[i] == 2)
+                if (passengerStops[i] == 18 )
                 {
-
                     GameObject passenger = riders[i];
                     Debug.Log("agent deboards: " + passenger.name);
                     NavMeshAgent a = passenger.GetComponent<NavMeshAgent>();

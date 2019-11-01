@@ -86,6 +86,7 @@ public class Tram : MonoBehaviour
                 if (target.name.Contains("Stop"))
                 {
                     waitTime = waitTimeStop;
+
                 }
 
                 t++;
