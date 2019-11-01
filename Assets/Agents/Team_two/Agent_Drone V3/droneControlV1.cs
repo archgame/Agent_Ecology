@@ -10,20 +10,19 @@ public class droneControlV1 : MonoBehaviour
     private Vector3 endPos;
     public float distance = 30f;
     public float lerpTime = 5;
-    private float currentlerpTime = 0;
-    private bool keyHit = false;
+    public float currentlerpTime = 0;
+    public bool keyHit = false;
     
     public bool getheight = false;
+
+    private Vector3 origin;
 
     //private bool isHeigh;
 
     // Start is called before the first frame update
     void Start()
     {
-        
 
-        startPos = drone.transform.position;
-        endPos = drone.transform.position + Vector3.up * distance;
 
     }
 
@@ -31,27 +30,46 @@ public class droneControlV1 : MonoBehaviour
     void Update()
     {
 
+        startPos = drone.transform.position;
+        endPos = drone.transform.position + Vector3.up * distance;
+        Debug.Log(drone.transform.position);
+
         if (Input.GetKeyDown(KeyCode.M))
         {
             keyHit = true;
         }
 
         if (keyHit == true)
-        {
+        {          
+
+
             currentlerpTime += Time.deltaTime;
+
+            //Debug.Log("currentlerpTime" + " " + currentlerpTime);
+            //Debug.Log("Time.deltaTime" + " " + Time.deltaTime);
+
             if (currentlerpTime >= lerpTime)
             {
                 currentlerpTime = lerpTime;
             }
-            float perc = currentlerpTime / lerpTime;
+            float perc = currentlerpTime / lerpTime / 100;
             //Debug.Log("perc" + perc);
+
             drone.transform.position = Vector3.Lerp(startPos, endPos, perc);
+            //Debug.Log(drone.transform.position);
+
+            //Debug.Log("currentlerpTime2" + " " + currentlerpTime);
+            //Debug.Log("Time.deltaTime2" + " " + Time.deltaTime);
 
         }
 
-        if (drone.transform.position.y >= distance)
+        if (drone.transform.position.y >= distance && keyHit == true)
         {
+            
             getheight = true;
+            gameObject.GetComponent<droneControlV2>().enabled = true;
+
+            
         }
         //Debug.Log("height" + drone.transform.position.y);
       

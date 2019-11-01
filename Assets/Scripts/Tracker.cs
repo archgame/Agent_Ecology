@@ -7,17 +7,21 @@ public class Tracker : MonoBehaviour
     public bool run = false;
     public GameObject target;
 
-    private GameObject[] taggedGameObjects;
-    bool followGameObject = false;
-    bool toggleViewType = false;
+    public GameObject[] taggedGameObjects;
+    private bool followGameObject = false;
+    private bool toggleViewType = false;
+    private int taggedIndex = 0;
 
     public float smoothSpeed = 0.125f;
     private Vector3 newPosition = Vector3.zero;
     //float example = 0;
 
-    float cameraY = 60f;
-    float minY = 20;
-    float maxY = 220;
+    private float cameraY = 60f;
+    private float cameraOffset = 1;
+    private float minY = 20;
+    private float maxY = 220;
+    private float minOffset = 1;
+    private float maxOffset = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -34,172 +38,132 @@ public class Tracker : MonoBehaviour
         //x key click example
         if (Input.GetKeyDown("q"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("SchoolChildren");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("SchoolChildren");
         }
         if (Input.GetKeyDown("w"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Skateboarder");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Skateboarder");
         }
         if (Input.GetKeyDown("e"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Bus");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Bus");
         }
         if (Input.GetKeyDown("r"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Jaywalker");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Jaywalker");
         }
         if (Input.GetKeyDown("t"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Drone");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Drone");
         }
         if (Input.GetKeyDown("y"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Delivery");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Delivery");
         }
         if (Input.GetKeyDown("u"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Elderly");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Elderly");
         }
         if (Input.GetKeyDown("i"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Robot");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Robot");
         }
         if (Input.GetKeyDown("o"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Motorcycle");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Motorcycle");
         }
         if (Input.GetKeyDown("p"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("DogWalker");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("DogWalker");
         }
         if (Input.GetKeyDown("a"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Scooter");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Scooter");
         }
         if (Input.GetKeyDown("s"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("IceCreamTruck");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("IceCreamTruck");
         }
         if (Input.GetKeyDown("d"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Wheelchair");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Wheelchair");
         }
         if (Input.GetKeyDown("f"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("RollerSkates");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("RollerSkates");
         }
         if (Input.GetKeyDown("g"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Tram");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Tram");
         }
         if (Input.GetKeyDown("h"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("Runner");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("Runner");
         }
         if (Input.GetKeyDown("j"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("OneWheel");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("OneWheel");
         }
         if (Input.GetKeyDown("k"))
         {
-            taggedGameObjects = GameObject.FindGameObjectsWithTag("TrashTruck");
-            if (taggedGameObjects.Length > 0)
-            {
-                followGameObject = true;
-            }
+            taggedGameObjects = SetGameObject("TrashTruck");
         }
         #endregion
 
+        //scroll for camera distance
         if (Input.mouseScrollDelta != Vector2.zero)
         {
-            Debug.Log("scroll: " + Input.mouseScrollDelta);
-            cameraY = Mathf.Clamp(cameraY + Input.mouseScrollDelta.y*-2, minY, maxY);
+            if (!toggleViewType)
+            {
+                Debug.Log("scroll: " + Input.mouseScrollDelta);
+                cameraY = Mathf.Clamp(cameraY + Input.mouseScrollDelta.y * -2, minY, maxY);
+            }
+            else
+            {
+                cameraOffset = Mathf.Clamp(cameraOffset + Input.mouseScrollDelta.y * -0.1f, minOffset, maxOffset);
+                Debug.Log("cameraOffset: " + cameraOffset);
+            }
         }
 
         //smoothly move camera
         if(followGameObject)
-        {                    
+        {
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                taggedIndex--;
+                Debug.Log("Left Arrow" + taggedIndex);              
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                taggedIndex++;
+                Debug.Log("Right Arrow:" + taggedIndex);
+            }
+
+            if(taggedIndex < 0)
+            {
+                taggedIndex = taggedGameObjects.Length - 1;
+            }
+            if(taggedIndex >= taggedGameObjects.Length)
+            {
+                taggedIndex = 0;
+            }
+
+
             //change view type by clicking space
             if (Input.GetKeyDown("space"))
             {
                 toggleViewType = !toggleViewType;
             }
 
-            newPosition = taggedGameObjects[0].transform.position;
+            newPosition = taggedGameObjects[taggedIndex].transform.position;
 
             if (toggleViewType)
             {
-                newPosition = newPosition 
-                    - (taggedGameObjects[0].transform.forward * taggedGameObjects[0].transform.localScale.z)
-                    + new Vector3(0, taggedGameObjects[0].transform.localScale.y, 0);
+                Vector3 camPos = taggedGameObjects[taggedIndex].transform.forward * cameraOffset;
+                //Vector3 camOffset = new Vector3(0, taggedGameObjects[taggedIndex].transform.localScale.y* cameraOffset, -cameraOffset);
+                Vector3 camOffset = new Vector3(0, cameraOffset, 0);
+                newPosition = newPosition - camPos + camOffset;
             }
         }
 
@@ -213,23 +177,16 @@ public class Tracker : MonoBehaviour
         Camera.main.transform.position = smoothedPosition;
 
         //look at gameobject
-        //if(followGameObject)
-        //{
-            if (!toggleViewType)
-            {
-                //transform.LookAt(taggedGameObjects[0].transform, new Vector3(0, 1, 0));
-                Vector3 towardsTop = new Vector3(0, 0, 1);
-                Vector3 smoothedUp = Vector3.Lerp(Camera.main.transform.up, towardsTop, smoothSpeed);
-                Camera.main.transform.up = smoothedUp;
-                
-                //Camera.main.transform.up = towardsTop;
-                //Debug.DrawRay(Camera.main.transform.position, towardsTop * 10, Color.red);
-            }
-            else
-            {
-                transform.LookAt(taggedGameObjects[0].transform, Vector3.up);
-            }
-        //}
+        if (!toggleViewType)
+        {
+            Vector3 towardsTop = new Vector3(0, 0, 1);
+            Vector3 smoothedUp = Vector3.Lerp(Camera.main.transform.up, towardsTop, smoothSpeed);
+            Camera.main.transform.up = smoothedUp;            
+        }
+        else
+        {
+            transform.LookAt(taggedGameObjects[taggedIndex].transform.position, Vector3.up);
+        }
 
         Vector3 clickPosition = Vector3.zero;
         //Left mouse button click example
@@ -262,6 +219,22 @@ public class Tracker : MonoBehaviour
             Debug.Log("Middle Click");
         }
 
+    }
+
+    private GameObject[] SetGameObject(string tag)
+    {
+        GameObject[] array = GameObject.FindGameObjectsWithTag(tag);
+        if (array.Length > 0)
+        {
+            followGameObject = true;
+            taggedIndex = 0;
+        }
+        else
+        {
+            followGameObject = false;
+            taggedIndex = 0;
+        }
+        return array;
     }
 
     Vector3 GetClickHit(string tag)
