@@ -52,7 +52,6 @@ public class PickThemUp : MonoBehaviour
                     NavMeshAgent a = passenger.GetComponent<NavMeshAgent>();
                     a.enabled = true;
                     a.isStopped = false;
-                    //agent.speed = 18;
                     passenger.GetComponent<MeshRenderer>().enabled = true;
                     passenger.GetComponent<Collider>().enabled = true;
                     passenger.transform.SetParent(null);
@@ -83,7 +82,7 @@ public class PickThemUp : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             peopleAtStop++;
-            Debug.Log("collision: " + collision.name);
+            //Debug.Log("collision: " + collision.name);
             GameObject passenger = collision.gameObject;
             //make sure the collision is not already a child of the bus
             //if (agent.isStopped)
