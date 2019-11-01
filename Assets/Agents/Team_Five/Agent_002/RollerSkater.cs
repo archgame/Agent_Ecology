@@ -21,6 +21,11 @@ public class RollerSkater : MonoBehaviour
     public float zmin = 1;
     public float zmax = 1;
 
+    //private float timePaintingMin = 10;
+    //private float timePaintingMax = 25;
+    
+    public float paintingTime = 0;
+    public float meetingWait = 0;
     public float waitTime = 0;
     private bool waiting = false;
     private float waited = 0;
@@ -39,55 +44,6 @@ public class RollerSkater : MonoBehaviour
             float z = Random.Range(zmin, zmax);
             transform.localScale = new Vector3(x, y, z);
         }
-
-        /*
-        //grab targets using tags
-        if (targets == null || targets.Length == 0)
-        {
-            targets = GameObject.FindGameObjectsWithTag("Target");
-        }
-        if (shuffleTargets)
-        {
-            targets = Shuffle(targets);
-        }
-        //Debug.Log(this.name + " has " + targets.Length + "Targets");
-
-        agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
-        t = 0;
-        target = targets[t].transform;
-        agent.SetDestination(target.position); 
-        */
-
-        //grab targets using names
-        if (targets.Length == 0)
-        {
-            //get all game objects tagged with "Target"
-            targets = GameObject.FindGameObjectsWithTag("target");
-
-            List<GameObject> targetList = new List<GameObject>();
-            foreach (GameObject go in targets) //search all "Target" game objects
-            {
-                //Debug.Log("go: " + go.name);
-                foreach (string targetName in targetNames)
-                {
-                    //Debug.Log("targetName: " + targetName);
-                    // "Target" contains: "Tar", "Targ", "get", ! "Trgt"
-                    if (go.name.Contains(targetName)) //if GameObject has the same name as targetName, add to list
-                    {
-                        targetList.Add(go);
-                    }
-                }
-            }
-            targets = targetList.ToArray(); //Convert List to Array, because other code is still using array
-        }
-
-        //shuffle targets
-        if (shuffleTargets)
-        {
-            targets = Shuffle(targets);
-        }
-        //Debug.Log(this.name + " has " + targets.Length + "Targets");
-
         agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
         t = 0;
         target = targets[t].transform;
@@ -99,17 +55,77 @@ public class RollerSkater : MonoBehaviour
     {
         Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
-        float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
-        if (changeTargetDistance > distanceToTarget)
+        if (waiting) // (waiting == false) (1 == 0)
         {
-            t++;
-            if (t == targets.Length)
+            if (waited > waitTime)
             {
-                t = 0;
+                waiting = false;
+                agent.isStopped = false;
+                waited = 0;
             }
-            Debug.Log(this.name + " Change Target: " + t);
-            target = targets[t].transform;
-            agent.SetDestination(target.position); //each frame set the agent's destination to the target position
+            else
+            {
+                waited += Time.deltaTime;
+            }
+        }
+        else
+        {
+            float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
+            if (changeTargetDistance > distanceToTarget)
+            {
+                if (target.name.Contains("Intezaar"))
+                {
+                    Debug.Log("intezaar reached");
+                    waitTime = meetingWait;
+                }
+                else
+                {
+                    waitTime = 0;
+                }
+
+                if (target.name.Contains("Painting"))
+                {
+                    waitTime = paintingTime;
+                }
+                else
+                {
+                    waitTime = 0;
+                }
+
+                if (target.name.Contains("PaintNow"))
+                {
+                    waitTime = 12;
+                }
+                else
+                {
+                    waitTime = 0;
+                }
+
+                if (target.name.Contains("Last"))
+                {
+                    //gameObject.GetComponent<MeshRenderer>().enabled = false;
+                    //gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                    //gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                    //gameObject.GetComponent<Rigidbody>().useGravity = true;
+                    //gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+                    waitTime = 10000000;
+                }
+                else
+                {
+                    waitTime = 0;
+                }
+
+                t++;
+                if (t == targets.Length)
+                {
+                    t = 0;
+                }
+                Debug.Log(this.name + " Change Target: " + t);
+                target = targets[t].transform;
+                agent.SetDestination(target.position); //each frame set the agent's destination to the target position
+                waiting = true;
+                agent.isStopped = true;
+            }
         }
     }
 
