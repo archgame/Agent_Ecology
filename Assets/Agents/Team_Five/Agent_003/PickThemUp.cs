@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PickUp : MonoBehaviour
+public class PickThemUp : MonoBehaviour
 {
+   
     GameObject parent;
     NavMeshAgent agent;
     public List<GameObject> riders = new List<GameObject>();
@@ -16,7 +17,6 @@ public class PickUp : MonoBehaviour
     void Start()
     {
         parent = gameObject.transform.parent.gameObject;
-        //agent = parent.GetComponent<NavMeshAgent>();
         agent = gameObject.GetComponentInParent<NavMeshAgent>();
 
     }
@@ -44,7 +44,7 @@ public class PickUp : MonoBehaviour
             {
                 passengerStops[i]++;
                 //*
-                if (passengerStops[i] == 3)
+                if (passengerStops[i] == 2)
                 {
 
                     GameObject passenger = riders[i];
@@ -52,7 +52,6 @@ public class PickUp : MonoBehaviour
                     NavMeshAgent a = passenger.GetComponent<NavMeshAgent>();
                     a.enabled = true;
                     a.isStopped = false;
-                    //agent.speed = 18;
                     passenger.GetComponent<MeshRenderer>().enabled = true;
                     passenger.GetComponent<Collider>().enabled = true;
                     passenger.transform.SetParent(null);
@@ -88,9 +87,11 @@ public class PickUp : MonoBehaviour
             //make sure the collision is not already a child of the bus
             //if (agent.isStopped)
             //{
-            if (passenger.GetComponent<Buses>().isRider == false)
+            riders.Add(passenger);
+            passengerStops.Add(0);
+            if (passenger.GetComponent<Tram>().isRider == false)
             {
-                passenger.GetComponent<Buses>().isRider = true;
+                passenger.GetComponent<Tram>().isRider = true;
                 //Debug.Log("passenger added");
                 //passenger.transform.SetParent(parent.transform);
                 //passenger.GetComponent<NavMeshAgent>().enabled = false;
@@ -113,12 +114,20 @@ public class PickUp : MonoBehaviour
 
             GameObject passenger = collision.gameObject;
             Debug.Log("exit triggered: " + passenger.name);
-            passenger.GetComponent<Buses>().isRider = false;
+            passenger.GetComponent<Tram>().isRider = false;
             passenger.GetComponent<NavMeshAgent>().isStopped = false;
             //passenger.GetComponent<NavMeshAgent>().Resume();
-            passenger.GetComponent<Buses>().position =
-                passenger.GetComponent<Buses>().targets[0].transform.position;
+            //passenger.GetComponent<PranaySample>().position =
+            //passenger.GetComponent<PranaySample>().targets[0].transform.position;
         }
     }
 
+
+
 }
+
+
+
+
+
+
