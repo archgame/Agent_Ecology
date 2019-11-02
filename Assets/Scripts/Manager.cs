@@ -48,6 +48,16 @@ public class Manager : MonoBehaviour
             SceneManager.LoadScene("Team_005", LoadSceneMode.Additive);
             SceneManager.LoadScene("Team_006", LoadSceneMode.Additive);
         }
+        if(Input.GetKeyUp("-"))
+        {
+            SceneManager.LoadScene("Agent Ecology", LoadSceneMode.Single);
+            //SafeUnload("Team_001");
+            //SafeUnload("Team_002");
+            //SafeUnload("Team_003");
+            //SafeUnload("Team_004");
+            //SafeUnload("Team_005");
+            //SafeUnload("Team_006");
+        }
     }
 
     void CheckScene(string name)
@@ -71,5 +81,17 @@ public class Manager : MonoBehaviour
             SceneManager.UnloadSceneAsync(name);
         }
         
+    }
+
+    void SafeUnload(string name)
+    {
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene s = SceneManager.GetSceneAt(i);
+            if (s.name == name)
+            {
+                SceneManager.UnloadSceneAsync(name);
+            }
+        }
     }
 }
