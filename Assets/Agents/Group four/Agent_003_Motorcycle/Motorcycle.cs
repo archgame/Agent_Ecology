@@ -225,7 +225,10 @@ public class Motorcycle : MonoBehaviour
         }
         if (obstacles == 0) //once there are zero obstacles, start the agent moving
         {
-            agent.isStopped = false;
+            if (agent != null)
+            {
+                agent.isStopped = false;
+            }
         }
     }
 
