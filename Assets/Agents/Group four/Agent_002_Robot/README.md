@@ -5,9 +5,9 @@
 >Physical size is between 0.28m ¨C 0.34m radius. Additionally, it has a 1.2m buffer radius for pedestrians given the possibility for sporadic movement.
 
 * Random Scale
-> xmin = 0.65; xmax = 0.95;
-  ymin = 0.25; ymax = 0.55;
-  zmin = 0.15; zmax = 0.45;
+> xmin = 0.9; xmax = 1.1;
+  ymin = 0.9; ymax = 1.1;
+  zmin = 0.9; zmax = 1.1;
 
 * Turning Radius
 

@@ -2,37 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Robot : MonoBehaviour
 {
-    Transform target;
+    #region GLOBAL VARIABLES
+    GameObject target;
     NavMeshAgent agent;
-    public string[] targetNames;
+    public bool isRider = false;
 
+
+    [Header("Target Info")]
+    public string[] targetNames;
+    [HideInInspector]
+    public Vector3 position;
     public float changeTargetDistance = 3;
-    int t;
+    private int t;
     public bool shuffleTargets = true;
     public GameObject[] targets;
+
+    [Header("Wait Times")]
+    public float waitTimeShortMin = 0;
+    public float waitTimeShortMax = 0;
+    public float waitTimeLongMin = 0;
+    public float waitTimeLongMax = 0;
 
     public float waitTime = 0;
     private bool waiting = false;
     private float waited = 0;
 
+    [Header("Agent Size")]
     public bool randomScale = false;
-    public float xmin = 0.65f;
-    public float xmax = 0.95f;
-    public float ymin = 0.25f;
-    public float ymax = 0.55f;
-    public float zmin = 0.15f;
-    public float zmax = 0.45f;
-
-    private int obstacles = 0;
-
-
+    public float xmin = 0.9f;
+    public float xmax = 1.1f;
+    public float ymin = 0.9f;
+    public float ymax = 1.1f;
+    public float zmin = 0.9f;
+    public float zmax = 1.1f;
+    #endregion
+    public string m_Scene;
     // Start is called before the first frame update
     void Start()
     {
-        // scale the gameobject
+        
+
+        //scale the gameobject randomly
         if (randomScale)
         {
             float x = Random.Range(xmin, xmax);
@@ -41,124 +55,183 @@ public class Robot : MonoBehaviour
             transform.localScale = new Vector3(x, y, z);
         }
 
-
+        //grab targets using tags
         if (targets.Length == 0)
         {
-            //get all game objects tagged with "target"
-            targets = GameObject.FindGameObjectsWithTag("Target");
-
+            //get all game objects tagged with "Target"
+            targets = GameObject.FindGameObjectsWithTag("target");
 
             List<GameObject> targetList = new List<GameObject>();
-            foreach (GameObject go in targets)  // search all "target" game objects
+            foreach (GameObject go in targets) //search all "Target" game objects
             {
+                //Debug.Log("go: " + go.name);
                 foreach (string targetName in targetNames)
                 {
-                    Debug.Log("go: " + go.name);
-                    //"target" containssplit 
-                    if (go.name.Contains(targetName)) // if GameObject has the same name as targetName, add to list or contain this name
+                    //Debug.Log("targetName: " + targetName);
+                    // "Target" contains: "Tar", "Targ", "get", ! "Trgt"
+                    if (go.name.Contains(targetName)) //if GameObject has the same name as targetName, add to list
                     {
                         targetList.Add(go);
                     }
                 }
-
             }
-            targets = targetList.ToArray(); // Convert list to Array, because the code is still using array
+            targets = targetList.ToArray(); //Convert List to Array, because other code is still using array
         }
 
+        //shuffle targets
+        if (shuffleTargets)
+        {
+            targets = Shuffle(targets);
+        }
+        //Debug.Log(this.name + " has " + targets.Length + "Targets");
 
-        targets = Shuffle(targets);
-        // Debug.Log(this.name + "has " + targets.Length + " Target");
-
-        agent = GetComponent<NavMeshAgent>(); //set the agent variable to this object's navmesh
+        agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
         t = 0;
-        target = targets[t].transform;
-        agent.SetDestination(target.position);
-
-
+        target = targets[t];
+        agent.SetDestination(target.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!waiting) //(waiting == false)  // if (true) will run {}
+        if (agent.enabled)
         {
-            //see agent's next destination
-            Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
-
-            float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
-
-            //change target once it is reached
-            if (changeTargetDistance > distanceToTarget)
+            if (target.transform.position != position)
             {
-
-                t++;
-                if (t == targets.Length)
-                {
-                    t = 0;
-                }
-
-                // Debug.Log(this.name + " Change Target: " + t);
-                target = targets[t].transform;
-                agent.SetDestination(target.position);//each frame set the agent's desitination to the target
-
-                waiting = true;
-                agent.isStopped = true;
-
-            } // changeTargetDistance test
-        } //if(!waiting)
-        else
-        {
-            if (waited > waitTime)
-            {
-                waiting = false;
-                agent.isStopped = false;
-                waited = 0;
-
+                position = target.transform.position;
+                agent.SetDestination(position);
             }
 
+            //original text if (!waiting) // (waiting == false) (1 == 0)
+            if (waiting) // (waiting == false) (1 == 0)
+            {
+                if (waited > waitTime)
+                {
+                    waiting = false;
+                    agent.isStopped = false;
+                    waited = 0;
+                    PickUp[] pickups = gameObject.GetComponentsInChildren<PickUp>();
+                    if (pickups.Length > 0)
+                    {
+                        pickups[0].peopleAtStop = 0;
+                    }
+                }
+                else
+                {
+                    waited += Time.deltaTime;
+                }
+
+            } //if waiting
             else
             {
-                waited += Time.deltaTime;
+                //see agent's next destination
+                //Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+                //Debug.DrawLine(transform.position, agent.pathEndPosition, Color.cyan);
+                //Debug.DrawRay(agent.pathEndPosition, Vector3.up * 10, Color.red);
+                //Debug.DrawRay(target.transform.position, Vector3.up * 40, Color.yellow);
+
+                float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
+                //change target once it is reached
+                if (changeTargetDistance > distanceToTarget) //have we reached our target
+                {
+                    //type of stop
+                    if (target.name.Contains("Charging"))
+                    {
+                        //Debug.Log("long wait");
+                        waitTime = Random.Range(waitTimeLongMin, waitTimeLongMax);
+                    }
+                    if (target.name.Contains("Shop"))
+                    {
+                        //Debug.Log("long wait");
+                        waitTime = Random.Range(waitTimeShortMin, waitTimeShortMax);
+                    }
+                    if (target.name.Contains("Office"))
+                    {
+                        //Debug.Log("short");
+                        waitTime = Random.Range(waitTimeShortMin, waitTimeShortMax);
+                    }
+
+                    /*PickUp[] pickups = gameObject.GetComponentsInChildren<PickUp>();
+                    if (pickups.Length > 0)
+                    {
+                        int riderCount = pickups[0].peopleAtStop;
+                        Debug.Log("riderCount: " + riderCount);
+                        if (riderCount > 0)
+                        {
+                            waitTime = waitTimeShortMax * riderCount;
+                        }
+                        else
+                        {
+                            waitTime = waitTimeShortMin;
+                        }
+                    }
+                    else
+                    {
+                        waitTime = waitTimeShortMin;
+                    }*/
+                    Debug.Log("waitTime: " + waitTime);
+
+
+
+                    t++;
+                    if (t == targets.Length)
+                    {
+                        t = 0;
+                    }
+                    //Debug.Log(this.name + " Change Target: " + t);
+                    target = targets[t];
+                    agent.SetDestination(target.transform.position); //each frame set the agent's destination to the target position
+                    waiting = true;
+                    agent.isStopped = true;
+
+                } // changeTargetDistance test
+
+                Debug.Log(gameObject.name + ":" + agent.hasPath);
+                if (!agent.hasPath)// catch agent error when agent doesn't resume
+                {
+                    position = target.transform.position;
+                    agent.SetDestination(position);
+                }
             }
         }
     }
+
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("collision: " + collision.gameObject.name);
+        //Debug.Log("collision: " + collision.gameObject.name);
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
-            obstacles++; // obstacles = obstacles +1; || obstacles += 1;
-
+            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
         }
-
     }
 
     void OnTriggerExit(Collider collision)
     {
-
-        Debug.Log("existed");
+        //Debug.Log("exited");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
-            obstacles--;//obstacles = obstcles-1 || obastacles -=1;
+            obstacles--; //obstacles = obstacles - 1; || obstacles -= 1;
         }
-        if (obstacles == 0) // once there are zero obstacles, start the agent moving
+        if (obstacles == 0) //once there are zero obstacles, start the agent moving
         {
             agent.isStopped = false;
         }
-
     }
+
+    private int obstacles = 0;
 
     GameObject[] Shuffle(GameObject[] objects)
     {
         GameObject tempGO;
         for (int i = 0; i < objects.Length; i++)
         {
-            Debug.Log("i: " + i);
+            //Debug.Log("i: " + i);
             int rnd = Random.Range(0, objects.Length);
             tempGO = objects[rnd];
-            objects[rnd] = targets[i];
+            objects[rnd] = objects[i];
             objects[i] = tempGO;
+
         }
         return objects;
     }

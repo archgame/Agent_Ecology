@@ -5,7 +5,7 @@
 
 * Elderly
 
->Targets of elderlies are markets, bus stops and parks where elderlies will stop for 5 seconds. If possible, they will stop at markets and parks much longer.
+>Targets of elderlies are markets, bus stops and parks where elderlies will stop for 5 seconds. If possible, they will stop at markets and gardens much longer.
 
 * Robot
 

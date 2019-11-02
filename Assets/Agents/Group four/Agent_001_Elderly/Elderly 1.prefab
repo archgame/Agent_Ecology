@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 5943817673211772624}
   - component: {fileID: 5943817673211772625}
   - component: {fileID: 5943817673211772626}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Elderly 1
-  m_TagString: Elderly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +29,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5943817673211772627}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.76001, y: 0.315, z: -0.5399933}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5943817673211772627}
-  m_Mesh: {fileID: -2346428509227581198, guid: c4caf16c3f627ce47bfcd70690e8b883, type: 3}
+  m_Mesh: {fileID: -2346428509227581198, guid: e5baeefb02e123142b6a8a64899a1c50, type: 3}
 --- !u!23 &7062631168659264837
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -106,17 +106,17 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.39997685
-  m_Speed: 1
+  m_Speed: 1.5
   m_Acceleration: 2
   avoidancePriority: 50
-  m_AngularSpeed: 0
+  m_AngularSpeed: 180
   m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.38
   m_BaseOffset: 0.59
-  m_WalkableMask: 1151
+  m_WalkableMask: 13439
   m_ObstacleAvoidanceType: 4
 --- !u!114 &5943817673211772625
 MonoBehaviour:
@@ -130,21 +130,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9f7ab833e39d9468424d79960788d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRider: 0
   targetNames:
   - Market
-  - Bus Stop
-  - Park
+  - Bus
+  - Garden
+  position: {x: 0, y: 0, z: 0}
   changeTargetDistance: 1
   shuffleTargets: 1
   targets: []
+  waitTimeShortMin: 0
+  waitTimeShortMax: 0
+  waitTimeLongMin: 0
+  waitTimeLongMax: 0
   waitTime: 5
   randomScale: 1
-  xmin: 0.2
-  xmax: 0.6
-  ymin: 1.4
-  ymax: 1.7
-  zmin: 0.2
-  zmax: 0.6
+  xmin: 0.6
+  xmax: 1.1
+  ymin: 0.8
+  ymax: 1.2
+  zmin: 0.9
+  zmax: 1.1
+  m_Scene: Team_004
 --- !u!54 &5943817673211772626
 Rigidbody:
   m_ObjectHideFlags: 0
