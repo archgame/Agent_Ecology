@@ -43,7 +43,7 @@ public class WheelChair : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.tag = "Agent";
+        gameObject.tag = "Wheelchair";
 
         //scale the gameobject randomly
         if (randomScale)

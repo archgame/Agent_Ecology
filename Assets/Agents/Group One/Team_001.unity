@@ -187,6 +187,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4469776561259646790, guid: d814fa1608f2d3f46838f0703fc9411a,
+        type: 3}
+      propertyPath: m_TagString
+      value: IceCreamTruck
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684386851753906258, guid: d814fa1608f2d3f46838f0703fc9411a,
+        type: 3}
+      propertyPath: m_TagString
+      value: IceCreamTruck
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d814fa1608f2d3f46838f0703fc9411a, type: 3}
 --- !u!1001 &1922202850658764444
@@ -196,6 +206,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6889372843644481498, guid: d2a5261fba4b6474a99c3d6f1c332651,
+        type: 3}
+      propertyPath: m_Name
+      value: Skateboard Objects
+      objectReference: {fileID: 0}
     - target: {fileID: 6889372843644481497, guid: d2a5261fba4b6474a99c3d6f1c332651,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -251,11 +266,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6889372843644481498, guid: d2a5261fba4b6474a99c3d6f1c332651,
-        type: 3}
-      propertyPath: m_Name
-      value: Skateboard Objects
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2a5261fba4b6474a99c3d6f1c332651, type: 3}
 --- !u!1001 &8971784451603121277
@@ -265,6 +275,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8971784451513659432, guid: cabf58dc40c6bc6479a972f36b33fff7,
+        type: 3}
+      propertyPath: m_Name
+      value: Schoolchildren Objects
+      objectReference: {fileID: 0}
     - target: {fileID: 8971784451351616883, guid: cabf58dc40c6bc6479a972f36b33fff7,
         type: 3}
       propertyPath: m_Enabled
@@ -274,11 +289,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8971784451513659432, guid: cabf58dc40c6bc6479a972f36b33fff7,
-        type: 3}
-      propertyPath: m_Name
-      value: Schoolchildren Objects
       objectReference: {fileID: 0}
     - target: {fileID: 8971784451513659435, guid: cabf58dc40c6bc6479a972f36b33fff7,
         type: 3}

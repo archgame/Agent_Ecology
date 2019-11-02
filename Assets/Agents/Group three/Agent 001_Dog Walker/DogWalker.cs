@@ -97,7 +97,7 @@ public class DogWalker : MonoBehaviour
         else
         {
             //see agent's next destination
-            Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+           // Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
             float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
             //change target once it is reached
@@ -108,7 +108,7 @@ public class DogWalker : MonoBehaviour
                 {
                     t = 0;
                 }
-                Debug.Log(this.name + " Change Target: " + t);
+                //Debug.Log(this.name + " Change Target: " + t);
                 target = targets[t].transform;
                 agent.SetDestination(target.position); //each frame set the agent's destination to the target position
 
@@ -121,7 +121,7 @@ public class DogWalker : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("collision: " + collision.gameObject.name);
+        //Debug.Log("collision: " + collision.gameObject.name);
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
@@ -131,7 +131,7 @@ public class DogWalker : MonoBehaviour
 
     void OnTriggerExit(Collider collision)
     {
-        Debug.Log("exited");
+        //Debug.Log("exited");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             obstacles--; //obstacles = obstacles - 1; || obstacles -= 1;

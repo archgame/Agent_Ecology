@@ -9,7 +9,7 @@ public class Buses : MonoBehaviour
     GameObject target;
     NavMeshAgent agent;
     public bool isRider = false;
-
+    public bool isTheBus = false;
 
     [Header("Target Info")]
     public string[] targetNames;
@@ -46,7 +46,8 @@ public class Buses : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.tag = "Bus";
+        if(isTheBus)
+            gameObject.tag = "Bus";
 
         //scale the gameobject randomly
         if (randomScale)

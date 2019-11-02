@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class ScooterTargetGo : MonoBehaviour
 {
     #region Global Variable
+
+
     GameObject target;
     NavMeshAgent agent;
-    public bool isRider = false;
     //[HideInInspector]
-    public bool daozhan = false;
 
     [Header("")]
 
@@ -22,37 +23,18 @@ public class ScooterTargetGo : MonoBehaviour
     private int t;
     public bool shuffleTargets = true;
     public GameObject[] targets;
+    public bool isStopped;
+    public GameObject parent;
 
-    [Header("Waiting")]
-    public float waitTime;
-    private bool waiting = false;
-    private float waited = 0;
 
-    [Header("Agent Size")]
+    Transform Rider;
 
-    public bool randomScale = false;
-    public float xmin = 1;
-    public float xmax = 1;
-    public float ymin = 1;
-    public float ymax = 1;
-    public float zmin = 1;
-    public float zmax = 1;
+
     #endregion
 
-    // Start is called before the first frame update
+// Start is called before the first frame update
     void Start()
     {
-        //gameObject.tag = "Scooter";
-
-        //scale the gameobject randomly
-        /*if (randomScale)
-        {
-            float x = Random.Range(xmin, xmax);
-            float y = Random.Range(ymin, ymax);
-            float z = Random.Range(zmin, zmax);
-            transform.localScale = new Vector3(x, y, z);
-        }*/
-
         //grab targets using tags
         if (targets.Length == 0)
         {
@@ -92,58 +74,73 @@ public class ScooterTargetGo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(agent.enabled)
-        //check 
-        if(target.transform.position != position)
-        {
-            position = target.transform.position;
-            agent.SetDestination(position);
-        }
 
-        //original text if (!waiting) // (waiting == false) (1 == 0)
-        if (waiting) // (waiting == false) (1 == 0)
+        /*if (agent.speed != 0)
         {
-            daozhan = true;
-
-            if (waited > waitTime)
+            if (agent.hasPath)
             {
-                waiting = false;
-                agent.isStopped = false;
-                waited = 0;
-                daozhan = false;
+                Vector3 toSteeringTarget = agent.steeringTarget - transform.position;
+                float turnAngle = Vector3.Angle(transform.forward, toSteeringTarget);
+                agent.acceleration = turnAngle * agent.speed * 0.01f;
+            }
+            NavMeshHit navHit;
+            agent.SamplePathPosition(-1, 0.0f, out navHit);
+            //Debug.Log("mask: " + navHit.mask);
+            int bikelaneArea = 1 << NavMesh.GetAreaFromName("Bikelane");
+            //Debug.Log("Bikelane " + bikelaneArea);
+            if (bikelaneArea == navHit.mask)
+            {
+                agent.speed = Random.Range(10, 15);
+                //agent.acceleration = Random.Range(12, 15);
+                //Debug.Log("Change Speed");
+            }
+            else
+            {
+                agent.speed = 5;
+                agent.acceleration = 5;
+            }
+        }*/
+        agent.speed = Random.Range(9, 12);
+        isStopped = agent.isStopped;
+        //see agent's next destination
+        Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+
+        float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
+        //Debug.Log(distanceToTarget);
+        //change target once it is reached
+        if (changeTargetDistance > distanceToTarget) //have we reached our target
+        {
+            Rider = transform.Find("Rider");
+            if (transform.childCount > 27) 
+            {
+                Rider.GetComponent<NavMeshAgent>().enabled = true;
+                Rider.GetComponent<RiderTargetGo>().enabled = true;
+                Rider.parent = parent.transform;
+
+            }
+
+            t++;
+            if (t == targets.Length)
+            {
+                t = 0;
+            }
+            target = targets[t];
+            agent.SetDestination(target.transform.position); 
+
+        } // changeTargetDistance test
+        else
+        {
+            if (transform.childCount < 28)
+            {
+                agent.isStopped = true;
+                agent.speed = 0;
 
             }
             else
             {
-                waited += Time.deltaTime;
+                agent.isStopped = false;
             }
-
-        } //if waiting
-        else
-        {
-            //see agent's next destination
-            Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
-
-            float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
-            //change target once it is reached
-            if (changeTargetDistance > distanceToTarget) //have we reached our target
-            {
-                t++;
-                if (t == targets.Length)
-                {
-                    t = 0;
-                }
-                //Debug.Log(this.name + " Change Target: " + t);
-                target = targets[t];
-                agent.SetDestination(target.transform.position); //each frame set the agent's destination to the target position
-
-                waiting = true;
-                agent.isStopped = true;
-
-
-            } // changeTargetDistance test
         }
-
     }
 
 
@@ -162,4 +159,6 @@ public class ScooterTargetGo : MonoBehaviour
         }
         return objects;
     }
+
+
 }

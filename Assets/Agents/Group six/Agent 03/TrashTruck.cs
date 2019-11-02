@@ -8,10 +8,25 @@ public class TrashTruck : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
 
+    [Header("Target info")]
+    public string[] targetNames;
     public GameObject[] targets;
     public float changeTargetDistance = 3;
     int t;
     public bool shuffleTargets = true;
+
+    /*
+   [Header("Wait times")]
+   //Wait time at target
+   public float waitTimeShortMin = 0;
+   public float waitTimeShortMax = 0;
+   public float waitTimeLongMin = 0;
+   public float waitTimeLongMax = 0;
+   */
+
+    public float waitTime = 0;
+    private bool waiting = false;
+    private float waited = 0;
 
     //Min and Max Scale factor
     public bool randomScale = false;
@@ -22,7 +37,7 @@ public class TrashTruck : MonoBehaviour
     public float zmin = 1;
     public float zmax = 1;
 
-    private int obstacles = 0;
+    //private int obstacles = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -38,45 +53,95 @@ public class TrashTruck : MonoBehaviour
 
 
         //grab targets using tags
-        if (targets == null || targets.Length == 0)   //(DELETE IF NOT CHANGUIN  TARGET)
+        if (targets == null || targets.Length == 0)
         {
+            //get all names objects tagget with "Target"
             targets = GameObject.FindGameObjectsWithTag("target");
+
+            List<GameObject> targetList = new List<GameObject>();
+            foreach (GameObject go in targets) //Seach all "Target" game objects
+            {
+                foreach (string targetName in targetNames)
+                {
+                    if (go.name.Contains(targetName))
+                    {
+                        targetList.Add(go);
+                    }
+                }
+            }
+            targets = targetList.ToArray(); //convert List to our targes List
         }
-        
         if (shuffleTargets)
         {
             targets = Shuffle(targets);
         }
-        
-        Debug.Log(this.name + " has " + targets.Length + "Targets"); //this name means the name of the object
+
+        //Debug.Log(this.name + hideFlags + " has " + targets.Length + "Target");
 
         agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
         t = 0;
         target = targets[t].transform;
         agent.SetDestination(target.position);
-
+        //target = targets[0];
+        //agent.SetDestination(target.transform.position);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
-
-        float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
-        if (changeTargetDistance > distanceToTarget)
+        if (waiting) // saames as ;; if(waiting == false)
         {
-            t++;
-            if (t == targets.Length) // Reseat target list onece Gameobject goes to all
+            if (agent.enabled)
+                if (waited > waitTime)
+                {
+                    waiting = false;
+                    agent.isStopped = false;
+                    waited = 0;
+                    Debug.Log(name + " moving");
+                }
+                else
+                {
+                    waited += Time.deltaTime;
+                }
+
+        } //if waiting
+        else
+        {
+            Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+
+            float distancetoTarget = Vector3.Distance(agent.transform.position, target.position);
+            if (changeTargetDistance > distancetoTarget)
             {
-                t = 0;
-            }
-            Debug.Log(this.name + "change Target to: " + t);
-            target = targets[t].transform;
-            agent.SetDestination(target.position);
+                /*
+                if(target.name.Contains("short"))
+                {
+                    waitTime = Random.Range(waitTimeShortMin, waitTimeShortMax);
+                }
+                if(target.name.Contains("long"))
+                {
+                    waitTime = Random.Range(waitTimeLongMin, waitTimeLongMax);
+                }
+                */
+
+                t++;
+                if (t == targets.Length)
+                {
+                    t = 0;
+                }
+                //Debug.Log(this.name + "change Target: " + t);
+                target = targets[t].transform;
+                agent.SetDestination(target.transform.position);
+
+                waiting = true;
+                agent.isStopped = true;
+                Debug.Log(this.name + " waiting");
+
+            } // cangue target.distance test
         }
+
     }
-    
+
     /*
     void OnTriggerEnter(Collider collision)
     {
@@ -102,10 +167,30 @@ public class TrashTruck : MonoBehaviour
     }
 
     */
+    void OnTriggerEnter(Collider alleycollision)
+    {
+        if (alleycollision.gameObject.name.Contains("alley"))
+        {
+            Debug.Log("Slowdown");
+            agent.speed = 6;
+        }
+
+    }
+
+    void OnTriggerExit(Collider alleycollision)
+    {
+        if (alleycollision.gameObject.name.Contains("alley"))
+        {
+            Debug.Log("fast");
+            agent.speed = 11;
+        }
+    }
+
+
     GameObject[] Shuffle(GameObject[] objects)
     {
         GameObject temGO;
-        for (int i = 0; i < objects.Length; i++) 
+        for (int i = 0; i < objects.Length; i++)
         {
             Debug.Log("i:" + i);
             int rnd = Random.Range(0, objects.Length);
@@ -115,5 +200,5 @@ public class TrashTruck : MonoBehaviour
         return objects;
     }
 
-  
+
 }

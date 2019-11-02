@@ -44,7 +44,7 @@ public class Tracker : MonoBehaviour
         {
             taggedGameObjects = SetGameObject("Skateboarder");
         }
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("s"))
         {
             taggedGameObjects = SetGameObject("Bus");
         }
@@ -80,7 +80,7 @@ public class Tracker : MonoBehaviour
         {
             taggedGameObjects = SetGameObject("Scooter");
         }
-        if (Input.GetKeyDown("s"))
+        if (Input.GetKeyDown("e"))
         {
             taggedGameObjects = SetGameObject("IceCreamTruck");
         }

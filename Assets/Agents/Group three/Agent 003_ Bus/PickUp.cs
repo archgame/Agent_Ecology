@@ -88,8 +88,11 @@ public class PickUp : MonoBehaviour
             //make sure the collision is not already a child of the bus
             //if (agent.isStopped)
             //{
-            if (passenger.GetComponent<Buses>().isRider == false)
+            if ((passenger.GetComponent("Buses") as Buses) != null)
             {
+
+                if (passenger.GetComponent<Buses>().isRider == false)
+              {
                 passenger.GetComponent<Buses>().isRider = true;
                 //Debug.Log("passenger added");
                 //passenger.transform.SetParent(parent.transform);
@@ -100,9 +103,9 @@ public class PickUp : MonoBehaviour
                 riders.Add(passenger);
                 passengerStops.Add(0);
 
+              }
+                //}
             }
-            //}
-
         }
     }
 
