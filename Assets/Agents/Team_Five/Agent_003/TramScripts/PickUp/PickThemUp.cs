@@ -46,7 +46,7 @@ public class PickThemUp : MonoBehaviour
             {
                 passengerStops[i]++;
                 //*
-                if (passengerStops[i] == 18 )
+                if (passengerStops[i] == 20 )
                 {
                     GameObject passenger = riders[i];
                     Debug.Log("agent deboards: " + passenger.name);
