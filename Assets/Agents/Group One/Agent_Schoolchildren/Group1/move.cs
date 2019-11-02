@@ -25,7 +25,7 @@ public class move : MonoBehaviour
     public float ymax = 1;
     public float zmin = 1;
     public float zmax = 1;
-
+    public string m_Scene;
     // Start is called before the first frame update
     void Start()
     {
