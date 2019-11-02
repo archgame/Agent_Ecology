@@ -21,13 +21,13 @@ public class Tram : MonoBehaviour
     public GameObject[] targets;
 
     [Header("Wait Times")]
-    public float waitTimeStop = 0;
-    public float waitTimeTarget = 0;
+    public float waitTimeShort = 0;
+    public float waitTimeLong = 0;
+    
 
     public float waitTime = 0;
     private bool waiting = false;
     private float waited = 0;
-
 
     #endregion
 
@@ -35,6 +35,40 @@ public class Tram : MonoBehaviour
     void Start()
     {
         gameObject.tag = "Tram";
+
+
+        //grab targets using tags
+        if (targets.Length == 0)
+        {
+            //get all game objects tagged with "Target"
+            targets = GameObject.FindGameObjectsWithTag("Target");
+
+            List<GameObject> targetList = new List<GameObject>();
+            foreach (GameObject go in targets) //search all "Target" game objects
+            {
+                //Debug.Log("go: " + go.name);
+                foreach (string targetName in targetNames)
+                {
+                    //Debug.Log("targetName: " + targetName);
+                    // "Target" contains: "Tar", "Targ", "get", ! "Trgt"
+                    if (go.name.Contains(targetName)) //if GameObject has the same name as targetName, add to list
+                    {
+                        targetList.Add(go);
+                    }
+                }
+            }
+            targets = targetList.ToArray(); //Convert List to Array, because other code is still using array
+
+
+        }
+
+        //shuffle targets
+        if (shuffleTargets)
+        {
+            targets = Shuffle(targets);
+        }
+        //Debug.Log(this.name + " has " + targets.Length + "Targets");
+
 
         agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
         t = 0;
@@ -78,16 +112,17 @@ public class Tram : MonoBehaviour
             if (changeTargetDistance > distanceToTarget) //have we reached our target
             {
                 //type of stop
-                if (target.name.Contains("t_target"))
-                {
-                    waitTime = waitTimeTarget;
-                }
-
                 if (target.name.Contains("Stop"))
                 {
-                    waitTime = waitTimeStop;
-
+                    waitTime = waitTimeLong;
                 }
+
+                if (target.name.Contains("t_target"))
+                {
+                    waitTime = waitTimeShort;
+                }
+
+                
 
                 t++;
                 if (t == targets.Length)

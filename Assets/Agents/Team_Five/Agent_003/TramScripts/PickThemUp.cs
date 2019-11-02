@@ -46,7 +46,7 @@ public class PickThemUp : MonoBehaviour
             {
                 passengerStops[i]++;
                 //*
-                if (passengerStops[i] == 20 )
+                if (passengerStops[i] == 45)
                 {
                     GameObject passenger = riders[i];
                     Debug.Log("agent deboards: " + passenger.name);
@@ -54,7 +54,7 @@ public class PickThemUp : MonoBehaviour
                     a.enabled = true;
                     a.isStopped = false;
                     passenger.GetComponent<MeshRenderer>().enabled = true;
-                    passenger.GetComponent<Collider>().enabled = true;
+                   
                     passenger.transform.SetParent(null);
                     removeIndexes.Add(i);
                     //passenger.transform.position = parent.transform.position;
@@ -80,7 +80,7 @@ public class PickThemUp : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Passenger"))
         {
             peopleAtStop++;
             //Debug.Log("collision: " + collision.name);
@@ -102,6 +102,8 @@ public class PickThemUp : MonoBehaviour
                 riders.Add(passenger);
                 passengerStops.Add(0);
 
+
+
             }
             //}
 
@@ -110,13 +112,15 @@ public class PickThemUp : MonoBehaviour
 
     void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Passenger"))
         {
 
             GameObject passenger = collision.gameObject;
             Debug.Log("exit triggered: " + passenger.name);
             passenger.GetComponent<Tram>().isRider = false;
             passenger.GetComponent<NavMeshAgent>().isStopped = false;
+            passenger.GetComponent<Tram>().position =
+            passenger.GetComponent<Tram>().targets[0].transform.position;
             //passenger.GetComponent<NavMeshAgent>().Resume();
             //passenger.GetComponent<PranaySample>().position =
             //passenger.GetComponent<PranaySample>().targets[0].transform.position;

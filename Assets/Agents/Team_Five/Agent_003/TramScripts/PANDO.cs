@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PickThemUp3 : MonoBehaviour
-{
 
+public class PANDO : MonoBehaviour
+{
     GameObject parent;
     NavMeshAgent agent;
     public List<GameObject> riders = new List<GameObject>();
@@ -13,13 +13,12 @@ public class PickThemUp3 : MonoBehaviour
     private bool isStopped = false;
     public int peopleAtStop = 0;
 
-
     // Start is called before the first frame update
     void Start()
     {
         parent = gameObject.transform.parent.gameObject;
+        //agent = parent.GetComponent<NavMeshAgent>();
         agent = gameObject.GetComponentInParent<NavMeshAgent>();
-
 
     }
 
@@ -46,15 +45,16 @@ public class PickThemUp3 : MonoBehaviour
             {
                 passengerStops[i]++;
                 //*
-                if (passengerStops[i] == 72)
+                if (passengerStops[i] == 2)
                 {
+
                     GameObject passenger = riders[i];
                     Debug.Log("agent deboards: " + passenger.name);
                     NavMeshAgent a = passenger.GetComponent<NavMeshAgent>();
                     a.enabled = true;
                     a.isStopped = false;
+                    //agent.speed = 18;
                     passenger.GetComponent<MeshRenderer>().enabled = true;
-                    passenger.GetComponent<Collider>().enabled = true;
                     passenger.transform.SetParent(null);
                     removeIndexes.Add(i);
                     //passenger.transform.position = parent.transform.position;
@@ -88,8 +88,6 @@ public class PickThemUp3 : MonoBehaviour
             //make sure the collision is not already a child of the bus
             //if (agent.isStopped)
             //{
-            riders.Add(passenger);
-            passengerStops.Add(0);
             if (passenger.GetComponent<Tram>().isRider == false)
             {
                 passenger.GetComponent<Tram>().isRider = true;
@@ -118,11 +116,9 @@ public class PickThemUp3 : MonoBehaviour
             passenger.GetComponent<Tram>().isRider = false;
             passenger.GetComponent<NavMeshAgent>().isStopped = false;
             //passenger.GetComponent<NavMeshAgent>().Resume();
-            //passenger.GetComponent<PranaySample>().position =
-            //passenger.GetComponent<PranaySample>().targets[0].transform.position;
+            passenger.GetComponent<Tram>().position =
+            passenger.GetComponent<Tram>().targets[0].transform.position;
         }
     }
-
-
 
 }
