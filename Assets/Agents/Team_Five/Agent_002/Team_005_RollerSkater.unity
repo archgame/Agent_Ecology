@@ -499,7 +499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &57900690
 Transform:
   m_ObjectHideFlags: 0
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57900689}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -733,6 +733,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -757,11 +762,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -934,7 +934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &134802031
 Transform:
   m_ObjectHideFlags: 0
@@ -956,7 +956,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134802030}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -1168,6 +1168,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -1193,11 +1198,6 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 126
       objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
 --- !u!1 &185883036
@@ -1216,7 +1216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &185883037
 Transform:
   m_ObjectHideFlags: 0
@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185883036}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -1870,6 +1870,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -1894,11 +1899,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -2140,7 +2140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268631220}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5499878, y: 0, z: 34.98999}
+  m_LocalPosition: {x: -1.33, y: 0, z: 31.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1229447271}
@@ -3863,6 +3863,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -3887,11 +3892,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -4028,7 +4028,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 575641536}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.630005, y: 0, z: 33.629997}
+  m_LocalPosition: {x: 2.51, y: 0, z: 30.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1229447271}
@@ -4685,6 +4685,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -4709,11 +4714,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -5280,6 +5280,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -5304,11 +5309,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -5719,6 +5719,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -5743,11 +5748,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -5779,7 +5779,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825727027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.619995, y: 0, z: 31.899994}
+  m_LocalPosition: {x: -6.27, y: 0, z: 29.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1229447271}
@@ -6292,7 +6292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &846825010
 Transform:
   m_ObjectHideFlags: 0
@@ -6314,7 +6314,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846825009}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -7227,6 +7227,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -7251,11 +7256,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -7666,6 +7666,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -7690,11 +7695,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -8190,7 +8190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032130483}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.5899963, y: 0, z: 27.64}
+  m_LocalPosition: {x: -7.55, y: 0, z: 26.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1229447271}
@@ -8900,7 +8900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1099958443
 Transform:
   m_ObjectHideFlags: 0
@@ -8922,7 +8922,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099958442}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -9029,6 +9029,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -9053,11 +9058,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -9221,6 +9221,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -9245,11 +9250,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -9305,7 +9305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1197327478
 Transform:
   m_ObjectHideFlags: 0
@@ -9327,7 +9327,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197327477}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -9751,6 +9751,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -9775,11 +9780,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -10627,7 +10627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449619147}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.220001, y: 0, z: 28.589996}
+  m_LocalPosition: {x: 4.7, y: 0, z: 25.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1229447271}
@@ -10720,7 +10720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1465117223
 Transform:
   m_ObjectHideFlags: 0
@@ -10742,7 +10742,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465117222}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -11550,6 +11550,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -11579,26 +11599,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Direction
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -12038,7 +12038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1630252728
 Transform:
   m_ObjectHideFlags: 0
@@ -12060,7 +12060,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630252727}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -12091,7 +12091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1643647297
 Transform:
   m_ObjectHideFlags: 0
@@ -12113,7 +12113,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643647296}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -12679,6 +12679,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -12703,11 +12708,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -13216,7 +13216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1746518512
 Transform:
   m_ObjectHideFlags: 0
@@ -13238,7 +13238,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746518511}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -13794,7 +13794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1820203554
 Transform:
   m_ObjectHideFlags: 0
@@ -13816,7 +13816,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820203553}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -13991,6 +13991,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -14015,11 +14020,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -14115,6 +14115,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -14139,11 +14144,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -14554,6 +14554,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -14578,11 +14583,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -15193,7 +15193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1946863645
 Transform:
   m_ObjectHideFlags: 0
@@ -15215,7 +15215,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946863644}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c371b6afeccd7748a1f74741ea5c028, type: 3}
   m_Name: 
@@ -16021,6 +16021,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -16045,11 +16050,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}
@@ -16833,6 +16833,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 51699664681190168, guid: 234f2217da091394a97d454699cca01d,
         type: 3}
       propertyPath: m_WalkableMask
@@ -16857,11 +16862,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597058646048516792, guid: 234f2217da091394a97d454699cca01d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f2217da091394a97d454699cca01d, type: 3}

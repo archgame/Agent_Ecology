@@ -19,15 +19,15 @@ public class random3 : MonoBehaviour
         for (int i = 0; i < GenerateNumber - 1; i++)
         {
             GameObject obj = (GameObject)Instantiate(child3);
-            int x = Random.Range(-444, -438);
-            int y = Random.Range(-100, -80);
+            int x = Random.Range(-460, -450);
+            int y = Random.Range(-460, -450);
             //  Debug.Log(x);
             obj.transform.position = new Vector3(x, 2, y);
         }
 
         for (int i = 0; i < arr.Length;  i++)
         {
-            int max = hour * 5000;
+            int max = hour * 500000;
             int rnd = Random.Range(0, max);
             arr[i] = rnd;
             // Debug.Log("arr:" + arr[i]);
