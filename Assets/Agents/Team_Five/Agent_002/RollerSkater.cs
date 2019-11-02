@@ -87,21 +87,22 @@ public class RollerSkater : MonoBehaviour
                 {
                     waitTime = paintingTime;
                 }
-                else
+               /* else
                 {
                     waitTime = 0;
-                }
+                }*/
 
                 if (target.name.Contains("PaintNow"))
                 {
+                    Debug.Log("paintpaint");
                     waitTime = 12;
                 }
-                else
+                /*else
                 {
                     waitTime = 0;
-                }
+                }*/
 
-                if (target.name.Contains("Last"))
+                /*if (target.name.Contains("Last"))
                 {
                     //gameObject.GetComponent<MeshRenderer>().enabled = false;
                     //gameObject.GetComponent<NavMeshAgent>().enabled = false;
@@ -113,7 +114,7 @@ public class RollerSkater : MonoBehaviour
                 else
                 {
                     waitTime = 0;
-                }
+                }*/
 
                 t++;
                 if (t == targets.Length)
