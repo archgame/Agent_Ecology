@@ -88,18 +88,21 @@ public class PANDO : MonoBehaviour
             //make sure the collision is not already a child of the bus
             //if (agent.isStopped)
             //{
-            if (passenger.GetComponent<Tram>().isRider == false)
+            if (passenger.GetComponent<Tram>() != null)
             {
-                passenger.GetComponent<Tram>().isRider = true;
-                //Debug.Log("passenger added");
-                //passenger.transform.SetParent(parent.transform);
-                //passenger.GetComponent<NavMeshAgent>().enabled = false;
-                //passenger.GetComponent<MeshRenderer>().enabled = false;
-                //passenger.GetComponent<Collider>().enabled = false;
+                if (passenger.GetComponent<Tram>().isRider == false)
+                {
+                    passenger.GetComponent<Tram>().isRider = true;
+                    //Debug.Log("passenger added");
+                    //passenger.transform.SetParent(parent.transform);
+                    //passenger.GetComponent<NavMeshAgent>().enabled = false;
+                    //passenger.GetComponent<MeshRenderer>().enabled = false;
+                    //passenger.GetComponent<Collider>().enabled = false;
 
-                riders.Add(passenger);
-                passengerStops.Add(0);
+                    riders.Add(passenger);
+                    passengerStops.Add(0);
 
+                }
             }
             //}
 
@@ -113,11 +116,15 @@ public class PANDO : MonoBehaviour
 
             GameObject passenger = collision.gameObject;
             Debug.Log("exit triggered: " + passenger.name);
-            passenger.GetComponent<Tram>().isRider = false;
+            if (passenger.GetComponent<Tram>() != null)
+            {
+                passenger.GetComponent<Tram>().isRider = false;
+                passenger.GetComponent<Tram>().position =
+                passenger.GetComponent<Tram>().targets[0].transform.position;
+            }
             passenger.GetComponent<NavMeshAgent>().isStopped = false;
             //passenger.GetComponent<NavMeshAgent>().Resume();
-            passenger.GetComponent<Tram>().position =
-            passenger.GetComponent<Tram>().targets[0].transform.position;
+            
         }
     }
 
