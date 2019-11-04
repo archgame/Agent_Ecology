@@ -82,7 +82,8 @@ public class Tram : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (target != null)
+        {
             if (target.transform.position != position)
             {
                 position = target.transform.position;
@@ -141,7 +142,7 @@ public class Tram : MonoBehaviour
 
                 } // changeTargetDistance test
             }
-        
+        }
     }
 
     void OnTriggerEnter(Collider collision)
