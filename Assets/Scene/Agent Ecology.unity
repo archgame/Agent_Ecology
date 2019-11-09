@@ -433,6 +433,16 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: -3648381517886480184, guid: 009b17fb8d06b1d45bff3660a57a5729,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -3648381517886480184, guid: 009b17fb8d06b1d45bff3660a57a5729,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -3561417923006558665, guid: 009b17fb8d06b1d45bff3660a57a5729,
         type: 3}
       propertyPath: m_Layer
@@ -645,6 +655,11 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 5971873545859862798, guid: 009b17fb8d06b1d45bff3660a57a5729,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0fedb37d46db2954ba45434cc6e6aa96, type: 2}
     - target: {fileID: 6745498307975301559, guid: 009b17fb8d06b1d45bff3660a57a5729,
         type: 3}
       propertyPath: m_Layer
@@ -660,6 +675,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ecaafb430481c404c97032b24a7dd02f, type: 2}
+    - target: {fileID: 7053505044935252747, guid: 009b17fb8d06b1d45bff3660a57a5729,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053505044935252747, guid: 009b17fb8d06b1d45bff3660a57a5729,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053505044935252747, guid: 009b17fb8d06b1d45bff3660a57a5729,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7307648152498360124, guid: 009b17fb8d06b1d45bff3660a57a5729,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -720,26 +750,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6a9a8e52f2957c4498d3a27b94c1692a, type: 2}
-    - target: {fileID: 5971873545859862798, guid: 009b17fb8d06b1d45bff3660a57a5729,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0fedb37d46db2954ba45434cc6e6aa96, type: 2}
-    - target: {fileID: 7053505044935252747, guid: 009b17fb8d06b1d45bff3660a57a5729,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967263
-      objectReference: {fileID: 0}
-    - target: {fileID: 7053505044935252747, guid: 009b17fb8d06b1d45bff3660a57a5729,
-        type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7053505044935252747, guid: 009b17fb8d06b1d45bff3660a57a5729,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8204327826110497494, guid: 009b17fb8d06b1d45bff3660a57a5729,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -754,16 +764,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: -3648381517886480184, guid: 009b17fb8d06b1d45bff3660a57a5729,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: -3648381517886480184, guid: 009b17fb8d06b1d45bff3660a57a5729,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5718029316694815274, guid: 009b17fb8d06b1d45bff3660a57a5729,
         type: 3}
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106678306}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2310bcb10798ff747ac4445fbfd89404, type: 3}
   m_Name: 
