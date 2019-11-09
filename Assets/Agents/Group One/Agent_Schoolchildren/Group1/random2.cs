@@ -40,7 +40,7 @@ public class random2 : MonoBehaviour
                 int y = Random.Range(-238, -226);
                 //  Debug.Log(x);
                 child.transform.position = new Vector3(x, 2, y);
-
+                child.GetComponent<move>().enabled = true;
 
             }
         }

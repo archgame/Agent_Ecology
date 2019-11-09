@@ -169,7 +169,7 @@ public class Robot : MonoBehaviour
                     {
                         waitTime = waitTimeShortMin;
                     }*/
-                    Debug.Log("waitTime: " + waitTime);
+                    //Debug.Log("waitTime: " + waitTime);
 
 
 
@@ -186,7 +186,7 @@ public class Robot : MonoBehaviour
 
                 } // changeTargetDistance test
 
-                Debug.Log(gameObject.name + ":" + agent.hasPath);
+                //Debug.Log(gameObject.name + ":" + agent.hasPath);
                 if (!agent.hasPath)// catch agent error when agent doesn't resume
                 {
                     position = target.transform.position;

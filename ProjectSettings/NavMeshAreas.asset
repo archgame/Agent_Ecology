@@ -12,18 +12,18 @@ NavMeshProjectSettings:
   - name: Jump
     cost: 2
   - name: Alley
-    cost: 1
+    cost: 2
   - name: Crosswalk
-    cost: 1
+    cost: 3
   - name: Park
-    cost: 2
+    cost: 1
   - name: Sidewalk
-    cost: 2
+    cost: 1
   - name: Street
     cost: 1
   - name: Bikelane
     cost: 1
-  - name: Tramway
+  - name: Tramway 01
     cost: 1
   - name: Plaza
     cost: 1
@@ -35,12 +35,12 @@ NavMeshProjectSettings:
     cost: 2
   - name: Built
     cost: 1
-  - name: 
+  - name: Tramway 02
     cost: 1
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
+  - name: Lane Marker
+    cost: 2
+  - name: Center Lane
+    cost: 10
   - name: 
     cost: 1
   - name: 

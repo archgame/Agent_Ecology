@@ -26,12 +26,18 @@ public class move : MonoBehaviour
     public float zmin = 1;
     public float zmax = 1;
     public string m_Scene;
+
+    //signal of changing script
+    public bool findFood = false;
+
     // Start is called before the first frame update
     void Start()
     {
         gameObject.tag = "SchoolChildren";
 
         //scale the gameobject randomly
+
+        /*
         if (randomScale)
         {
             float x = Random.Range(xmin, xmax);
@@ -39,13 +45,15 @@ public class move : MonoBehaviour
             float z = Random.Range(zmin, zmax);
             transform.localScale = new Vector3(x, y, z);
         }
+        */
 
         //grab targets using tags
         if (targets.Length == 0)
         {
             //get all game objects tagged with "Target"
-            targets = GameObject.FindGameObjectsWithTag("Target");
+            targets = GameObject.FindGameObjectsWithTag("Busstation");
 
+            /*
             List<GameObject> targetList = new List<GameObject>();           
             foreach(GameObject go in targets) //search all "Target" game objects
             {
@@ -61,6 +69,7 @@ public class move : MonoBehaviour
                 }
             }
             targets = targetList.ToArray(); //Convert List to Array, because other code is still using array
+            */
         }
 
         //shuffle targets
@@ -103,18 +112,24 @@ public class move : MonoBehaviour
             //change target once it is reached
             if (changeTargetDistance > distanceToTarget) //have we reached our target
             {
-                t++;
-                if (t == targets.Length)
+                if (target.name.Contains("nearFoodTruck") && findFood == false)
                 {
-                    t = 0;
+                    findFood = true;
                 }
-                //Debug.Log(this.name + " Change Target: " + t);
-                target = targets[t].transform;
-                agent.SetDestination(target.position); //each frame set the agent's destination to the target position
+                else
+                {
+                    t++;
+                    if (t == targets.Length)
+                    {
+                        t = 0;
+                    }
+                    //Debug.Log(this.name + " Change Target: " + t);
+                    target = targets[t].transform;
+                    agent.SetDestination(target.position); //each frame set the agent's destination to the target position
 
-                waiting = true;
-                agent.isStopped = true;
-
+                    waiting = true;
+                    agent.isStopped = true;
+                }
             } // changeTargetDistance test
         }
     }
