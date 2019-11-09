@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 5943817673211772624}
   - component: {fileID: 5943817673211772625}
   - component: {fileID: 5943817673211772626}
-  m_Layer: 0
+  - component: {fileID: 692090132}
+  m_Layer: 9
   m_Name: Elderly 1
-  m_TagString: Untagged
+  m_TagString: Elderly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +92,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5943817673211772627}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.39882082
   m_Height: 1.3448211
   m_Direction: 1
@@ -139,18 +140,19 @@ MonoBehaviour:
   changeTargetDistance: 1
   shuffleTargets: 1
   targets: []
-  waitTimeShortMin: 0
-  waitTimeShortMax: 0
-  waitTimeLongMin: 0
-  waitTimeLongMax: 0
+  waitTimeShortMin: 3
+  waitTimeShortMax: 5
+  waitTimeLongMin: 8
+  waitTimeLongMax: 10
   waitTime: 5
   randomScale: 1
-  xmin: 0.6
+  xmin: 0.9
   xmax: 1.1
-  ymin: 0.8
-  ymax: 1.2
+  ymin: 0.9
+  ymax: 1.1
   zmin: 0.9
   zmax: 1.1
+  TurningMultiplier: 1
   m_Scene: Team_004
 --- !u!54 &5943817673211772626
 Rigidbody:
@@ -168,3 +170,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &692090132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5943817673211772627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b543e33fadf3ff40816ea56e3d2c50c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Scene: Team_004

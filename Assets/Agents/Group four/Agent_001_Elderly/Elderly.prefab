@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6994188294063769138}
   - component: {fileID: 6994188294063769139}
   - component: {fileID: 198750736}
+  - component: {fileID: 33786264820637385}
   m_Layer: 9
   m_Name: Elderly
   m_TagString: Elderly
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6994188294063769136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -273.9, y: 0.552, z: -128.6}
+  m_LocalPosition: {x: -292.9, y: 0.745, z: -94}
   m_LocalScale: {x: 0.5, y: 1.5635252, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -104,18 +105,18 @@ NavMeshAgent:
   m_GameObject: {fileID: 6994188294063769136}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.95
-  m_Speed: 1
+  m_Radius: 0.39997685
+  m_Speed: 1.5
   m_Acceleration: 2
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 180
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
-  m_WalkableMask: 1151
+  m_Height: 1.38
+  m_BaseOffset: 0.59
+  m_WalkableMask: 13439
   m_ObstacleAvoidanceType: 4
 --- !u!114 &6994188294063769139
 MonoBehaviour:
@@ -129,24 +130,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9f7ab833e39d9468424d79960788d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRider: 0
   targetNames:
   - Market
-  - Bus Stop
-  - Park
+  - Bus
+  - Garden
+  position: {x: 0, y: 0, z: 0}
   changeTargetDistance: 1
   shuffleTargets: 1
-  targets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  targets: []
+  waitTimeShortMin: 3
+  waitTimeShortMax: 5
+  waitTimeLongMin: 8
+  waitTimeLongMax: 10
   waitTime: 5
-  randomScale: 1
-  xmin: 0.2
-  xmax: 0.6
-  ymin: 1.4
-  ymax: 1.7
-  zmin: 0.2
-  zmax: 0.6
+  randomScale: 0
+  xmin: 0.9
+  xmax: 1.1
+  ymin: 0.9
+  ymax: 1.1
+  zmin: 0.9
+  zmax: 1.1
+  TurningMultiplier: 1
+  m_Scene: Team_004
+  restdistance: 5
+  restTime: 3
 --- !u!54 &198750736
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,3 +171,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &33786264820637385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6994188294063769136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b543e33fadf3ff40816ea56e3d2c50c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Scene: Team_004

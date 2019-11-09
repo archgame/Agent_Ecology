@@ -44,10 +44,27 @@ public class Elderly : MonoBehaviour
     public float TurningMultiplier = 1;
     #endregion
     public string m_Scene;
+    [Header("rest")]
+    public float restdistance;
+   
+    public float restTime = 0;
+  
+    private float rested = 0;
+    private GameObject g;
+
     // Start is called before the first frame update
     void Start()
     {
-        //SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(m_Scene));
+
+        g = new GameObject("restpoint");
+        //Add Components
+        g.transform.parent = this.gameObject.transform;
+        g.transform.position = gameObject.transform.position;
+        gameObject.transform.DetachChildren();
+
+
+
+
 
         //scale the gameobject randomly
         if (randomScale)
@@ -99,6 +116,29 @@ public class Elderly : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float distancetorestpoint = Vector3.Distance(agent.transform.position, g.transform.position);
+        if (distancetorestpoint>= restdistance)
+        {
+            
+           
+            if (rested > restTime)
+            {
+                g.transform.position = gameObject.transform.position;
+
+                waiting = false;
+                agent.isStopped = false;
+                rested = 0;
+
+            }
+            else
+            {
+                rested += Time.deltaTime;
+                agent.isStopped = true;
+            }
+        }
+       
+
+        
         if (agent.enabled)
         {
             if (target.transform.position != position)
@@ -174,7 +214,7 @@ public class Elderly : MonoBehaviour
                     {
                         waitTime = waitTimeShortMin;
                     }*/
-                    Debug.Log("waitTime: " + waitTime);
+                    //Debug.Log("waitTime: " + waitTime);
 
 
 
@@ -189,9 +229,10 @@ public class Elderly : MonoBehaviour
                     waiting = true;
                     agent.isStopped = true;
 
-                } // changeTargetDistance test
+                } 
+                // changeTargetDistance test
 
-                Debug.Log(gameObject.name + ":" + agent.hasPath);
+              //  Debug.Log(gameObject.name + ":" + agent.hasPath);
                 if (!agent.hasPath)// catch agent error when agent doesn't resume
                 {
                     position = target.transform.position;

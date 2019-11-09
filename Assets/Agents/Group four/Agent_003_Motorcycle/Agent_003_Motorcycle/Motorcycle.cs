@@ -43,9 +43,15 @@ public class Motorcycle : MonoBehaviour
     public float TurningMultiplier = 1;
     #endregion
     public string m_Scene;
+
+    public GameObject passenger;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        passenger.GetComponent<MeshRenderer>().enabled = false;
+
         //SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(m_Scene));
 
         //scale the gameobject randomly
@@ -138,6 +144,9 @@ public class Motorcycle : MonoBehaviour
                 //change target once it is reached
                 if (changeTargetDistance > distanceToTarget) //have we reached our target
                 {
+
+                    passenger.GetComponent<MeshRenderer>().enabled = true;
+
                     //type of stop
                     if (target.name.Contains("Parking"))
                     {
@@ -173,7 +182,7 @@ public class Motorcycle : MonoBehaviour
                     {
                         waitTime = waitTimeShortMin;
                     }*/
-                    Debug.Log("waitTime: " + waitTime);
+                    //Debug.Log("waitTime: " + waitTime);
 
 
 
@@ -190,7 +199,7 @@ public class Motorcycle : MonoBehaviour
 
                 } // changeTargetDistance test
 
-                Debug.Log(gameObject.name + ":" + agent.hasPath);
+                //Debug.Log(gameObject.name + ":" + agent.hasPath);
                 if (!agent.hasPath)// catch agent error when agent doesn't resume
                 {
                     position = target.transform.position;
