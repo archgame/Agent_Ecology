@@ -37,7 +37,7 @@ public class TrashTruck : MonoBehaviour
     public float zmin = 1;
     public float zmax = 1;
 
-    //private int obstacles = 0;
+    private int obstacles = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -142,31 +142,34 @@ public class TrashTruck : MonoBehaviour
 
     }
 
-    /*
+    
     void OnTriggerEnter(Collider collision)
     {
         //Debug.Log("collision: " + collision.gameObject.name);
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        //if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        if (collision.gameObject.name.Contains("RedLight"))
         {
             agent.isStopped = true;
             obstacles++; //obstacles + 1 || or
+            Debug.Log("Light");
         }
             
     }
     void OnTriggerExit(Collider collision)
     {
-        //Debug.Log("exited");
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        Debug.Log("LightOff");
+        if (collision.gameObject.name.Contains("RedLight"))
         {
             obstacles--;
         }
         if (obstacles == 0)
         {
             agent.isStopped = false;
+            Debug.Log("LightOff");
         }
     }
 
-    */
+    /*
     void OnTriggerEnter(Collider alleycollision)
     {
         if (alleycollision.gameObject.name.Contains("alley"))
@@ -185,6 +188,7 @@ public class TrashTruck : MonoBehaviour
             agent.speed = 11;
         }
     }
+    */
 
 
     GameObject[] Shuffle(GameObject[] objects)
