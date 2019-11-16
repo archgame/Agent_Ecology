@@ -74,6 +74,7 @@ public class ScooterTargetGo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameObject.AddComponent<Rigidbody>();
 
         /*if (agent.speed != 0)
         {
@@ -111,12 +112,13 @@ public class ScooterTargetGo : MonoBehaviour
         if (changeTargetDistance > distanceToTarget) //have we reached our target
         {
             Rider = transform.Find("Rider");
-            if (transform.childCount > 27) 
+            if (transform.childCount > 5) 
             {
                 Rider.GetComponent<NavMeshAgent>().enabled = true;
                 Rider.GetComponent<RiderTargetGo>().enabled = true;
                 Rider.parent = parent.transform;
-
+                Rigidbody rb = GetComponent<Rigidbody>();
+                Destroy(rb);
             }
 
             t++;
@@ -130,11 +132,12 @@ public class ScooterTargetGo : MonoBehaviour
         } // changeTargetDistance test
         else
         {
-            if (transform.childCount < 28)
+            if (transform.childCount < 6)
             {
                 agent.isStopped = true;
                 agent.speed = 0;
-
+                Rigidbody rb = GetComponent<Rigidbody>();
+                Destroy(rb);
             }
             else
             {

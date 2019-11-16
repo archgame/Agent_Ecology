@@ -23,6 +23,7 @@ public class RiderTargetGo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.AddComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
 
         baba = transform.parent.gameObject;
@@ -48,6 +49,7 @@ public class RiderTargetGo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         Riders = new GameObject[AvailableScooters.Length];
         for(int i=0; i < AvailableScooters.Length;i++)
         {
@@ -83,8 +85,10 @@ public class RiderTargetGo : MonoBehaviour
                 //AvailableScooters[i].GetComponent<NavMeshAgent>().isStopped = true;
                 agent.SetDestination(GetScooter.transform.position);
                 float dist = Vector3.Distance(agent.transform.position, GetScooter.transform.position);
-                if (0.5f > dist)
+                if (1f > dist)
                 {
+                    Rigidbody rb = GetComponent<Rigidbody>();
+                    Destroy(rb);
                     GetScooter.GetComponent<NavMeshAgent>().isStopped = false;
                     transform.parent = GetScooter.transform;
                     GetComponent<NavMeshAgent>().enabled = false;

@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class Buses : MonoBehaviour
 {
     #region GLOBAL VARIABLES
+    Vector3 original;
+
     GameObject target;
     NavMeshAgent agent;
     public bool isRider = false;
@@ -46,6 +48,8 @@ public class Buses : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        original = transform.position;
+
         if(isTheBus)
             gameObject.tag = "Bus";
 
@@ -178,6 +182,11 @@ public class Buses : MonoBehaviour
                     agent.isStopped = true;
 
                 } // changeTargetDistance test
+                if(target.name.Contains("last"))
+                {
+                    transform.position = original;
+                    //gameObject.SetActive(false);
+                }
                 if (agent.hasPath)
                 {
                     Vector3 toSteeringTarget = agent.steeringTarget - transform.position;
