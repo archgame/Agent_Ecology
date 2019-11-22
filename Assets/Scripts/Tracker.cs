@@ -6,53 +6,198 @@ public class Tracker : MonoBehaviour
 {
     public bool run = false;
     public GameObject target;
-    
+
+    public GameObject[] taggedGameObjects;
+    private bool followGameObject = false;
+    private bool toggleViewType = false;
+    private int taggedIndex = 0;
+
     public float smoothSpeed = 0.125f;
     private Vector3 newPosition = Vector3.zero;
     //float example = 0;
 
-    float cameraY = 60f;
-    float minY = 20;
-    float maxY = 220;
+    private float cameraY = 60f;
+    private float cameraOffset = 1;
+    private float minY = 20;
+    private float maxY = 220;
+    private float minOffset = 1;
+    private float maxOffset = 20;
 
     // Start is called before the first frame update
     void Start()
     {
         //Debug.Log("Start");
         newPosition = Camera.main.transform.position;
-        Debug.Log("addition example: " + CoolAddition(2, 3));
+        Camera.main.transform.forward = Vector3.down;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.mouseScrollDelta != Vector2.zero)
+        #region FOLLOW BY TAG
+        //x key click example
+        if (Input.GetKeyDown("q"))
         {
-            Debug.Log("scroll: " + Input.mouseScrollDelta);
-            cameraY = Mathf.Clamp(cameraY + Input.mouseScrollDelta.y*-2, minY, maxY);
+            taggedGameObjects = SetGameObject("SchoolChildren");
+        }
+        if (Input.GetKeyDown("w"))
+        {
+            taggedGameObjects = SetGameObject("Skateboarder");
+        }
+        if (Input.GetKeyDown("s"))
+        {
+            taggedGameObjects = SetGameObject("Bus");
+        }
+        if (Input.GetKeyDown("r"))
+        {
+            taggedGameObjects = SetGameObject("Jaywalker");
+        }
+        if (Input.GetKeyDown("t"))
+        {
+            taggedGameObjects = SetGameObject("Drone");
+        }
+        if (Input.GetKeyDown("y"))
+        {
+            taggedGameObjects = SetGameObject("Delivery");
+        }
+        if (Input.GetKeyDown("u"))
+        {
+            taggedGameObjects = SetGameObject("Elderly");
+        }
+        if (Input.GetKeyDown("i"))
+        {
+            taggedGameObjects = SetGameObject("Robot");
+        }
+        if (Input.GetKeyDown("o"))
+        {
+            taggedGameObjects = SetGameObject("Motorcycle");
+        }
+        if (Input.GetKeyDown("p"))
+        {
+            taggedGameObjects = SetGameObject("DogWalker");
+        }
+        if (Input.GetKeyDown("a"))
+        {
+            taggedGameObjects = SetGameObject("Scooter");
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            taggedGameObjects = SetGameObject("IceCreamTruck");
+        }
+        if (Input.GetKeyDown("d"))
+        {
+            taggedGameObjects = SetGameObject("Wheelchair");
+        }
+        if (Input.GetKeyDown("f"))
+        {
+            taggedGameObjects = SetGameObject("RollerSkates");
+        }
+        if (Input.GetKeyDown("g"))
+        {
+            taggedGameObjects = SetGameObject("Tram");
+        }
+        if (Input.GetKeyDown("h"))
+        {
+            taggedGameObjects = SetGameObject("Runner");
+        }
+        if (Input.GetKeyDown("j"))
+        {
+            taggedGameObjects = SetGameObject("OneWheel");
+        }
+        if (Input.GetKeyDown("k"))
+        {
+            taggedGameObjects = SetGameObject("TrashTruck");
+        }
+        #endregion
+
+        //scroll for camera distance
+        if (Input.mouseScrollDelta != Vector2.zero)
+        {
+            if (!toggleViewType)
+            {
+                Debug.Log("scroll: " + Input.mouseScrollDelta);
+                cameraY = Mathf.Clamp(cameraY + Input.mouseScrollDelta.y * -2, minY, maxY);
+            }
+            else
+            {
+                cameraOffset = Mathf.Clamp(cameraOffset + Input.mouseScrollDelta.y * -0.1f, minOffset, maxOffset);
+                Debug.Log("cameraOffset: " + cameraOffset);
+            }
         }
 
-        //float example = 0;
-        //Debug.Log("before example: " + example);
-        //example = Mathf.Lerp(example, 10, 0.5f);
-        //Debug.Log("after example: " + example);
-
         //smoothly move camera
+        if(followGameObject)
+        {
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                taggedIndex--;
+                Debug.Log("Left Arrow" + taggedIndex);              
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                taggedIndex++;
+                Debug.Log("Right Arrow:" + taggedIndex);
+            }
+
+            if(taggedIndex < 0)
+            {
+                taggedIndex = taggedGameObjects.Length - 1;
+            }
+            if(taggedIndex >= taggedGameObjects.Length)
+            {
+                taggedIndex = 0;
+            }
+
+
+            //change view type by clicking space
+            if (Input.GetKeyDown("space"))
+            {
+                toggleViewType = !toggleViewType;
+            }
+
+            newPosition = taggedGameObjects[taggedIndex].transform.position;
+
+            if (toggleViewType)
+            {
+                Vector3 camPos = taggedGameObjects[taggedIndex].transform.forward * cameraOffset;
+                //Vector3 camOffset = new Vector3(0, taggedGameObjects[taggedIndex].transform.localScale.y* cameraOffset, -cameraOffset);
+                Vector3 camOffset = new Vector3(0, cameraOffset, 0);
+                newPosition = newPosition - camPos + camOffset;
+            }
+        }
+
         Vector3 cameraPosition = Camera.main.transform.position;
-        newPosition.y = cameraY;
+
+        if (!toggleViewType)
+        {
+            newPosition.y = cameraY;
+        }
         Vector3 smoothedPosition = Vector3.Lerp(cameraPosition, newPosition, smoothSpeed);      
         Camera.main.transform.position = smoothedPosition;
+
+        //look at gameobject
+        if (!toggleViewType)
+        {
+            Vector3 towardsTop = new Vector3(0, 0, 1);
+            Vector3 smoothedUp = Vector3.Lerp(Camera.main.transform.up, towardsTop, smoothSpeed);
+            Camera.main.transform.up = smoothedUp;            
+        }
+        else
+        {
+            transform.LookAt(taggedGameObjects[taggedIndex].transform.position, Vector3.up);
+        }
 
         Vector3 clickPosition = Vector3.zero;
         //Left mouse button click example
         if (Input.GetMouseButtonUp(0))
         {
             Debug.Log("Left Click");
-            Vector3 hit = GetClickHit("ground");
-            if(hit != Vector3.zero)
-            {
-                target.transform.position = hit;
-            }
+            //Vector3 hit = GetClickHit("ground");
+            //if(hit != Vector3.zero)
+            //{
+                //target.transform.position = hit;
+            //}
         }
 
         //Right mouse button click example
@@ -63,6 +208,8 @@ public class Tracker : MonoBehaviour
             if (hit != Vector3.zero)
             {
                 newPosition = hit;
+                followGameObject = false;
+                toggleViewType = false;
             }
         }
 
@@ -72,22 +219,22 @@ public class Tracker : MonoBehaviour
             Debug.Log("Middle Click");
         }
 
-        //x key click example
-        if (Input.GetKeyDown("x"))
-        {
-            Debug.Log("x pressed.");
-        }
-
-        //Space key click example
-        if (Input.GetKeyDown("space"))
-        {
-            Debug.Log("space pressed.");
-        }
     }
 
-    int CoolAddition(int a, int b)
+    private GameObject[] SetGameObject(string tag)
     {
-        return a + b;
+        GameObject[] array = GameObject.FindGameObjectsWithTag(tag);
+        if (array.Length > 0)
+        {
+            followGameObject = true;
+            taggedIndex = 0;
+        }
+        else
+        {
+            followGameObject = false;
+            taggedIndex = 0;
+        }
+        return array;
     }
 
     Vector3 GetClickHit(string tag)
@@ -109,4 +256,5 @@ public class Tracker : MonoBehaviour
 
         return Vector3.zero;
     }
+
 }

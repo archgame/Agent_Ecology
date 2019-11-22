@@ -2,13 +2,13 @@
 ## AGENT 002 - Roller Skates
 * Geometrical Constraints
 
->Roller Skates: physical size is same as of a human - 0.45 - 0.90m. About 0.45 might be required on each side to extend the arms to balance. 
-Total diameter of the circle would be about 72". Additionally, a buffer space of 0.45 - 0.60m would be required all around.
+>Roller Skates: physical size is same as of a human - 0.45 - 0.60m. About 0.45 might be required on each side to extend the arms to balance. 
+Total diameter of the circle would be about 1.8m. Additionally, a buffer space of 0.30 - 0.45m would be required all around.
 
 * Turning Radius
 
->Roller Skates: While at full speed, roller skates have a turning radius of 2.1m. 
-While moving slowly, turning radius is 1.2m.
+>Roller Skates: While at full speed, roller skates have a turning radius of 1.0m. 
+While moving slowly, turning radius is 0.45m.
 
 * Acceleration/Deceleration
 

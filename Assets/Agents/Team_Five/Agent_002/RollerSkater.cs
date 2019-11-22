@@ -11,21 +11,39 @@ public class RollerSkater : MonoBehaviour
     public float changeTargetDistance = 3;
     int t;
     public bool shuffleTargets = true;
+    public string[] targetNames;
+
+    public bool randomScale = false;
+    public float xmin = 1;
+    public float xmax = 1;
+    public float ymin = 1;
+    public float ymax = 1;
+    public float zmin = 1;
+    public float zmax = 1;
+
+    //private float timePaintingMin = 10;
+    //private float timePaintingMax = 25;
+    
+    public float paintingTime = 0;
+    public float meetingWait = 0;
+    public float waitTime = 0;
+    private bool waiting = false;
+    private float waited = 0;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        //grab targets using tags
-        if (targets == null || targets.Length == 0)
-        {
-            targets = GameObject.FindGameObjectsWithTag("Target");
-        }
-        if (shuffleTargets)
-        {
-            targets = Shuffle(targets);
-        }
-        //Debug.Log(this.name + " has " + targets.Length + "Targets");
+        gameObject.tag = "RollerSkates";
 
+        //scale the gameobject randomly
+        if (randomScale)
+        {
+            float x = Random.Range(xmin, xmax);
+            float y = Random.Range(ymin, ymax);
+            float z = Random.Range(zmin, zmax);
+            transform.localScale = new Vector3(x, y, z);
+        }
         agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
         t = 0;
         target = targets[t].transform;
@@ -37,17 +55,78 @@ public class RollerSkater : MonoBehaviour
     {
         Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
-        float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
-        if (changeTargetDistance > distanceToTarget)
+        if (waiting) // (waiting == false) (1 == 0)
         {
-            t++;
-            if (t == targets.Length)
+            if (waited > waitTime)
             {
-                t = 0;
+                waiting = false;
+                agent.isStopped = false;
+                waited = 0;
             }
-            Debug.Log(this.name + " Change Target: " + t);
-            target = targets[t].transform;
-            agent.SetDestination(target.position); //each frame set the agent's destination to the target position
+            else
+            {
+                waited += Time.deltaTime;
+            }
+        }
+        else
+        {
+            float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
+            if (changeTargetDistance > distanceToTarget)
+            {
+                if (target.name.Contains("Intezaar"))
+                {
+                    Debug.Log("intezaar reached");
+                    waitTime = meetingWait;
+                }
+                else
+                {
+                    waitTime = 0;
+                }
+
+                if (target.name.Contains("Painting"))
+                {
+                    waitTime = paintingTime;
+                }
+               /* else
+                {
+                    waitTime = 0;
+                }*/
+
+                if (target.name.Contains("PaintNow"))
+                {
+                    Debug.Log("paintpaint");
+                    waitTime = 12;
+                }
+                /*else
+                {
+                    waitTime = 0;
+                }*/
+
+                /*if (target.name.Contains("Last"))
+                {
+                    //gameObject.GetComponent<MeshRenderer>().enabled = false;
+                    //gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                    //gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                    //gameObject.GetComponent<Rigidbody>().useGravity = true;
+                    //gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+                    waitTime = 10000000;
+                }
+                else
+                {
+                    waitTime = 0;
+                }*/
+
+                t++;
+                if (t == targets.Length)
+                {
+                    t = 0;
+                }
+                Debug.Log(this.name + " Change Target: " + t);
+                target = targets[t].transform;
+                agent.SetDestination(target.position); //each frame set the agent's destination to the target position
+                waiting = true;
+                agent.isStopped = true;
+            }
         }
     }
 

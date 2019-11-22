@@ -4,6 +4,11 @@
 
 >Physical size is between 0.28m ¨C 0.34m radius. Additionally, it has a 1.2m buffer radius for pedestrians given the possibility for sporadic movement.
 
+* Random Scale
+> xmin = 0.9; xmax = 1.1;
+  ymin = 0.9; ymax = 1.1;
+  zmin = 0.9; zmax = 1.1;
+
 * Turning Radius
 
 >While at full speed, the robot has a turning radius of 1.46 m. While driving slowly the turning radius is 0 m.
