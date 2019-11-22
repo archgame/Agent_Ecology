@@ -192,26 +192,33 @@ public class CarMotion : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
         
-        if (collision.gameObject.layer == LayerMask.NameToLayer("RedLight") || collision.gameObject.layer == LayerMask.NameToLayer("Car"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
-            Debug.Log("collision: " + collision.gameObject.name);
-            agent.isStopped = true;
-            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
+
+            if (collision.GetComponent<Collider>().enabled == true)
+            {
+                Debug.Log("collision: " + collision.gameObject.name);
+                agent.isStopped = true;
+                
+            }
+
+           
         }
     }
 
-    void OnTriggerExit(Collider collision)
-    {
-        //Debug.Log("exited");
-        if (collision.gameObject.layer == LayerMask.NameToLayer("RedLight") || collision.gameObject.layer == LayerMask.NameToLayer("Car"))
-        {
-            obstacles--; //obstacles = obstacles - 1; || obstacles -= 1;
-        }
-        if (obstacles == 0) //once there are zero obstacles, start the agent moving
+  
+
+     void OnTriggerExit(Collider collision)
+     {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
             agent.isStopped = false;
         }
-    }
+         
+     }
+     
+
+
 
     private int obstacles = 0;
 
