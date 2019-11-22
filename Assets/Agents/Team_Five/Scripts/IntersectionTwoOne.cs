@@ -21,6 +21,7 @@ public class IntersectionTwoOne : MonoBehaviour
     private bool l2 = true;
     private bool l3 = true;
     private bool l4 = true;
+    public bool TramBitch = false;
 
 
 
@@ -43,122 +44,163 @@ public class IntersectionTwoOne : MonoBehaviour
 
     private void Update()
     {
-        waited += Time.deltaTime;
-        crosswalks[0].SetActive(l1);
-        crosswalks[1].SetActive(l2);
-        crosswalks[2].SetActive(l3);
-        crosswalks[3].SetActive(l4);
-
-        if (waited < (waitTime * 6))
+        if (TramBitch == false)
         {
-            if (waited > 0)
+            waited += Time.deltaTime;
+            crosswalks[0].SetActive(l1);
+            crosswalks[1].SetActive(l2);
+            crosswalks[2].SetActive(l3);
+            crosswalks[3].SetActive(l4);
+
+            if (waited < (waitTime * 6))
             {
-                RedLights[0].SetActive(!l1);
-                RedLights[1].SetActive(l2);
-                RedLights[2].SetActive(l3);
-                RedLights[3].SetActive(l4);
+                if (waited > 0)
+                {
+                    RedLights[0].SetActive(!l1);
+                    RedLights[1].SetActive(l2);
+                    RedLights[2].SetActive(l3);
+                    RedLights[3].SetActive(l4);
 
-                GreenLights[0].SetActive(l1);
-                GreenLights[1].SetActive(!l2);
-                GreenLights[2].SetActive(!l3);
-                GreenLights[3].SetActive(!l4);
+                    GreenLights[0].SetActive(l1);
+                    GreenLights[1].SetActive(!l2);
+                    GreenLights[2].SetActive(!l3);
+                    GreenLights[3].SetActive(!l4);
 
 
+                }
+
+                if (waited > waitTime)
+                {
+                    RedLights[0].SetActive(l1);
+                    RedLights[1].SetActive(!l2);
+                    RedLights[2].SetActive(l3);
+                    RedLights[3].SetActive(l4);
+
+                    GreenLights[0].SetActive(!l1);
+                    GreenLights[1].SetActive(l2);
+                    GreenLights[2].SetActive(!l3);
+                    GreenLights[3].SetActive(!l4);
+                }
+
+                if (waited > (waitTime * 2))
+                {
+                    RedLights[0].SetActive(l1);
+                    RedLights[1].SetActive(l2);
+                    RedLights[2].SetActive(l3);
+                    RedLights[3].SetActive(l4);
+
+                    GreenLights[0].SetActive(!l1);
+                    GreenLights[1].SetActive(!l2);
+                    GreenLights[2].SetActive(!l3);
+                    GreenLights[3].SetActive(!l4);
+
+                    crosswalks[0].SetActive(!l1);
+                    crosswalks[1].SetActive(!l2);
+                    crosswalks[2].SetActive(!l3);
+                    crosswalks[3].SetActive(!l4);
+
+                    // waited += Time.deltaTime;
+                }
+
+                if (waited > (waitTime * 3))
+                {
+                    RedLights[0].SetActive(l1);
+                    RedLights[1].SetActive(l2);
+                    RedLights[2].SetActive(!l3);
+                    RedLights[3].SetActive(l4);
+
+                    GreenLights[0].SetActive(!l1);
+                    GreenLights[1].SetActive(!l2);
+                    GreenLights[2].SetActive(l3);
+                    GreenLights[3].SetActive(!l4);
+
+                    crosswalks[0].SetActive(l1);
+                    crosswalks[1].SetActive(l2);
+                    crosswalks[2].SetActive(l3);
+                    crosswalks[3].SetActive(l4);
+
+                    // waited += Time.deltaTime;
+                }
+
+                if (waited > (waitTime * 4))
+                {
+                    RedLights[0].SetActive(l1);
+                    RedLights[1].SetActive(l2);
+                    RedLights[2].SetActive(l3);
+                    RedLights[3].SetActive(!l4);
+
+                    GreenLights[0].SetActive(!l1);
+                    GreenLights[1].SetActive(!l2);
+                    GreenLights[2].SetActive(!l3);
+                    GreenLights[3].SetActive(l4);
+                }
+
+                if (waited > (waitTime * 5))
+                {
+                    RedLights[0].SetActive(l1);
+                    RedLights[1].SetActive(l2);
+                    RedLights[2].SetActive(l3);
+                    RedLights[3].SetActive(l4);
+
+                    GreenLights[0].SetActive(!l1);
+                    GreenLights[1].SetActive(!l2);
+                    GreenLights[2].SetActive(!l3);
+                    GreenLights[3].SetActive(!l4);
+
+                    crosswalks[0].SetActive(!l1);
+                    crosswalks[1].SetActive(!l2);
+                    crosswalks[2].SetActive(!l3);
+                    crosswalks[3].SetActive(!l4);
+                }
             }
 
-            if (waited > waitTime)
+            else
             {
-                RedLights[0].SetActive(l1);
-                RedLights[1].SetActive(!l2);
-                RedLights[2].SetActive(l3);
-                RedLights[3].SetActive(l4);
+                waited = 0;
 
-                GreenLights[0].SetActive(!l1);
-                GreenLights[1].SetActive(l2);
-                GreenLights[2].SetActive(!l3);
-                GreenLights[3].SetActive(!l4);
-            }
-
-            if (waited > (waitTime * 2))
-            {
-                RedLights[0].SetActive(l1);
-                RedLights[1].SetActive(l2);
-                RedLights[2].SetActive(l3);
-                RedLights[3].SetActive(l4);
-
-                GreenLights[0].SetActive(!l1);
-                GreenLights[1].SetActive(!l2);
-                GreenLights[2].SetActive(!l3);
-                GreenLights[3].SetActive(!l4);
-
-                crosswalks[0].SetActive(!l1);
-                crosswalks[1].SetActive(!l2);
-                crosswalks[2].SetActive(!l3);
-                crosswalks[3].SetActive(!l4);
-
-                // waited += Time.deltaTime;
-            }
-
-            if (waited > (waitTime * 3))
-            {
-                RedLights[0].SetActive(l1);
-                RedLights[1].SetActive(l2);
-                RedLights[2].SetActive(!l3);
-                RedLights[3].SetActive(l4);
-
-                GreenLights[0].SetActive(!l1);
-                GreenLights[1].SetActive(!l2);
-                GreenLights[2].SetActive(l3);
-                GreenLights[3].SetActive(!l4);
-
-                crosswalks[0].SetActive(l1);
-                crosswalks[1].SetActive(l2);
-                crosswalks[2].SetActive(l3);
-                crosswalks[3].SetActive(l4);
-
-                // waited += Time.deltaTime;
-            }
-
-            if (waited > (waitTime * 4))
-            {
-                RedLights[0].SetActive(l1);
-                RedLights[1].SetActive(l2);
-                RedLights[2].SetActive(l3);
-                RedLights[3].SetActive(!l4);
-
-                GreenLights[0].SetActive(!l1);
-                GreenLights[1].SetActive(!l2);
-                GreenLights[2].SetActive(!l3);
-                GreenLights[3].SetActive(l4);
-            }
-
-            if (waited > (waitTime*5))
-            {
-                RedLights[0].SetActive(l1);
-                RedLights[1].SetActive(l2);
-                RedLights[2].SetActive(l3);
-                RedLights[3].SetActive(l4);
-
-                GreenLights[0].SetActive(!l1);
-                GreenLights[1].SetActive(!l2);
-                GreenLights[2].SetActive(!l3);
-                GreenLights[3].SetActive(!l4);
-
-                crosswalks[0].SetActive(!l1);
-                crosswalks[1].SetActive(!l2);
-                crosswalks[2].SetActive(!l3);
-                crosswalks[3].SetActive(!l4);
             }
         }
 
-        else
+        if (TramBitch==true)
         {
-            waited = 0;
+            RedLights[0].SetActive(l1);
+            RedLights[1].SetActive(l2);
+            RedLights[2].SetActive(l3);
+            RedLights[3].SetActive(l4);
 
+            GreenLights[0].SetActive(!l1);
+            GreenLights[1].SetActive(!l2);
+            GreenLights[2].SetActive(!l3);
+            GreenLights[3].SetActive(!l4);
+
+            crosswalks[0].SetActive(l1);
+            crosswalks[1].SetActive(l2);
+            crosswalks[2].SetActive(l3);
+            crosswalks[3].SetActive(l4);
         }
 
 
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Tram"))
+        {
+            TramBitch = true;
+            Debug.Log("collided finally");           
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Tram"))
+        {
+            TramBitch = false;
+            Debug.Log("TramBitches");
+
+        }
     }
 
 }
