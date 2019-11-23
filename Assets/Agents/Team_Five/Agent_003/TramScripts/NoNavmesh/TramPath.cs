@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class movementpath : MonoBehaviour
-{ 
-    
+public class TramPath : MonoBehaviour
+{
     public enum PathTypes
     {
         linear,
@@ -15,18 +13,25 @@ public class movementpath : MonoBehaviour
     public int movementDirection = 1;
     public int movingTo = 0;
     public Transform[] PathSequence;
-    
+    public bool Reached = false;
+    private int t;
+    private Transform Point;
+    public int ClosestDistancetoPoint = 2;
+
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+        t = 0;
+        Point = PathSequence[t];
 
-    // Update is called once per frame
-    void Update()
-    {
 
     }
+
     public void OnDrawGizmos()
     {
         if (PathSequence == null || PathSequence.Length < 2)
@@ -37,12 +42,14 @@ public class movementpath : MonoBehaviour
         for (var i = 1; i < PathSequence.Length; i++)
         {
             Gizmos.DrawLine(PathSequence[i - 1].position, PathSequence[i].position);
+
         }
         if (PathType == PathTypes.loop)
         {
             Gizmos.DrawLine(PathSequence[0].position, PathSequence[PathSequence.Length - 1].position);
         }
     }
+
     public IEnumerator<Transform> GetNextPathPoint()
     {
         if (PathSequence == null || PathSequence.Length < 1)
@@ -52,6 +59,9 @@ public class movementpath : MonoBehaviour
         while (true)
         {
             yield return PathSequence[movingTo];
+
+            float DistancefromPoint = Vector3.Distance(gameObject.transform.position, Point.transform.position);
+
             if (PathSequence.Length == 1)
             {
                 continue;
@@ -64,19 +74,23 @@ public class movementpath : MonoBehaviour
                 }
                 else if (movingTo >= PathSequence.Length - 1)
                 {
+                    Reached = true;
                     movementDirection = 0;
-                    GetComponent<FollowPath>().enabled = false;
-                    GetComponent<FollowPathTwo>().enabled = true;
 
                 }
 
+
             }
+
+
             movingTo = movingTo + movementDirection;
+
+
             if (PathType == PathTypes.loop)
             {
                 if (movingTo >= PathSequence.Length)
                 {
-                    movingTo = 0;
+                    yield break;
                 }
                 if (movingTo < 0)
                 {
@@ -84,5 +98,12 @@ public class movementpath : MonoBehaviour
                 }
             }
         }
+    }
+
+    public IEnumerator<Transform> GetStartPathPoint()
+    {
+        yield return PathSequence[0];
+        movingTo = 0;
+        Reached = false;
     }
 }
