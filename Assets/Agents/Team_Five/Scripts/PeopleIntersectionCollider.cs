@@ -24,9 +24,17 @@ public class PeopleIntersectionCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Intersection"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("PedColliderRed"))
         {
+            Debug.Log("pedBitchRed");
             agent.isStopped = true;
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("PedColliderGreen"))
+        {
+            Debug.Log("pedBitchGreen");
+            agent.isStopped = false;
+        }
+        
     }
 }

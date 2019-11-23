@@ -5056,8 +5056,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 25
-  m_Acceleration: 50
+  m_Speed: 10
+  m_Acceleration: 15
   avoidancePriority: 99
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -5723,7 +5723,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286907439}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -216.9, y: -0.2, z: 198.6}
+  m_LocalPosition: {x: -217.84, y: -0.2, z: 197.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 720705483}
@@ -6025,7 +6025,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310589539}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -129.4, y: -0.2, z: 201}
+  m_LocalPosition: {x: -133.55, y: -0.2, z: 201}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 720705483}
@@ -7364,7 +7364,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373047931}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -208.5, y: -0.2, z: 201.1}
+  m_LocalPosition: {x: -208.5, y: -0.2, z: 200.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 720705483}
@@ -12124,7 +12124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602267248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -123.8, y: -0.2, z: 201}
+  m_LocalPosition: {x: -116.76, y: -0.2, z: 201}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 720705483}
@@ -14643,7 +14643,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786552076}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -218.2, y: -0.2, z: 198.6}
+  m_LocalPosition: {x: -218.58, y: -0.2, z: 199.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 313077246}
@@ -24266,7 +24266,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372883563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -119.7, y: -0.2, z: 201}
+  m_LocalPosition: {x: -109.37001, y: -0.2, z: 201}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 720705483}
@@ -35759,7 +35759,7 @@ PrefabInstance:
     - target: {fileID: 8506871288022652341, guid: f33f64447d6b7c841864f160f2cdf96b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -181.2
+      value: -180.9
       objectReference: {fileID: 0}
     - target: {fileID: 8506871288022652341, guid: f33f64447d6b7c841864f160f2cdf96b,
         type: 3}
@@ -35961,7 +35961,7 @@ MonoBehaviour:
   - {fileID: 1690843023}
   - {fileID: 1690843023}
   waitTimeShort: 0
-  waitTimeLong: 0
+  waitTimeLong: 3
   waitTime: 0
 --- !u!54 &4400594340978026102
 Rigidbody:
@@ -35989,8 +35989,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 25
-  m_Acceleration: 50
+  m_Speed: 10
+  m_Acceleration: 15
   avoidancePriority: 99
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -35999,7 +35999,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 12945
+  m_WalkableMask: 45201
   m_ObstacleAvoidanceType: 4
 --- !u!65 &4400594340978026106
 BoxCollider:

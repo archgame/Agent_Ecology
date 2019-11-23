@@ -22,6 +22,8 @@ public class IntersectionTwoOne : MonoBehaviour
     private bool l3 = true;
     private bool l4 = true;
     public bool TramBitch = false;
+    public GameObject PedColliderRed;
+    public GameObject PedColliderGreen;
 
 
 
@@ -40,6 +42,11 @@ public class IntersectionTwoOne : MonoBehaviour
         GreenLights[1].SetActive(!l2);
         GreenLights[2].SetActive(!l3);
         GreenLights[3].SetActive(!l4);
+
+        PedColliderRed.GetComponent<Collider>().enabled = true;
+        PedColliderGreen.GetComponent<Collider>().enabled = false;
+
+
     }
 
     private void Update()
@@ -51,6 +58,9 @@ public class IntersectionTwoOne : MonoBehaviour
             crosswalks[1].SetActive(l2);
             crosswalks[2].SetActive(l3);
             crosswalks[3].SetActive(l4);
+
+            PedColliderRed.GetComponent<Collider>().enabled = true;
+            PedColliderGreen.GetComponent<Collider>().enabled = false;
 
             if (waited < (waitTime * 6))
             {
@@ -66,6 +76,9 @@ public class IntersectionTwoOne : MonoBehaviour
                     GreenLights[2].SetActive(!l3);
                     GreenLights[3].SetActive(!l4);
 
+                    PedColliderRed.GetComponent<Collider>().enabled = true;
+                    PedColliderGreen.GetComponent<Collider>().enabled = false;
+
 
                 }
 
@@ -80,6 +93,9 @@ public class IntersectionTwoOne : MonoBehaviour
                     GreenLights[1].SetActive(l2);
                     GreenLights[2].SetActive(!l3);
                     GreenLights[3].SetActive(!l4);
+
+                    PedColliderRed.GetComponent<Collider>().enabled = true;
+                    PedColliderGreen.GetComponent<Collider>().enabled = false;
                 }
 
                 if (waited > (waitTime * 2))
@@ -98,6 +114,11 @@ public class IntersectionTwoOne : MonoBehaviour
                     crosswalks[1].SetActive(!l2);
                     crosswalks[2].SetActive(!l3);
                     crosswalks[3].SetActive(!l4);
+
+                    PedColliderRed.GetComponent<Collider>().enabled = false;
+                    PedColliderGreen.GetComponent<Collider>().enabled = true;
+
+
 
                     // waited += Time.deltaTime;
                 }
@@ -119,6 +140,9 @@ public class IntersectionTwoOne : MonoBehaviour
                     crosswalks[2].SetActive(l3);
                     crosswalks[3].SetActive(l4);
 
+                    PedColliderRed.GetComponent<Collider>().enabled = true;
+                    PedColliderGreen.GetComponent<Collider>().enabled = false;
+
                     // waited += Time.deltaTime;
                 }
 
@@ -133,6 +157,9 @@ public class IntersectionTwoOne : MonoBehaviour
                     GreenLights[1].SetActive(!l2);
                     GreenLights[2].SetActive(!l3);
                     GreenLights[3].SetActive(l4);
+
+                    PedColliderRed.GetComponent<Collider>().enabled = true;
+                    PedColliderGreen.GetComponent<Collider>().enabled = false;
                 }
 
                 if (waited > (waitTime * 5))
@@ -151,6 +178,9 @@ public class IntersectionTwoOne : MonoBehaviour
                     crosswalks[1].SetActive(!l2);
                     crosswalks[2].SetActive(!l3);
                     crosswalks[3].SetActive(!l4);
+
+                    PedColliderRed.GetComponent<Collider>().enabled = false;
+                    PedColliderGreen.GetComponent<Collider>().enabled = true;
                 }
             }
 
@@ -177,6 +207,11 @@ public class IntersectionTwoOne : MonoBehaviour
             crosswalks[1].SetActive(l2);
             crosswalks[2].SetActive(l3);
             crosswalks[3].SetActive(l4);
+
+            PedColliderRed.GetComponent<Collider>().enabled = true;
+            PedColliderGreen.GetComponent<Collider>().enabled = false;
+                
+
         }
 
 
