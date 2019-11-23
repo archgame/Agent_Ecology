@@ -119,7 +119,9 @@ public class DogWalker : MonoBehaviour
         }
     }
 
-    /*void OnTriggerEnter(Collider collision)
+
+
+    void OnTriggerEnter(Collider collision)
     {
         //Debug.Log("collision: " + collision.gameObject.name);
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
@@ -140,7 +142,8 @@ public class DogWalker : MonoBehaviour
         {
             agent.isStopped = false;
         }
-    }*/
+
+    }
 
     private int obstacles = 0;
 

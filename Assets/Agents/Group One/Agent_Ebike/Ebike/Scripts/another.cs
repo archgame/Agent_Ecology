@@ -20,6 +20,9 @@ public class another: MonoBehaviour
 
     private int t = 0;
     public GameObject[] riders;
+
+    float waited = 0;
+    int waitTime = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,67 +68,73 @@ public class another: MonoBehaviour
             Vector3 position = transform.position;
             foreach (GameObject go in targets)
             {
-                Vector3 diff = go.transform.position - position;
-                float curDistance = diff.sqrMagnitude;
-                if (curDistance < distance)
+                if (go.transform.childCount != 0)
                 {
-                    cloest = go;
-                    distance = curDistance;
+                    Vector3 diff = go.transform.position - position;
+                    float curDistance = diff.sqrMagnitude;
+                    if (curDistance < distance)
+                    {
+                        cloest = go;
+                        distance = curDistance;
+                    }
                 }
             }
             agent.SetDestination(cloest.transform.position);
-           // Debug.Log(cloest);
-
-            pickup = GameObject.FindGameObjectsWithTag("stop bike");
-            //List<GameObject> pickups= new List<GameObject>();
-           // pickups = pickup.ToList();
-           // int rnd = Random.Range(0, pickups.Count);
-           
-            for (int i = 0; i<pickup.Length ; i++)
+            float distanceToTarget = Vector3.Distance(transform.position, cloest.transform.position);
+            if (0.5f > distanceToTarget)
             {
-                /* if (riders[i] == null)
-                 {
-                     riders[i] = gameObject;
-                    // target = pickup[i];
-                     position = target.transform.position;
-                     agent.transform.SetParent(pickup[i].transform);
-                 }*/
- 
-                   
-                    //riders[i].transform.position = pickup[i].transform.position;
-                float distanceToTarget = Vector3.Distance(riders[i].transform.position, pickup[i].transform.position);
-                if (0.5f > distanceToTarget)
+                if (waited > waitTime)
                 {
+                    transform.SetParent(cloest.transform);
+                    waited = 0;
+                    gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                    cloest.GetComponent<NavMeshAgent>().isStopped = false;
+                    cloest.GetComponent<NavMeshAgent>().SetDestination(leaveaway.position);
 
-                    riders[i].transform.SetParent(pickup[i].transform);
-                   // pickup[i].transform.SetParent(riders[i].transform);
-                    Debug.Log(pickup[i] + "我的爸爸是" + riders[i]);
-                    riders[i].GetComponent<NavMeshAgent>().enabled = false;
-                    pickup[i].GetComponent<NavMeshAgent>().isStopped = false;
-                   // pickup[i].GetComponent<Stopbike>().enabled = false;
-                    pickup[i].GetComponent<NavMeshAgent>().SetDestination(leaveaway.position);
-                   // riders[i].GetComponent<simpleagent>().enabled = false;
-
-                    Debug.Log(distanceToTarget);
                 }
                 else
                 {
-                    riders[i].GetComponent<NavMeshAgent>().SetDestination(pickup[i].transform.position);
+                    waited += Time.deltaTime;
                 }
-
-                
-         
-
-                
-
-              
-
             }
-            
+
+            // Debug.Log(cloest);
+
+            // pickup = GameObject.FindGameObjectsWithTag("stop bike");
+            //List<GameObject> pickups= new List<GameObject>();
+            // pickups = pickup.ToList();
+            // int rnd = Random.Range(0, pickups.Count);
+
+            //for (int i = 0; i<pickup.Length ; i++)
+            //{
+
+            //    float distanceToTarget = Vector3.Distance(riders[i].transform.position, pickup[i].transform.position);
+            //    if (0.5f > distanceToTarget)
+            //    {
+
+            //        riders[i].transform.SetParent(pickup[i].transform);
+            //        riders[i].GetComponent<NavMeshAgent>().enabled = false;
+            //        pickup[i].GetComponent<NavMeshAgent>().isStopped = false;
+            //        pickup[i].GetComponent<NavMeshAgent>().SetDestination(leaveaway.position);
+            //    }
+            //    else
+            //    {
+            //        riders[i].GetComponent<NavMeshAgent>().SetDestination(pickup[i].transform.position);
+            //    }
 
 
 
-            
+
+
+
+
+
+            //}
+
+
+
+
+
 
         }
     }
