@@ -24,7 +24,7 @@ public class spawnAgent : MonoBehaviour
         else
         {
             Invoke("SpawnAgent",startTime);
-            Debug.Log("Startclone");
+            //Debug.Log("Startclone");
         }
         
     }
@@ -40,7 +40,7 @@ public class spawnAgent : MonoBehaviour
         else
         {
             GameObject na = (GameObject)Instantiate(nagent, this.transform.position, Quaternion.identity);
-            Debug.Log(nagent + " Cloned");
+            //Debug.Log(nagent + " Cloned");
             na.GetComponent<trashAgent>().targets = goalObject;
             Invoke("SpawnAgent", Random.Range(minTime, maxTime));
         }
