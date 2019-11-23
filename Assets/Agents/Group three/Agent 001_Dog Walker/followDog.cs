@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Dog : MonoBehaviour
+public class followDog : MonoBehaviour
 {
 
     public Transform goal;
@@ -47,4 +47,3 @@ public class Dog : MonoBehaviour
         this.transform.Translate(0, 0, speed * Time.deltaTime);
     }
 }
-

@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class Buses : MonoBehaviour
 {
     #region GLOBAL VARIABLES
+    Vector3 original;
+
     GameObject target;
     NavMeshAgent agent;
     public bool isRider = false;
@@ -46,6 +48,8 @@ public class Buses : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        original = transform.position;
+
         if(isTheBus)
             gameObject.tag = "Bus";
 
@@ -178,6 +182,11 @@ public class Buses : MonoBehaviour
                     agent.isStopped = true;
 
                 } // changeTargetDistance test
+                if(target.name.Contains("last"))
+                {
+                    transform.position = original;
+                    //gameObject.SetActive(false);
+                }
                 if (agent.hasPath)
                 {
                     Vector3 toSteeringTarget = agent.steeringTarget - transform.position;
@@ -188,18 +197,43 @@ public class Buses : MonoBehaviour
         }
     }
 
+
+    public int obstacles = 0;
+
     void OnTriggerEnter(Collider collision)
     {
+        Debug.Log(obstacles);
+
         //Debug.Log("collision: " + collision.gameObject.name);
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
             obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
-        }       
+        }
+
+        if (collision.gameObject.name.Contains("RedLight"))
+        {
+            agent.isStopped = true;
+            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
+        }
+        if (collision.gameObject.name.Contains("GreenLight"))
+        {
+            obstacles--; //count as obstacle removal
+            if (obstacles < 0)
+            {
+                obstacles = 0;
+            }
+            if (obstacles == 0) //once there are zero obstacles, start the agent moving
+            {
+                agent.isStopped = false;
+            }
+        }
     }
 
     void OnTriggerExit(Collider collision)
     {
+        Debug.Log(obstacles);
+
         //Debug.Log("exited");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
@@ -211,7 +245,6 @@ public class Buses : MonoBehaviour
         }
     }
 
-    private int obstacles = 0;
 
     GameObject[] Shuffle(GameObject[] objects)
     {
@@ -227,4 +260,6 @@ public class Buses : MonoBehaviour
         }
         return objects;
     }
+
+
 }
