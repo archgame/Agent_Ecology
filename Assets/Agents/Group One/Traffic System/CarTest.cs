@@ -40,9 +40,36 @@ public class CarTest : MonoBehaviour
     public float zmax = 1;
     #endregion
 
+    [Header("Raycast")]
+    public Transform raycastAnchor;
+    public float raycastLength = 5;
+    public int raySpacing = 2;
+    public int raysNumber = 6;
+
+    [Header("Vehicle")]
+    public float minTopSpeed;
+    public float maxTopSpeed;
+
+    public bool hasToStop = false;
+    public bool hasToGo = false;
+
+    //VehiclePhysics carController;
+    //NavMeshAgent agent;
+    //int curWp = 0;
+    [HideInInspector]
+    public int curSeg = 0;
+    float initialTopSpeed;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        ////////////////////
+        //carController = this.GetComponent<VehiclePhysics>();
+
+        initialTopSpeed = GetComponent<NavMeshAgent>().speed;
+        //carController.Topspeed = initialTopSpeed;
+        /////////////////////////
         gameObject.tag = "CarTest";
 
         //grab targets using tags
@@ -158,6 +185,98 @@ public class CarTest : MonoBehaviour
                 }
             }
         }
+        ///////////////
+        float topSpeed = GetCarSpeed();
+        MoveVehicle(topSpeed);
+        //////////////////
     }
 
+    float GetCarSpeed()
+    {
+        //If car has to stop, set speed to 0
+        if (hasToStop)
+            return 0;
+
+        Vector3 anchor = new Vector3(this.transform.position.x, this.transform.position.y + 1f, this.transform.position.z);
+        if (raycastAnchor != null)
+            anchor = raycastAnchor.position;
+
+        //Check if we are going to collide with a car in front
+        CarTest otherCarAI = null;
+        float topSpeed = initialTopSpeed;
+        float initRay = (raysNumber / 2f) * raySpacing;
+
+        for (float a = -initRay; a <= initRay; a += raySpacing)
+        {
+            float hitDist;
+            CastRay(anchor, a, this.transform.forward, raycastLength, out otherCarAI, out hitDist);
+
+            //If rays collide with a car, adapt the top speed to be the same as the one of the front vehicle
+            if (otherCarAI != null && otherCarAI.agent != null && agent.speed > otherCarAI.agent.speed)
+            {
+                //Check if the car is on the same lane or not. If not the same lane, then we do not adapt the vehicle speed to the one in front
+                //(it just means that the rays are hitting a car on the opposite lane...which shouldn't influence the car's speed)
+                if (hasToGo && !IsOnSameLane(otherCarAI.transform))
+                    return topSpeed;
+
+                //If the hit distance is too close, "emergency slow down" the car so they don't collide
+                else if (hitDist < 2f)
+                    return topSpeed = 0f;
+
+                //Otherwise adapt the car speed to the one in front
+                topSpeed = otherCarAI.agent.speed;
+                break;
+            }
+        }
+
+        //If no collision detected then keep the car top speed
+        return topSpeed;
+    }
+
+
+    void MoveVehicle(float _topSpeed)
+    {
+        /*
+        //Wheel steering value
+        float steering = Mathf.Clamp(this.transform.InverseTransformDirection(agent.desiredVelocity).x, -1f, 1f);
+
+        //If car is turning then decrease it's maximum
+        float topSpeed = _topSpeed;
+        if (steering > 0.2f || steering < -0.2f && carController.Topspeed > 15) topSpeed = initialTopSpeed / 2f;
+        carController.Topspeed = topSpeed;
+
+        //Move the car
+        carController.Move(steering, 1f, 0f);
+        */
+        agent.speed = _topSpeed;
+    }
+
+
+    void CastRay(Vector3 anchor, float angle, Vector3 dir, float length, out CarTest outCarAI, out float outHitDistance)
+    {
+
+        outCarAI = null;
+        outHitDistance = -1f;
+
+        //Draw raycast
+        Debug.DrawRay(anchor, Quaternion.Euler(0, angle, 0) * dir * length, new Color(1, 0, 0, 0.5f));
+
+        //Detect hit only on the autonomous vehicle layer
+        int layer = LayerMask.NameToLayer("SmallVehicle");
+        Debug.Log("layer" + layer);
+        RaycastHit hit;
+        if (Physics.Raycast(anchor, Quaternion.Euler(0, angle, 0) * dir, out hit, length, layer))
+        {
+            outCarAI = hit.collider.GetComponentInParent<CarTest>();
+            outHitDistance = hit.distance;
+        }
+    }
+
+
+    bool IsOnSameLane(Transform otherCar)
+    {
+        Vector3 diff = this.transform.forward - otherCar.transform.forward;
+        if (Mathf.Abs(diff.x) < 0.3f && Mathf.Abs(diff.z) < 0.3f) return true;
+        else return false;
+    }
 }
