@@ -256,6 +256,24 @@ public class Elderly : MonoBehaviour
             agent.isStopped = true;
             obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
         }
+        if (collision.gameObject.name.Contains("NoWalk"))
+        {
+            agent.isStopped = true;
+            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
+        }
+
+        if (collision.gameObject.name.Contains("Green"))
+        {
+            obstacles--; //count as obstacle removal
+            if (obstacles < 0)
+            {
+                obstacles = 0;
+            }
+            if (obstacles == 0) //once there are zero obstacles, start the agent moving
+            {
+                agent.isStopped = false;
+            }
+        }
     }
 
     void OnTriggerExit(Collider collision)

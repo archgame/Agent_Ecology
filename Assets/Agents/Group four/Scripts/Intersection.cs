@@ -8,15 +8,12 @@ public class Intersection : MonoBehaviour
     public bool switchLights = false;
 
     [Header("Lights")]
-    public GameObject[] TrafficLights;
-    public GameObject[] Crosswalks;
-
-
+    public GameObject[] trafficLights;
+    public GameObject[] crosswalks;
 
     // Update is called once per frame
     void Update()
     {
-
         if (switchLights)
         {
             SwitchLights(true, false, true, false);
@@ -25,23 +22,27 @@ public class Intersection : MonoBehaviour
         {
             SwitchLights(false, true, false, true);
         }
-        
     }
 
-    public void SwitchLights(bool L1, bool L2, bool L3, bool L4)
+    public void SwitchLights(bool l1, bool l2, bool l3, bool l4)
     {
-        TrafficLights[0].SetActive(L1);
-        TrafficLights[1].SetActive(L2);
-        TrafficLights[2].SetActive(L3);
-        TrafficLights[3].SetActive(L4);
+        trafficLights[0].SetActive(l1);
+        trafficLights[1].SetActive(l2);
+        trafficLights[2].SetActive(l3);
+        trafficLights[3].SetActive(l4);
+        trafficLights[4].SetActive(!l1);
+        trafficLights[5].SetActive(!l2);
+        trafficLights[6].SetActive(!l3);
+        trafficLights[7].SetActive(!l4);
+        
+        crosswalks[0].SetActive(!l1);
+        crosswalks[1].SetActive(!l2);
+        crosswalks[2].SetActive(!l3);
+        crosswalks[3].SetActive(!l4);
+        crosswalks[4].SetActive(l1);
+        crosswalks[5].SetActive(l2);
+        crosswalks[6].SetActive(l3);
+        crosswalks[7].SetActive(l4);
 
-        Crosswalks[0].SetActive(!L1);
-        Crosswalks[1].SetActive(!L2);
-        Crosswalks[2].SetActive(!L3);
-        Crosswalks[3].SetActive(!L4);
-        Crosswalks[4].SetActive(!L1);
-        Crosswalks[5].SetActive(!L2);
-        Crosswalks[6].SetActive(!L3);
-        Crosswalks[7].SetActive(!L4);
     }
 }

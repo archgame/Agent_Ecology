@@ -151,7 +151,7 @@ public class Buses : MonoBehaviour
                     {
                         waitTime = waitTimeShortMin;
                     }
-                    Debug.Log("waitTime: " + waitTime);
+                    //Debug.Log("waitTime: " + waitTime);
 
                     //type of stop
                     /*

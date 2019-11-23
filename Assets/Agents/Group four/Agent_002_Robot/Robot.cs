@@ -16,7 +16,7 @@ public class Robot : MonoBehaviour
     public string[] targetNames;
     [HideInInspector]
     public Vector3 position;
-    public float changeTargetDistance = 3;
+    public float changeTargetDistance = 1;
     private int t;
     public bool shuffleTargets = true;
     public GameObject[] targets;
@@ -59,9 +59,23 @@ public class Robot : MonoBehaviour
         if (targets.Length == 0)
         {
             //get all game objects tagged with "Target"
+            List<GameObject> targetList = new List<GameObject>();
+
+            GameObject[] foodtTrucks = GameObject.FindGameObjectsWithTag("IceCreamTruck");
+            List<GameObject> foodtTruckList = new List<GameObject>();
+            foreach (GameObject truck in foodtTrucks) //search all "Target" game objects
+            {
+                if (truck.name.Contains("Food Truck Cube")) //if GameObject has the same name as targetName, add to list
+                {
+                    targetList.Add(truck);
+                }
+
+            }
+
+
             targets = GameObject.FindGameObjectsWithTag("target");
 
-            List<GameObject> targetList = new List<GameObject>();
+           
             foreach (GameObject go in targets) //search all "Target" game objects
             {
                 //Debug.Log("go: " + go.name);
@@ -75,6 +89,12 @@ public class Robot : MonoBehaviour
                     }
                 }
             }
+
+       
+            
+
+
+
             targets = targetList.ToArray(); //Convert List to Array, because other code is still using array
         }
 
@@ -94,6 +114,20 @@ public class Robot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target.name.Contains("Food Truck Cube")) //if GameObject has the same name as targetName, add to list
+        {
+            Debug.DrawLine(transform.position, target.transform.position, Color.yellow);
+            changeTargetDistance = 5f;
+
+        }
+        else
+        {
+            changeTargetDistance = 1f;
+        }
+        
+
+
+
         if (agent.enabled)
         {
             if (target.transform.position != position)
@@ -204,6 +238,29 @@ public class Robot : MonoBehaviour
             agent.isStopped = true;
             obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
         }
+   
+
+        if (collision.gameObject.name.Contains("NoWalk"))
+        {
+            agent.isStopped = true;
+            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
+        }
+
+        if (collision.gameObject.name.Contains("Green"))
+        {
+            obstacles--; //count as obstacle removal
+            if (obstacles < 0)
+            {
+                obstacles = 0;
+            }
+            if (obstacles == 0) //once there are zero obstacles, start the agent moving
+            {
+                agent.isStopped = false;
+            }
+        }
+
+
+
     }
 
     void OnTriggerExit(Collider collision)
@@ -217,9 +274,11 @@ public class Robot : MonoBehaviour
         {
             agent.isStopped = false;
         }
+
+  
     }
 
-    private int obstacles = 0;
+    public int obstacles = 0;
 
     GameObject[] Shuffle(GameObject[] objects)
     {

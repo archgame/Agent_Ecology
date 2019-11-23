@@ -112,7 +112,7 @@ public class Stopbike : MonoBehaviour
                     myChildObject.SetParent(brainobject);
 
                     agent.isStopped = true;
-                    agent.tag = "stop bike";
+                    //agent.tag = "stop bike";
                     agent.GetComponent<Stopbike>().enabled = false;
                 }
             }
