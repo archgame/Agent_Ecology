@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DogWalker : MonoBehaviour
+public class Onewheel : MonoBehaviour
 {
     Transform target;
     NavMeshAgent agent;
@@ -29,7 +29,7 @@ public class DogWalker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.tag = "DogWalker";
+        gameObject.tag = "Agent";
 
         //scale the gameobject randomly
         if (randomScale)
@@ -46,13 +46,13 @@ public class DogWalker : MonoBehaviour
             //get all game objects tagged with "Target"
             targets = GameObject.FindGameObjectsWithTag("Target");
 
-            List<GameObject> targetList = new List<GameObject>();
-            foreach (GameObject go in targets) //search all "Target" game objects
+            List<GameObject> targetList = new List<GameObject>();           
+            foreach(GameObject go in targets) //search all "Target" game objects
             {
-                Debug.Log("go: " + go.name);
+                //Debug.Log("go: " + go.name);
                 foreach (string targetName in targetNames)
                 {
-                    Debug.Log("targetName: " + targetName);
+                    //Debug.Log("targetName: " + targetName);
                     // "Target" contains: "Tar", "Targ", "get", ! "Trgt"
                     if (go.name.Contains(targetName)) //if GameObject has the same name as targetName, add to list
                     {
@@ -97,7 +97,7 @@ public class DogWalker : MonoBehaviour
         else
         {
             //see agent's next destination
-           // Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+            Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
             float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
             //change target once it is reached
@@ -108,7 +108,7 @@ public class DogWalker : MonoBehaviour
                 {
                     t = 0;
                 }
-                //Debug.Log(this.name + " Change Target: " + t);
+                Debug.Log(this.name + " Change Target: " + t);
                 target = targets[t].transform;
                 agent.SetDestination(target.position); //each frame set the agent's destination to the target position
 
@@ -119,19 +119,19 @@ public class DogWalker : MonoBehaviour
         }
     }
 
-    /*void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider collision)
     {
-        //Debug.Log("collision: " + collision.gameObject.name);
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        Debug.Log("collision: " + collision.gameObject.name);
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
             obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
-        }
+        }       
     }
 
     void OnTriggerExit(Collider collision)
     {
-        //Debug.Log("exited");
+        Debug.Log("exited");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             obstacles--; //obstacles = obstacles - 1; || obstacles -= 1;
@@ -140,7 +140,7 @@ public class DogWalker : MonoBehaviour
         {
             agent.isStopped = false;
         }
-    }*/
+    }
 
     private int obstacles = 0;
 

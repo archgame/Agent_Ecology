@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DogWalker : MonoBehaviour
+public class socialDog : MonoBehaviour
 {
     Transform target;
     NavMeshAgent agent;
@@ -26,10 +26,13 @@ public class DogWalker : MonoBehaviour
     public float zmin = 1;
     public float zmax = 1;
 
+    public float distance;
+    public GameObject from;
+
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.tag = "DogWalker";
+        //gameObject.tag = "DogWalker";
 
         //scale the gameobject randomly
         if (randomScale)
@@ -79,6 +82,17 @@ public class DogWalker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        distance = 1;
+        float dist = Vector3.Distance(from.transform.position, transform.position);
+        Debug.Log(dist);
+        if (dist > distance)
+        {
+            gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+        }
+        else
+        {
+            gameObject.GetComponent<NavMeshAgent>().isStopped = false;
+        }
         //original text if (!waiting) // (waiting == false) (1 == 0)
         if (waiting) // (waiting == false) (1 == 0)
         {
@@ -97,7 +111,7 @@ public class DogWalker : MonoBehaviour
         else
         {
             //see agent's next destination
-           // Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+            // Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
             float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
             //change target once it is reached

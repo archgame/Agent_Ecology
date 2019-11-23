@@ -6,94 +6,50 @@ public class Intersection003 : MonoBehaviour
 {
     [Header("Controls")]
     public bool switchLights = false;
-    public float switchtime=0;
+    public float switchTime = 10;
 
     [Header("Lights")]
-    public GameObject[] NS_Obstacle;
-    public GameObject[] EW_Obstacle;
-    int j = 0;
-    int k = 0;
+    public GameObject[] trafficLights;
+    public GameObject[] crosswalks;
     float waited = 0;
 
+
     // Update is called once per frame
-
-
     void Update()
     {
-        for (int i = 0; i < gameObject.transform.childCount; i++)
+        switchLights = Switch(switchLights, switchTime);
+        //Debug.Log(switchLights);
+        if(switchLights)
         {
-            GameObject temp = gameObject.transform.GetChild(i).gameObject;
-            if (temp.name.Contains("NS"))
-            {
-                NS_Obstacle[j] = temp;
-                if(j<NS_Obstacle.Length-1)
-                {
-                    j++;
-                }
-            }
-        }
-        for (int i = 0; i < gameObject.transform.childCount; i++)
-        {
-            GameObject temp = gameObject.transform.GetChild(i).gameObject;
-            if (temp.name.Contains("EW"))
-            {
-                EW_Obstacle[k] = temp;
-                if (k < NS_Obstacle.Length-1)
-                {
-                    k++;
-                }
-            }
-        }
-        //bool waiting = false;
-        if (switchLights)
-        {
-            SwitchLights(true, false);
-            if (waited > switchtime)
-            {
-                waited = 0;
-                switchLights = !switchLights;
-            }
-            else
-            {
-                waited += Time.deltaTime;
-                Debug.Log(waited);
-            }
+            SwitchLights(true,false,true,false);
         }
         else
         {
-            SwitchLights(false,true);
-            if (waited > switchtime)
-            {
-                waited = 0;
-                switchLights = !switchLights;
-            }
-            else
-            {
-                waited += Time.deltaTime;
-                Debug.Log(waited);
-            }
+            SwitchLights(false,true,false,true);
         }
-
     }
 
-    public void SwitchLights(bool l1, bool l2)
+    public void SwitchLights(bool l1, bool l2, bool l3, bool l4)
     {
-        foreach(GameObject NS in NS_Obstacle)
-        {
-            NS.SetActive(l1);
-        }
-        foreach (GameObject EW in EW_Obstacle)
-        {
-            EW.SetActive(l2);
-        }
+        trafficLights[0].SetActive(l1);
+        trafficLights[1].SetActive(l2);
+        trafficLights[2].SetActive(l3);
+        trafficLights[3].SetActive(l4);
+        trafficLights[4].SetActive(!l1);
+        trafficLights[5].SetActive(!l2);
+        trafficLights[6].SetActive(!l3);
+        trafficLights[7].SetActive(!l4);
 
-        //Debug.Log(Time.deltaTime*100f);
+        crosswalks[0].SetActive(!l1);
+        crosswalks[1].SetActive(!l2);
+        crosswalks[2].SetActive(!l3);
+        crosswalks[3].SetActive(!l4);
     }
 
-    /*public void Switch(bool ifswitchLights, float time)
+    public bool Switch(bool ifswitchLights, float time)
     {
+        //float waited = 0;
         float waitTime = time;
-        //bool waiting = false;
         if (waited > waitTime)
         {
             waited = 0;
@@ -101,9 +57,11 @@ public class Intersection003 : MonoBehaviour
         }
         else
         {
-            waited += Time.deltaTime*3;
-            Debug.Log(waited);
-        }
+            waited += Time.deltaTime * 3;
+            //Debug.Log(waited);
+            //Debug.Log("if " + ifswitchLights);
 
-    }*/
+        }
+        return ifswitchLights;
+    }
 }
