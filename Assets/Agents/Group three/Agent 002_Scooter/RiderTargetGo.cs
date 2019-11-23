@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class RiderTargetGo : MonoBehaviour
 {
     #region Global Variable
+    public bool NTM;
     GameObject target;
     NavMeshAgent agent;
 
@@ -23,6 +24,7 @@ public class RiderTargetGo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //gameObject.AddComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
 
         baba = transform.parent.gameObject;
@@ -48,6 +50,7 @@ public class RiderTargetGo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        NTM = agent.GetComponent<NavMeshAgent>().isStopped;
         Riders = new GameObject[AvailableScooters.Length];
         for(int i=0; i < AvailableScooters.Length;i++)
         {
@@ -83,8 +86,10 @@ public class RiderTargetGo : MonoBehaviour
                 //AvailableScooters[i].GetComponent<NavMeshAgent>().isStopped = true;
                 agent.SetDestination(GetScooter.transform.position);
                 float dist = Vector3.Distance(agent.transform.position, GetScooter.transform.position);
-                if (0.5f > dist)
+                if (1f > dist)
                 {
+                    //Rigidbody rb = GetComponent<Rigidbody>();
+                    //Destroy(rb);
                     GetScooter.GetComponent<NavMeshAgent>().isStopped = false;
                     transform.parent = GetScooter.transform;
                     GetComponent<NavMeshAgent>().enabled = false;
@@ -109,5 +114,33 @@ public class RiderTargetGo : MonoBehaviour
             objects[i] = tempGO;
         }
         return objects;
+    }
+    public int obstacles = 0;
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.name.Contains("GreenLight"))
+        {
+            agent.isStopped = true;
+            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
+        }
+        if (collision.gameObject.name.Contains("RedLight"))
+        {
+            obstacles--; //count as obstacle removal
+
+        }
+    }
+
+    void OnTriggerExit(Collider collision)
+    {
+        Debug.Log(obstacles);
+        if (obstacles < 0)
+        {
+            obstacles = 0;
+        }
+        if (obstacles == 0) //once there are zero obstacles, start the agent moving
+        {
+            agent.isStopped = false;
+        }
     }
 }
