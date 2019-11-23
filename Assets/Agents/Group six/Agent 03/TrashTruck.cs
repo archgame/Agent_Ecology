@@ -153,8 +153,16 @@ public class TrashTruck : MonoBehaviour
             obstacles++; //obstacles + 1 || or
             Debug.Log("Light");
         }
-            
+
+        if (collision.gameObject.name.Contains("GreenLight"))
+        {
+            agent.isStopped = false;
+            obstacles++; //obstacles + 1 || or
+            Debug.Log("Light");
+        }
     }
+
+    /*
     void OnTriggerExit(Collider collision)
     {
         Debug.Log("LightOff");

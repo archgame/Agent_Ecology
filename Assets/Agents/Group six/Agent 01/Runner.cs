@@ -81,28 +81,50 @@ public class Runner : MonoBehaviour
     }
     // AnimatorUpdateMode one per frame
 
+
     void OnTriggerEnter(Collider collision)
     {
         //Debug.Log("collision: " + collision.gameObject.name);
-        if (collision.gameObject.layer == LayerMask.NameToLayer("LargeVehicle"))
+        //if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        if (collision.gameObject.name.Contains("NoWalk"))
         {
             agent.isStopped = true;
             obstacles++; //obstacles + 1 || or
+            Debug.Log("Stop");
         }
 
-    }
-    void OnTriggerExit(Collider collision)
-    {
-        //Debug.Log("exited");
-        if (collision.gameObject.layer == LayerMask.NameToLayer("LargeVehicle"))
-        {
-            obstacles--;
-        }
-        if (obstacles == 0)
+        if (collision.gameObject.name.Contains("goWalk"))
         {
             agent.isStopped = false;
+            obstacles++; //obstacles + 1 || or
+            Debug.Log("Light");
         }
     }
+
+    /*
+void OnTriggerEnter(Collider collision)
+{
+    //Debug.Log("collision: " + collision.gameObject.name);
+    if (collision.gameObject.layer == LayerMask.NameToLayer("LargeVehicle"))
+    {
+        agent.isStopped = true;
+        obstacles++; //obstacles + 1 || or
+    }
+
+}
+void OnTriggerExit(Collider collision)
+{
+    //Debug.Log("exited");
+    if (collision.gameObject.layer == LayerMask.NameToLayer("LargeVehicle"))
+    {
+        obstacles--;
+    }
+    if (obstacles == 0)
+    {
+        agent.isStopped = false;
+    }
+}
+*/
 
     GameObject[] shuffle(GameObject[] objects) 
     {
