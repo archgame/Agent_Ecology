@@ -219,6 +219,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: School Children
       objectReference: {fileID: 0}
+    - target: {fileID: 1328762781504027408, guid: f3d059ee1b8fc6346bcb594a8511d9df,
+        type: 3}
+      propertyPath: m_TagString
+      value: SchoolChildren
+      objectReference: {fileID: 0}
     - target: {fileID: 2087233054110136350, guid: f3d059ee1b8fc6346bcb594a8511d9df,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -304,10 +309,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -1.6
       objectReference: {fileID: 0}
-    - target: {fileID: 1328762781504027408, guid: f3d059ee1b8fc6346bcb594a8511d9df,
+    - target: {fileID: 2087233054264199928, guid: f3d059ee1b8fc6346bcb594a8511d9df,
         type: 3}
-      propertyPath: m_TagString
-      value: SchoolChildren
+      propertyPath: m_Speed
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3d059ee1b8fc6346bcb594a8511d9df, type: 3}
