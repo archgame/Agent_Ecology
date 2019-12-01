@@ -8,6 +8,7 @@ public class ControlMotorStop : MonoBehaviour
 {
     NavMeshAgent agent;
     public bool ifMotor;
+  
     // Start is called before the first frame update
     void OnTriggerEnter(Collider collision)
     {
@@ -24,11 +25,14 @@ public class ControlMotorStop : MonoBehaviour
             {
                 gameObject.GetComponent<Motorcycle>().enabled = false;
                 ifMotor = true;
+                gameObject.GetComponent<NavMeshAgent>().enabled=false;
+                
             }
             else
             {
                 gameObject.GetComponent<FollowGoalMotorcycle>().enabled = false;
                 ifMotor = false;
+                gameObject.GetComponent<NavMeshAgent>().enabled = false;
             }
           
          
@@ -48,12 +52,12 @@ public class ControlMotorStop : MonoBehaviour
                 if (ifMotor == true)
                 {
                     gameObject.GetComponent<Motorcycle>().enabled = true;
-                   
+                    gameObject.GetComponent<NavMeshAgent>().enabled = true;
                 }
                 else
                 {
                     gameObject.GetComponent<FollowGoalMotorcycle>().enabled = true;
-                  
+                    gameObject.GetComponent<NavMeshAgent>().enabled = true;
                 }
             }
         }
