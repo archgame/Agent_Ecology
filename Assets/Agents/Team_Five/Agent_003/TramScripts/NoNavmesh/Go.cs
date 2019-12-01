@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TramGo : MonoBehaviour
+public class Go : MonoBehaviour
+
 {
     public enum MovementType
     {
         MoveTowards,
         LerpTowards
     }
-    
+
     private Coroutine Loop;
     public MovementType Type = MovementType.MoveTowards;
-    public TramPath[] MyPath;
+    public Path[] MyPath;
     public float Speed = 1;
     public float MaxDistanceToGoal = .1f;
     private IEnumerator<Transform> pointInPath;
@@ -24,7 +25,7 @@ public class TramGo : MonoBehaviour
     public bool Iamstoppedandwaiting = false;
     private int i;
     public bool ReadyToGo;
-    private TramPath cpath;
+    private Path cpath;
 
 
     // Start is called before the first frame update
@@ -116,10 +117,10 @@ public class TramGo : MonoBehaviour
                         i = 0;
                         pointInPath = MyPath[i].GetStartPathPoint();
                     }
-                   pointInPath = MyPath[i].GetNextPathPoint();
-                   pointInPath.MoveNext();
-                   Debug.DrawRay(pointInPath.Current.position, Vector3.up * 10, Color.red,2);
-                   transform.position = pointInPath.Current.position;              
+                    pointInPath = MyPath[i].GetNextPathPoint();
+                    pointInPath.MoveNext();
+                    Debug.DrawRay(pointInPath.Current.position, Vector3.up * 10, Color.red, 2);
+                    transform.position = pointInPath.Current.position;
 
 
                 }
@@ -133,17 +134,17 @@ public class TramGo : MonoBehaviour
         }
 
         //Debug.Log("i >= MyPath.Length");
-        
+
 
 
     }
 
 
-    
-       
 
-        
-    
+
+
+
+
 
 
 }

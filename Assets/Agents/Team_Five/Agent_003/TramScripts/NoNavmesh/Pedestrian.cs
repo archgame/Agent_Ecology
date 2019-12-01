@@ -81,7 +81,7 @@ public class Pedestrian : MonoBehaviour
                 {
                     waitTime = waitTimeStop;
                     gameObject.GetComponent<Pedestrian>().enabled = false;
-                    gameObject.GetComponent<PickUpPassenger>().enabled = true;
+                    gameObject.GetComponent<PUpDoff>().enabled = true;
                     
                 }
 

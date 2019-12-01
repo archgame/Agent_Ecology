@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TramPath : MonoBehaviour
+public class Path : MonoBehaviour
 {
     public enum PathTypes
     {
