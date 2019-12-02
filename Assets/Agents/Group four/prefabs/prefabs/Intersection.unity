@@ -723,26 +723,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 9.104695
       objectReference: {fileID: 0}
-    - target: {fileID: 8700155917066740675, guid: 0b57b44000e2e6546b3fd91c727e13a5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8700155917659223122, guid: 0b57b44000e2e6546b3fd91c727e13a5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8700155918340057576, guid: 0b57b44000e2e6546b3fd91c727e13a5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8700155918378825683, guid: 0b57b44000e2e6546b3fd91c727e13a5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6488779410405704783, guid: 0b57b44000e2e6546b3fd91c727e13a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -782,6 +762,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 8.466933
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700155917066740675, guid: 0b57b44000e2e6546b3fd91c727e13a5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700155917659223122, guid: 0b57b44000e2e6546b3fd91c727e13a5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700155918340057576, guid: 0b57b44000e2e6546b3fd91c727e13a5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700155918378825683, guid: 0b57b44000e2e6546b3fd91c727e13a5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2753694430895536534, guid: 0b57b44000e2e6546b3fd91c727e13a5, type: 3}
@@ -2161,7 +2161,7 @@ MonoBehaviour:
   - {fileID: 1017578052}
   - {fileID: 407502353}
   previous: 0
-  stoptime: 5000
+  stoptime: 15
 --- !u!1 &1912436124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 184100688, guid: 0b57b44000e2e6546b3fd91c727e13a5,

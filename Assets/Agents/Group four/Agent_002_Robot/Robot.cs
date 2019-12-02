@@ -41,6 +41,8 @@ public class Robot : MonoBehaviour
     public float zmax = 1.1f;
     #endregion
     public string m_Scene;
+    public GameObject goods;
+    private bool ifGoods;
     // Start is called before the first frame update
     void Start()
     {
@@ -109,11 +111,47 @@ public class Robot : MonoBehaviour
         t = 0;
         target = targets[t];
         agent.SetDestination(target.transform.position);
+        ifGoods = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (target.name.Contains("Office"))
+        {
+            goods.GetComponent<MeshRenderer>().enabled = true;
+            float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
+            //change target once it is reached
+            if (changeTargetDistance > distanceToOffice) //have we reached our target
+            {
+                transform.DetachChildren();
+                ifGoods = true;
+            }
+        }
+        if (ifGoods)
+        {
+          
+        }
+
+        else
+        {
+
+            if (target.name.Contains("Food Truck Cube"))
+            {
+                goods.GetComponent<MeshRenderer>().enabled = false;
+            }
+            if (target.name.Contains("Charging"))
+            {
+                goods.GetComponent<MeshRenderer>().enabled = false;
+            }
+            if (target.name.Contains("Shop"))
+            {
+                goods.GetComponent<MeshRenderer>().enabled = false;
+            }
+        }
+
+
+
         if (target.name.Contains("Food Truck Cube")) //if GameObject has the same name as targetName, add to list
         {
             Debug.DrawLine(transform.position, target.transform.position, Color.yellow);
