@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class OneWheel2 : MonoBehaviour
+public class OneWheel3 : MonoBehaviour
 {
     #region GLOBAL VARIABLES
     GameObject target;
@@ -189,7 +189,7 @@ public class OneWheel2 : MonoBehaviour
             obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
         }
 
-        //Debug.Log("collision:" + collision.gameObject.name);
+        Debug.Log("collision:" + collision.gameObject.name);
         if (collision.gameObject.layer == LayerMask.NameToLayer("BoardZone"))
         {
             //agent.GetComponent<MeshRenderer>().enabled = false;

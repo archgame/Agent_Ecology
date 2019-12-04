@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class OneWheel2 : MonoBehaviour
+public class SampleAgent : MonoBehaviour
 {
     #region GLOBAL VARIABLES
     GameObject target;
@@ -43,7 +43,7 @@ public class OneWheel2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameObject.tag = "Agent";
+        gameObject.tag = "Agent";
 
         //scale the gameobject randomly
         if (randomScale)
@@ -60,8 +60,8 @@ public class OneWheel2 : MonoBehaviour
             //get all game objects tagged with "Target"
             targets = GameObject.FindGameObjectsWithTag("Target");
 
-            List<GameObject> targetList = new List<GameObject>();
-            foreach (GameObject go in targets) //search all "Target" game objects
+            List<GameObject> targetList = new List<GameObject>();           
+            foreach(GameObject go in targets) //search all "Target" game objects
             {
                 //Debug.Log("go: " + go.name);
                 foreach (string targetName in targetNames)
@@ -78,11 +78,10 @@ public class OneWheel2 : MonoBehaviour
         }
 
         //shuffle targets
-        /*if (shuffleTargets)
+        if (shuffleTargets)
         {
             targets = Shuffle(targets);
         }
-        */
         //Debug.Log(this.name + " has " + targets.Length + "Targets");
 
         agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
@@ -126,21 +125,23 @@ public class OneWheel2 : MonoBehaviour
             {
                 //see agent's next destination
                 Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+                Debug.DrawLine(transform.position, agent.pathEndPosition, Color.cyan);
+                Debug.DrawRay(agent.pathEndPosition, Vector3.up * 40, Color.red);
+                Debug.DrawRay(target.transform.position, Vector3.up * 40, Color.yellow);
 
                 float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
                 //change target once it is reached
                 if (changeTargetDistance > distanceToTarget) //have we reached our target
                 {
                     PickUp[] pickups = gameObject.GetComponentsInChildren<PickUp>();
-                    if (pickups.Length > 0)
+                    if(pickups.Length > 0)
                     {
                         int riderCount = pickups[0].peopleAtStop;
                         Debug.Log("riderCount: " + riderCount);
                         if (riderCount > 0)
-                        {
+                        {                          
                             waitTime = waitTimeShortMax * riderCount;
-                        }
-                        else
+                        }else
                         {
                             waitTime = waitTimeShortMin;
                         }
@@ -152,7 +153,7 @@ public class OneWheel2 : MonoBehaviour
                     Debug.Log("waitTime: " + waitTime);
 
                     //type of stop
-
+                    /*
                     if (target.name.Contains("long"))
                     {
                         //Debug.Log("long wait");
@@ -163,7 +164,7 @@ public class OneWheel2 : MonoBehaviour
                         //Debug.Log("short");
                         waitTime = Random.Range(waitTimeShortMin, waitTimeShortMax);
                     }
-
+                    //*/
                     t++;
                     if (t == targets.Length)
                     {
@@ -176,6 +177,13 @@ public class OneWheel2 : MonoBehaviour
                     agent.isStopped = true;
 
                 } // changeTargetDistance test
+
+                Debug.Log(gameObject.name + " : " + agent.hasPath);
+                if (!agent.hasPath) //cath agent error when agent doesn't resume
+                {
+                    position = target.transform.position;
+                    agent.SetDestination(position);
+                }
             }
         }
     }
@@ -183,19 +191,11 @@ public class OneWheel2 : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
         //Debug.Log("collision: " + collision.gameObject.name);
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
             obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
-        }
-
-        //Debug.Log("collision:" + collision.gameObject.name);
-        if (collision.gameObject.layer == LayerMask.NameToLayer("BoardZone"))
-        {
-            //agent.GetComponent<MeshRenderer>().enabled = false;
-            //agent.GetComponent<CapsuleCollider>().enabled = false;
-            agent.gameObject.SetActive(false);
-        }
+        }       
     }
 
     void OnTriggerExit(Collider collision)
