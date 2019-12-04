@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Car : MonoBehaviour
+public class SampleAgent : MonoBehaviour
 {
     #region GLOBAL VARIABLES
     GameObject target;
@@ -30,50 +30,69 @@ public class Car : MonoBehaviour
     private bool waiting = false;
     private float waited = 0;
 
-    DayNightCycle timeScript;
-    bool nightime = true;
+    [Header("Agent Size")]
+    public bool randomScale = false;
+    public float xmin = 1;
+    public float xmax = 1;
+    public float ymin = 1;
+    public float ymax = 1;
+    public float zmin = 1;
+    public float zmax = 1;
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.tag = "Agent";
-        GetTargets(new string[] { targetNames[0] });
 
-        timeScript = Camera.main.GetComponent<DayNightCycle>();
-        float now = timeScript.time;
-        if (nightime && now > 21600 && now < 64800) //daytime
+        //scale the gameobject randomly
+        if (randomScale)
         {
-            nightime = false;
+            float x = Random.Range(xmin, xmax);
+            float y = Random.Range(ymin, ymax);
+            float z = Random.Range(zmin, zmax);
+            transform.localScale = new Vector3(x, y, z);
         }
-        else
+
+        //grab targets using tags
+        if (targets.Length == 0)
         {
-            nightime = true;
+            //get all game objects tagged with "Target"
+            targets = GameObject.FindGameObjectsWithTag("Target");
+
+            List<GameObject> targetList = new List<GameObject>();
+            foreach (GameObject go in targets) //search all "Target" game objects
+            {
+                //Debug.Log("go: " + go.name);
+                foreach (string targetName in targetNames)
+                {
+                    //Debug.Log("targetName: " + targetName);
+                    // "Target" contains: "Tar", "Targ", "get", ! "Trgt"
+                    if (go.name.Contains(targetName)) //if GameObject has the same name as targetName, add to list
+                    {
+                        targetList.Add(go);
+                    }
+                }
+            }
+            targets = targetList.ToArray(); //Convert List to Array, because other code is still using array
         }
+
+        //shuffle targets
+        if (shuffleTargets)
+        {
+            targets = Shuffle(targets);
+        }
+        //Debug.Log(this.name + " has " + targets.Length + "Targets");
+
+        agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
+        t = 0;
+        target = targets[t];
+        agent.SetDestination(target.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //time
-        float now = timeScript.time;
-        if(nightime && now > 21600 && now < 64800) //daytime
-        {
-            nightime = false;
-            targets = new GameObject[0];
-            GetTargets(new string[] { targetNames[1] });
-        }
-        if (!nightime)
-        {
-            if (now < 21600 || now > 64800)//nighttime
-            {
-                nightime = true;
-                targets = new GameObject[0];
-                GetTargets(new string[] { targetNames[0] });
-            }
-        }
-
-        //agent control
         if (agent.enabled)
         {
             if (target.transform.position != position)
@@ -106,9 +125,6 @@ public class Car : MonoBehaviour
             {
                 //see agent's next destination
                 Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
-                Debug.DrawLine(transform.position, agent.pathEndPosition, Color.cyan);
-                Debug.DrawRay(agent.pathEndPosition, Vector3.up * 40, Color.red);
-                Debug.DrawRay(target.transform.position, Vector3.up * 40, Color.yellow);
 
                 float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
                 //change target once it is reached
@@ -159,13 +175,6 @@ public class Car : MonoBehaviour
                     agent.isStopped = true;
 
                 } // changeTargetDistance test
-
-                Debug.Log(gameObject.name + " : " + agent.hasPath);
-                if (!agent.hasPath) //cath agent error when agent doesn't resume
-                {
-                    position = target.transform.position;
-                    agent.SetDestination(position);
-                }
             }
         }
     }
@@ -208,43 +217,5 @@ public class Car : MonoBehaviour
 
         }
         return objects;
-    }
-
-    private void GetTargets(string[] targetByNames)
-    {
-        //grab targets using tags
-        if (targets.Length == 0)
-        {
-            //get all game objects tagged with "Target"
-            targets = GameObject.FindGameObjectsWithTag("Target");
-
-            List<GameObject> targetList = new List<GameObject>();
-            foreach (GameObject go in targets) //search all "Target" game objects
-            {
-                //Debug.Log("go: " + go.name);
-                foreach (string targetName in targetByNames)
-                {
-                    //Debug.Log("targetName: " + targetName);
-                    // "Target" contains: "Tar", "Targ", "get", ! "Trgt"
-                    if (go.name.Contains(targetName)) //if GameObject has the same name as targetName, add to list
-                    {
-                        targetList.Add(go);
-                    }
-                }
-            }
-            targets = targetList.ToArray(); //Convert List to Array, because other code is still using array
-        }
-
-        //shuffle targets
-        if (shuffleTargets)
-        {
-            targets = Shuffle(targets);
-        }
-        //Debug.Log(this.name + " has " + targets.Length + "Targets");
-
-        agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
-        t = 0;
-        target = targets[t];
-        agent.SetDestination(target.transform.position);
     }
 }
