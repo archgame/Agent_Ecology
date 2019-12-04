@@ -14,10 +14,10 @@ public class GoForRoller : MonoBehaviour
     public List<float> distances = new List<float>();
     public GameObject[] preys;
     bool preySelected;
-    bool afterPark;
     public bool alpha;
     GameObject leader;
-    GameObject meetinPoint;
+    public GameObject meetinPoint;
+    public bool GO = false;
 
     #endregion
 
@@ -27,8 +27,8 @@ public class GoForRoller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        alpha = false;
-        afterPark = false;
+
+
         preySelected = false;
         //killer = gameObject.transform.parent.gameObject;
         killer = gameObject.GetComponent<NavMeshAgent>();
@@ -42,9 +42,10 @@ public class GoForRoller : MonoBehaviour
         if (alpha == true)
         {
             leader = gameObject;
+            Debug.Log("leader selected");
         }
        
-        if (!preySelected && !alpha && afterPark == true)
+        if (!preySelected && alpha == true && GO == true)
         {
             rollers = GameObject.FindGameObjectsWithTag("RollerSkates");
             foreach (GameObject roller in rollers)
@@ -62,17 +63,16 @@ public class GoForRoller : MonoBehaviour
                     if (Distance == distancetoprey)    // defining prey as target
 
                     {
+
                         Debug.DrawLine(roller.transform.position, gameObject.transform.position, Color.blue);
-
                         killer.SetDestination(roller.transform.position);
-
                         preySelected = true;
 
                     }
                 }
             }
         }
-        if (afterPark == true && !alpha)
+        if (GO == true && !alpha)
         {
             killer.SetDestination(leader.transform.position);
 
@@ -84,24 +84,17 @@ public class GoForRoller : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("RollerSkates"))
+        if (collision.gameObject.tag == ("RollerSkates"))
         {
             collision.gameObject.GetComponent<NavMeshAgent>().enabled = false;
             preySelected = false;
 
         }
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Park"))
-        {
-            afterPark = true;
-            collision.gameObject.GetComponent<gangUp>().notFirst = true;
-            gameObject.GetComponent<NavMeshAgent>().enabled = false;
 
-        }
-
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Robot"))
+        if (collision.gameObject.tag == ("Robot"))
         {
-            afterPark = true;
+            //afterPark = true;
             //collision.gameObject.GetComponent<Transform>().rotation.x = 90;
 
 
@@ -113,10 +106,11 @@ public class GoForRoller : MonoBehaviour
 
     void OnTriggerStay (Collider collision)
     {
-        if (collision.gameObject.GetComponent<gangUp>().strike == true)
+        /*if (collision.gameObject.GetComponent<gangUp>().strike == true)
         {
             gameObject.GetComponent<NavMeshAgent>().enabled = true;
         }
+        */
     }
     
 }

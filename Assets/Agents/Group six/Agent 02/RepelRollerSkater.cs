@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RepelerWheel : MonoBehaviour
-{
+public class RepelRollerSkater : MonoBehaviour
+{ 
     void OnTriggerStay(Collider col)
     {
         //guard statement
-        if (col.gameObject.tag != "Drone") { return; } // Check to see if schoolchild
+        if(col.gameObject.tag != "RollerSkates") { return; } // Check to see if schoolchild
         Debug.Log("Stay: " + col.gameObject.name);
-
+   
         NavMeshAgent agent = col.gameObject.GetComponent<NavMeshAgent>(); //do we need this? No agent data comes from game object not collider
-        if (agent == null) { return; }
+        if(agent == null) { return;}
 
         float speed = agent.velocity.magnitude * Time.deltaTime;
         Vector3 direction = col.gameObject.transform.position - transform.position; //flip this
@@ -26,3 +26,4 @@ public class RepelerWheel : MonoBehaviour
 
         }
     }
+}
