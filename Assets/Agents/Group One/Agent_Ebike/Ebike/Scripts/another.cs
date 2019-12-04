@@ -14,7 +14,7 @@ public class another: MonoBehaviour
    // public GameObject[] riders;
     GameObject target;
     public string[] targetNames;
-    private GameObject cloest = null;
+    public GameObject cloest = null;
     public bool shuffleTargets = true;
     public Transform leaveaway;
 
@@ -23,6 +23,9 @@ public class another: MonoBehaviour
 
     float waited = 0;
     int waitTime = 2;
+
+    public GameObject[] stopBikes;
+    GameObject x;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,29 +63,40 @@ public class another: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(stopBikes.Length == 0)
+        {
+            stopBikes = GameObject.FindGameObjectsWithTag("stop bike");
+        }
         if (agent.enabled)
         {
-
-            GameObject cloest = null;
-            float distance = Mathf.Infinity;
-            Vector3 position = transform.position;
-            foreach (GameObject go in targets)
+            Debug.Log("children" + transform.childCount);
+            //GameObject cloest = null;
+            if(cloest == null)
             {
-                if (go.transform.childCount != 0)
+                float distance = Mathf.Infinity;
+                Vector3 position = transform.position;
+                foreach (GameObject go in stopBikes)
                 {
-                    Vector3 diff = go.transform.position - position;
-                    float curDistance = diff.sqrMagnitude;
-                    if (curDistance < distance)
+                    if (go.transform.childCount == 0)
                     {
-                        cloest = go;
-                        distance = curDistance;
+                        Vector3 diff = go.transform.position - position;
+                        Debug.Log("assign");
+                        float curDistance = diff.sqrMagnitude;
+                        if (curDistance < distance)
+                        {
+                            cloest = go;
+                         
+                            distance = curDistance;
+                        }
                     }
                 }
+                agent.SetDestination(cloest.transform.position);
             }
-            agent.SetDestination(cloest.transform.position);
+
             float distanceToTarget = Vector3.Distance(transform.position, cloest.transform.position);
             if (0.5f > distanceToTarget)
             {
+
                 if (waited > waitTime)
                 {
                     transform.SetParent(cloest.transform);
@@ -153,5 +167,20 @@ public class another: MonoBehaviour
         return objects;
     }
 
+    //void OnTriggerEnter(Collider bird)
+    //{
+    //    if (bird.gameObject.CompareTag("stop bike"))
+    //    {
+    //        if (transform.childCount == 0)
+    //        {
+    //            Transform getBird = bird.transform.parent;
+    //            bird.transform.parent = agent.transform;
+    //            bird.transform.forward = agent.transform.forward;
+
+
+    //            bird.transform.position = agent.transform.position;
+    //        }
+    //    }
+    //}
 
 }

@@ -18,13 +18,10 @@ public class move : MonoBehaviour
     private bool waiting = false;
     private float waited = 0;
 
-    public bool randomScale = false;
-    public float xmin = 1;
-    public float xmax = 1;
-    public float ymin = 1;
-    public float ymax = 1;
-    public float zmin = 1;
-    public float zmax = 1;
+    public float EnemyDistanceRun = 4.0f;
+    public bool Doglover = true;
+    private GameObject[] Player;
+
     public string m_Scene;
 
     //signal of changing script
@@ -34,6 +31,7 @@ public class move : MonoBehaviour
     void Start()
     {
         gameObject.tag = "SchoolChildren";
+        Player = GameObject.FindGameObjectsWithTag("Dog");
 
         //scale the gameobject randomly
 
@@ -51,7 +49,7 @@ public class move : MonoBehaviour
         if (targets.Length == 0)
         {
             //get all game objects tagged with "Target"
-            targets = GameObject.FindGameObjectsWithTag("Busstation");
+            targets = GameObject.FindGameObjectsWithTag("childtargets");
 
             /*
             List<GameObject> targetList = new List<GameObject>();           
@@ -88,8 +86,38 @@ public class move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //original text if (!waiting) // (waiting == false) (1 == 0)
-        if (waiting) // (waiting == false) (1 == 0)
+        foreach (GameObject go in Player)
+        {
+            float distance = Vector3.Distance(transform.position, go.transform.position);
+            Debug.Log("Distance: " + distance);
+            if (!Doglover)
+            {
+
+                if (distance < EnemyDistanceRun)
+                {
+                    Vector3 dirToPlayer = transform.position - go.transform.position;
+                    Vector3 newPos = transform.position + dirToPlayer;
+                    agent.SetDestination(newPos);
+
+                }
+                if (distance > EnemyDistanceRun)
+                {
+                    agent.SetDestination(target.position);
+                }
+            }
+            if (Doglover)
+            {
+                if (distance < EnemyDistanceRun)
+                {
+                    Vector3 dirToPlayer = transform.position - go.transform.position;
+                    Vector3 newPos2 = transform.position - dirToPlayer;
+                    agent.SetDestination(newPos2);
+                    
+                }
+                
+            }
+            //original text if (!waiting) // (waiting == false) (1 == 0)
+            if (waiting) // (waiting == false) (1 == 0)
         {
             if (waited > waitTime)
             {
@@ -132,6 +160,20 @@ public class move : MonoBehaviour
                 }
             } // changeTargetDistance test
         }
+
+       
+            /*
+            if (Doglover)
+            {
+                if (distance <EnemyDistanceRun )
+                {
+
+                }
+            }
+            */
+        }
+
+
     }
 
     void OnTriggerEnter(Collider collision)
