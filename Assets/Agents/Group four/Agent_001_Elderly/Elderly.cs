@@ -52,6 +52,8 @@ public class Elderly : MonoBehaviour
     private float rested = 0;
     private GameObject g;
 
+
+    public GameObject avoidsphere;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,8 +65,7 @@ public class Elderly : MonoBehaviour
         gameObject.transform.DetachChildren();
 
 
-
-
+        avoidsphere.transform.parent = transform;
 
         //scale the gameobject randomly
         if (randomScale)
@@ -79,9 +80,22 @@ public class Elderly : MonoBehaviour
         if (targets.Length == 0)
         {
             //get all game objects tagged with "Target"
+            List<GameObject> targetList = new List<GameObject>();
+
+            GameObject[] foodtTrucks = GameObject.FindGameObjectsWithTag("IceCreamTruck");
+            List<GameObject> foodtTruckList = new List<GameObject>();
+            foreach (GameObject truck in foodtTrucks) //search all "Target" game objects
+            {
+                if (truck.name.Contains("Food Truck Cube")) //if GameObject has the same name as targetName, add to list
+                {
+                    targetList.Add(truck);
+                }
+
+            }
+
+
             targets = GameObject.FindGameObjectsWithTag("target");
 
-            List<GameObject> targetList = new List<GameObject>();
             foreach (GameObject go in targets) //search all "Target" game objects
             {
                 //Debug.Log("go: " + go.name);
@@ -117,25 +131,45 @@ public class Elderly : MonoBehaviour
     void Update()
     {
         float distancetorestpoint = Vector3.Distance(agent.transform.position, g.transform.position);
-        if (distancetorestpoint>= restdistance)
+
+
+        NavMeshHit navHit;
+        agent.SamplePathPosition(-1, 0.0f, out navHit);
+
+        //Debug.Log("mask: " + navHit.mask);
+        int CrosswalkArea = 1 << NavMesh.GetAreaFromName("Crosswalk");
+        //Debug.Log("Crosswalk " + CrosswalkArea);
+        if (CrosswalkArea == navHit.mask)
         {
-            
-           
-            if (rested > restTime)
-            {
-                g.transform.position = gameObject.transform.position;
+            agent.isStopped = false;
+        }
+        else
+        {
 
-                waiting = false;
-                agent.isStopped = false;
-                rested = 0;
-
-            }
-            else
+            if (distancetorestpoint >= restdistance)
             {
-                rested += Time.deltaTime;
-                agent.isStopped = true;
+
+
+                if (rested > restTime)
+                {
+                    g.transform.position = gameObject.transform.position;
+
+                    waiting = false;
+                    agent.isStopped = false;
+                    rested = 0;
+
+                }
+                else
+                {
+                    rested += Time.deltaTime;
+                    agent.isStopped = true;
+                }
             }
         }
+
+       
+
+       
        
 
         

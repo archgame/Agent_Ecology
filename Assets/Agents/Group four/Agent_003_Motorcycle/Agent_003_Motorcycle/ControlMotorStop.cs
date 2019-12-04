@@ -25,14 +25,14 @@ public class ControlMotorStop : MonoBehaviour
             {
                 gameObject.GetComponent<Motorcycle>().enabled = false;
                 ifMotor = true;
-                gameObject.GetComponent<NavMeshAgent>().enabled=false;
+                gameObject.GetComponent<NavMeshAgent>().speed=0;
                 
             }
             else
             {
                 gameObject.GetComponent<FollowGoalMotorcycle>().enabled = false;
                 ifMotor = false;
-                gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                gameObject.GetComponent<NavMeshAgent>().speed = 0;
             }
           
          
@@ -51,13 +51,15 @@ public class ControlMotorStop : MonoBehaviour
             {
                 if (ifMotor == true)
                 {
+                    gameObject.GetComponent<NavMeshAgent>().speed = 12;
                     gameObject.GetComponent<Motorcycle>().enabled = true;
-                    gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                   
                 }
                 else
                 {
+                    gameObject.GetComponent<NavMeshAgent>().speed = 12;
                     gameObject.GetComponent<FollowGoalMotorcycle>().enabled = true;
-                    gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                    
                 }
             }
         }

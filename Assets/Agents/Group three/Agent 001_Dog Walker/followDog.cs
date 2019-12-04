@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Dog : MonoBehaviour
+public class followDog : MonoBehaviour
 {
 
     public Transform goal;
@@ -38,13 +38,12 @@ public class Dog : MonoBehaviour
         Vector3 lookAtGoal = new Vector3(goal.position.x,
                                         this.transform.position.y,
                                         goal.position.z);
-        Vector3 direction = lookAtGoal - this.transform.position;
+        Vector3 direction = lookAtGoal - this.transform.position  ;
+        this.transform.Translate(direction * speed * Time.deltaTime);
+        //this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
+        //                                       Quaternion.LookRotation(direction),
+        //                                      Time.deltaTime * rotSpeed);
 
-        this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
-                                                Quaternion.LookRotation(direction),
-                                                Time.deltaTime * rotSpeed);
-
-        this.transform.Translate(0, 0, speed * Time.deltaTime);
+       // this.transform.Translate(0, 0, speed * Time.deltaTime);
     }
 }
-

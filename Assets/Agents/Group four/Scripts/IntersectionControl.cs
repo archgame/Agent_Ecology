@@ -12,6 +12,7 @@ public class IntersectionControl : MonoBehaviour
     Intersection[] intersectionScriptList;
     public float previous;
     public float stoptime;
+    private float now;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +26,16 @@ public class IntersectionControl : MonoBehaviour
         
 
         timeScript = Camera.main.GetComponent<DayNightCycle>();
-        previous = timeScript.time;
+        previous = 0;
+        
       
     }
 
     // Update is called once per frame
     void Update()
     {
-        float now = timeScript.time;
+      
+        now += Time.deltaTime * 3;
         float D = Mathf.Abs(now - previous);
         if (D > stoptime)
         {
