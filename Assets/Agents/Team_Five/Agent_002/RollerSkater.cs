@@ -23,7 +23,8 @@ public class RollerSkater : MonoBehaviour
 
     //private float timePaintingMin = 10;
     //private float timePaintingMax = 25;
-    
+
+    public float DestinationTime = 0;
     public float paintingTime = 0;
     public float meetingWait = 0;
     public float waitTime = 0;
@@ -75,7 +76,7 @@ public class RollerSkater : MonoBehaviour
             {
                 if (target.name.Contains("Intezaar"))
                 {
-                    Debug.Log("intezaar reached");
+                   //Debug.Log("intezaar reached");
                     waitTime = meetingWait;
                 }
                 else
@@ -94,7 +95,7 @@ public class RollerSkater : MonoBehaviour
 
                 if (target.name.Contains("PaintNow"))
                 {
-                    Debug.Log("paintpaint");
+                    //Debug.Log("paintpaint");
                     waitTime = 12;
                 }
                 /*else
@@ -116,12 +117,29 @@ public class RollerSkater : MonoBehaviour
                     waitTime = 0;
                 }*/
 
+                if (target.name.Contains("Last"))
+                {
+                    //Debug.Log("paintpaint");
+                    waitTime = DestinationTime;
+                }
+
+                /*if (target.name.Contains("Stop"))
+                {
+                    Debug.Log("Tilting");
+                    GetComponent<RotateOnTarget>().tilt = true;
+                }
+                else
+                {
+                    Debug.Log("Tilting ended");
+                    //GetComponent<RotateOnTarget>().tilt = false;
+                }*/
+
                 t++;
                 if (t == targets.Length)
                 {
                     t = 0;
                 }
-                Debug.Log(this.name + " Change Target: " + t);
+                //Debug.Log(this.name + " Change Target: " + t);
                 target = targets[t].transform;
                 agent.SetDestination(target.position); //each frame set the agent's destination to the target position
                 waiting = true;
@@ -135,7 +153,7 @@ public class RollerSkater : MonoBehaviour
         GameObject tempGO;
         for (int i = 0; i < objects.Length; i++)
         {
-            Debug.Log("i: " + i);
+            //Debug.Log("i: " + i);
             int rnd = Random.Range(0, objects.Length);
             tempGO = objects[rnd];
             objects[rnd] = objects[i];
