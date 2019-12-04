@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class controlChild : MonoBehaviour
 {
-    QueueL1 queueScript;
+    NewQueue queueScript;
     move moveScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        queueScript = GetComponent<QueueL1>();
+        queueScript = GetComponent<NewQueue>();
         moveScript = GetComponent<move>();
         queueScript.enabled = false;
         moveScript.enabled = true;
