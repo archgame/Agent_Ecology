@@ -17,7 +17,7 @@ public class Magnet : MonoBehaviour
         //guard statement
         if(col.gameObject.tag != "Runner") { return; }
         // code goes here
-        //Debug.Log("Stay" + col.gameObject.name);
+        Debug.Log("Stay" + col.gameObject.name);
 
         NavMeshAgent agent = col.gameObject.GetComponent<NavMeshAgent>();
         if(agent == null) { return; }
@@ -28,7 +28,7 @@ public class Magnet : MonoBehaviour
         float angle = Vector3.Angle(velocity, agent.velocity);
         if( angle < 90)
         {
-            //Debug.DrawRay(col.gameObject.transform.position, direction, Color.green);
+            Debug.DrawRay(col.gameObject.transform.position, direction, Color.green);
             agent.velocity += velocity;
         }
         
