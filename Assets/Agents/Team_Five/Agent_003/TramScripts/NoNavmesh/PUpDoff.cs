@@ -40,7 +40,7 @@ public class PUpDoff : MonoBehaviour
     void Update()
     {
 
-        if (tram.GetComponent<Go>().MyPath[i].Reached == true)
+        if (tram.GetComponent<Go>().MyPath[i].Load== true)
         {
             gameObject.transform.position = Vector3.MoveTowards(transform.position, Bustarget.transform.position, PassengerSpeed * Time.deltaTime);
             Debug.Log("went to tram");
@@ -60,7 +60,7 @@ public class PUpDoff : MonoBehaviour
         }
 
 
-        if (tram.GetComponent<Go>().MyPath[i+ns].Reached == true)
+        if (tram.GetComponent<Go>().MyPath[i+ns].Load== true)
         {
             Debug.Log("reached drop off");
             gameObject.transform.SetParent(null);

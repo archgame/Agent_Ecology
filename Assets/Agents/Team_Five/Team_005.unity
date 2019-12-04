@@ -268,6 +268,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 10
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &11087714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -919,6 +921,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 10
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &93210651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -3014,6 +3018,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 5
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &385039345 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -3440,6 +3446,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 5
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &425131009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -3758,6 +3766,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 22
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!1 &515962946
 GameObject:
   m_ObjectHideFlags: 0
@@ -4834,6 +4844,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 8
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!114 &688853437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5133,6 +5145,8 @@ MonoBehaviour:
   paintingTime: 3
   meetingWait: 20
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &723389405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -7076,6 +7090,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 5
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!114 &878823714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9276,6 +9292,8 @@ MonoBehaviour:
   paintingTime: 5
   meetingWait: 15
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &1086252591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -9527,6 +9545,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 11
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!114 &1136510755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10298,6 +10318,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 10
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &1297017483 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -10367,6 +10389,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 6
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!114 &1328519408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10423,6 +10447,8 @@ MonoBehaviour:
   paintingTime: 94
   meetingWait: 17
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &1355212952 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -10872,6 +10898,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 4
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &1383100294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -11312,6 +11340,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 21
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &1471870743 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -13680,6 +13710,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 15
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &1718111226 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -14486,6 +14518,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 9
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!114 &1833687326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15478,6 +15512,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 5
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &1921471011 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,
@@ -16546,6 +16582,8 @@ MonoBehaviour:
   paintingTime: 0
   meetingWait: 10
   waitTime: 0
+  paralyzed: 0
+  time: 0
 --- !u!4 &2035217858 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421462964368141364, guid: 234f2217da091394a97d454699cca01d,

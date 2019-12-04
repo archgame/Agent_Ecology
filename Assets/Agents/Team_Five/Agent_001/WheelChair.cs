@@ -38,6 +38,9 @@ public class WheelChair : MonoBehaviour
     public float ymax = 1;
     public float zmin = 1;
     public float zmax = 1;
+
+    [HideInInspector]
+    public int counter;
     #endregion
 
     // Start is called before the first frame update
@@ -133,6 +136,7 @@ public class WheelChair : MonoBehaviour
                 //change target once it is reached
                 if (changeTargetDistance > distanceToTarget) //have we reached our target
                 {
+                    counter++;
                     PickUp[] pickups = gameObject.GetComponentsInChildren<PickUp>();
                     if (pickups.Length > 0)
                     {

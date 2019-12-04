@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class controlRider : MonoBehaviour
 {
     human humanScript;
-    QueueL1 queue;
+    NewQueue queue;
     another rideAway;
     NavMeshAgent agent;
 
@@ -15,7 +15,7 @@ public class controlRider : MonoBehaviour
     void Start()
     {
         humanScript = GetComponent<human>();
-        queue = GetComponent<QueueL1>();
+        queue = GetComponent<NewQueue>();
         rideAway = GetComponent<another>();
 
         humanScript.enabled = false;
