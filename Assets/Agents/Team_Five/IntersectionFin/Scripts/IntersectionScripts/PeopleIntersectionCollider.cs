@@ -26,13 +26,13 @@ public class PeopleIntersectionCollider : MonoBehaviour
     {
         if (other.name.Contains("PedColliderRed"))
         {
-            Debug.Log("pedBitchRed");
+            //Debug.Log("pedBitchRed");
             agent.isStopped = true;
         }
 
         if (other.name.Contains("PedColliderGreen"))
         {
-            Debug.Log("pedBitchGreen");
+            //Debug.Log("pedBitchGreen");
             agent.isStopped = false;
         }
         
