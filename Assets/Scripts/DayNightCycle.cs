@@ -23,6 +23,9 @@ public class DayNightCycle : MonoBehaviour
     private float moonintensity;
     public float rotation;
 
+    public bool lightEnabled = false;
+    public bool printEnabled = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -33,10 +36,10 @@ public class DayNightCycle : MonoBehaviour
     {
         //update time
         time += Time.deltaTime * speed;
-        if(time > 86400) //day in seconds
+        if (time > 86400) //day in seconds
         {
             days += 1;
-            if(days > 7) //keep it as weekdays
+            if (days > 7) //keep it as weekdays
             {
                 days = 0;
             }
@@ -44,35 +47,40 @@ public class DayNightCycle : MonoBehaviour
         }
 
         //print time
-        currentTime = TimeSpan.FromSeconds(time);
-        string[] temptime = currentTime.ToString().Split(":"[0]);
-        text.text = temptime[0] + ":" + temptime[1];
-
-        //celestial body rotations
-        rotation = (time - 64800) / 86400 * -360; //21600
-        sun.transform.rotation = Quaternion.Euler(new Vector3(rotation, 90, 0));
-        moon.transform.rotation = Quaternion.Euler(new Vector3(-rotation, -90, 0));
-
-        //lighting
-        if (time > 21600 && time < 64800) //daytime
+        if (printEnabled)
         {
-            sunintensity = 1 - (Math.Abs(43200 - time) / 21600); //21600 is dawn, 64800 is dusk, 43200 is noon
-            moonintensity = 0;
-        }           
-        else //night time
+            currentTime = TimeSpan.FromSeconds(time);
+            string[] temptime = currentTime.ToString().Split(":"[0]);
+            text.text = temptime[0] + ":" + temptime[1];
+        }
+        if (lightEnabled)
         {
-            sunintensity = 0;
-            if(time < 21600)
+            //celestial body rotations
+            rotation = (time - 64800) / 86400 * -360; //21600
+            sun.transform.rotation = Quaternion.Euler(new Vector3(rotation, 90, 0));
+            moon.transform.rotation = Quaternion.Euler(new Vector3(-rotation, -90, 0));
+
+            //lighting
+            if (time > 21600 && time < 64800) //daytime
             {
-                moonintensity = 1 - (time / 21600);
+                sunintensity = 1 - (Math.Abs(43200 - time) / 21600); //21600 is dawn, 64800 is dusk, 43200 is noon
+                moonintensity = 0;
             }
-            else
+            else //night time
             {
-                moonintensity = 1 - (Math.Abs(86400 - time) / 21600);
-            }          
-        }            
-        
-        sun.GetComponent<Light>().intensity = sunintensity;
-        moon.GetComponent<Light>().intensity = moonintensity;
+                sunintensity = 0;
+                if (time < 21600)
+                {
+                    moonintensity = 1 - (time / 21600);
+                }
+                else
+                {
+                    moonintensity = 1 - (Math.Abs(86400 - time) / 21600);
+                }
+            }
+
+            sun.GetComponent<Light>().intensity = sunintensity;
+            moon.GetComponent<Light>().intensity = moonintensity;
+        }
     }
 }
