@@ -4,35 +4,22 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - target
-  - SchoolChildren
-  - Skateboarder
-  - Bus
-  - Jaywalker
-  - Drone
-  - Delivery
-  - Elderly
-  - Robot
-  - Motorcycle
-  - DogWalker
-  - Scooter
-  - IceCreamTruck
-  - Wheelchair
-  - RollerSkates
-  - Tram
-  - Runner
-  - OneWheel
-  - TrashTruck
   - board
+  - SchoolChildren
+  - Busstation
+  - CarTarget
   - Pedestrian
   - Target
   - L2
   - L1
   - childchild
+  - Skateboarder
+  - IceCreamTruck
   - board2
-  - L3
   - L4
-  - Passenger
+  - L3
+  - Riders
+  - target
   layers:
   - Default
   - TransparentFX
@@ -42,11 +29,11 @@ TagManager:
   - UI
   - 
   - 
-  - ground
-  - Pedestrian
-  - SmallVehicle
-  - LargeVehicle
-  - Passenger
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

@@ -38,6 +38,9 @@ public class WheelChair : MonoBehaviour
     public float ymax = 1;
     public float zmin = 1;
     public float zmax = 1;
+
+    [HideInInspector]
+    public int counter;
     #endregion
 
     // Start is called before the first frame update
@@ -124,20 +127,21 @@ public class WheelChair : MonoBehaviour
             else
             {
                 //see agent's next destination
-                Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
-                Debug.DrawLine(transform.position, agent.pathEndPosition, Color.cyan);
-                Debug.DrawRay(agent.pathEndPosition, Vector3.up * 40, Color.red);
-                Debug.DrawRay(target.transform.position, Vector3.up * 40, Color.yellow);
+                //Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+                //Debug.DrawLine(transform.position, agent.pathEndPosition, Color.cyan);
+                //Debug.DrawRay(agent.pathEndPosition, Vector3.up * 40, Color.red);
+                //Debug.DrawRay(target.transform.position, Vector3.up * 40, Color.yellow);
 
                 float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
                 //change target once it is reached
                 if (changeTargetDistance > distanceToTarget) //have we reached our target
                 {
+                    counter++;
                     PickUp[] pickups = gameObject.GetComponentsInChildren<PickUp>();
                     if (pickups.Length > 0)
                     {
                         int riderCount = pickups[0].peopleAtStop;
-                        Debug.Log("riderCount: " + riderCount);
+                        //Debug.Log("riderCount: " + riderCount);
                         if (riderCount > 0)
                         {
                             waitTime = waitTimeShortMax * riderCount;
@@ -151,7 +155,7 @@ public class WheelChair : MonoBehaviour
                     {
                         waitTime = waitTimeShortMin;
                     }
-                    Debug.Log("waitTime: " + waitTime);
+                    //Debug.Log("waitTime: " + waitTime);
 
                     //type of stop
                     /*
@@ -179,7 +183,7 @@ public class WheelChair : MonoBehaviour
 
                 } // changeTargetDistance test
 
-                Debug.Log(gameObject.name + " : " + agent.hasPath);
+                //Debug.Log(gameObject.name + " : " + agent.hasPath);
                 if (!agent.hasPath) //cath agent error when agent doesn't resume
                 {
                     position = target.transform.position;

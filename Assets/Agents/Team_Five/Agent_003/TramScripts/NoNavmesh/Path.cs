@@ -14,9 +14,10 @@ public class Path : MonoBehaviour
     public int movingTo = 0;
     public Transform[] PathSequence;
     public bool Reached = false;
-    private int t;
+    public int t;
     private Transform Point;
     public int ClosestDistancetoPoint = 2;
+    public bool Load;
 
 
 
@@ -56,6 +57,7 @@ public class Path : MonoBehaviour
         {
             yield break;
         }
+
         while (true)
         {
             yield return PathSequence[movingTo];
@@ -66,19 +68,21 @@ public class Path : MonoBehaviour
             {
                 continue;
             }
+
             if (PathType == PathTypes.linear)
             {
-                if (movingTo <= 0)
+                if (movingTo < PathSequence.Length - 1)
                 {
+                    Debug.Log("train moving");
                     movementDirection = 1;
                 }
                 else if (movingTo >= PathSequence.Length - 1)
                 {
                     Reached = true;
+                    Load = true;
                     movementDirection = 0;
 
                 }
-
 
             }
 
@@ -100,10 +104,11 @@ public class Path : MonoBehaviour
         }
     }
 
-    public IEnumerator<Transform> GetStartPathPoint()
+    /*public IEnumerator<Transform> GetStartPathPoint()
     {
         yield return PathSequence[0];
         movingTo = 0;
         Reached = false;
     }
+    */
 }

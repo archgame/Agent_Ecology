@@ -21,9 +21,9 @@ public class Go : MonoBehaviour
     private float step;
     public float waitTime = 0;
     public bool waiting = false;
-    private float waited = 0;
+    public float waited = 0;
     public bool Iamstoppedandwaiting = false;
-    private int i;
+    public int i;
     public bool ReadyToGo;
     private Path cpath;
 
@@ -70,7 +70,7 @@ public class Go : MonoBehaviour
 
         if (Type == MovementType.MoveTowards)
         {
-            Debug.Log("MovementType.MoveTowards");
+            //Debug.Log("MovementType.MoveTowards");
             transform.position = Vector3.MoveTowards(transform.position, pointInPath.Current.position, Time.deltaTime * Speed);
             Direction = pointInPath.Current.position - transform.position;
             step = Speed * Time.deltaTime;
@@ -89,41 +89,61 @@ public class Go : MonoBehaviour
         var distanceSquared = (transform.position - pointInPath.Current.position).sqrMagnitude;
         if (distanceSquared < MaxDistanceToGoal * MaxDistanceToGoal)
         {
-            Debug.Log("pointInPath.MoveNext()");
+            //Debug.Log("pointInPath.MoveNext()");
             pointInPath.MoveNext();
         }
 
         //condition for end of path reached station
         if (MyPath[i].Reached == true)
         {
+            MyPath[i].Reached = false;
+            Debug.Log("Station");            
+
             if (waiting == false)
             {
                 if (waited < waitTime)
                 {
                     waited += Time.deltaTime;
                     Iamstoppedandwaiting = true;
+                    ReadyToGo = false;
+                    
                 }
                 else
                 {
                     waiting = false;
                     waited = 0;
-
+                    Iamstoppedandwaiting = false;
                     ReadyToGo = true;
-
+                    
                     i = i + 1;
-                    if (i >= MyPath.Length)
-                    {
-                        Debug.Log("i >= MyPath.Length");
-                        i = 0;
-                        pointInPath = MyPath[i].GetStartPathPoint();
-                    }
-                    pointInPath = MyPath[i].GetNextPathPoint();
-                    pointInPath.MoveNext();
-                    Debug.DrawRay(pointInPath.Current.position, Vector3.up * 10, Color.red, 2);
-                    transform.position = pointInPath.Current.position;
+                    
+                    Debug.Log(" i = i + 1");
 
+                    if (i <= MyPath.Length - 1)
+                    {
+                        MyPath[i].movingTo = 0;
+                        Debug.Log("i <= MyPath.Length");
+                        pointInPath = MyPath[i].GetNextPathPoint();
+                        pointInPath.MoveNext();
+                        Debug.DrawRay(pointInPath.Current.position, Vector3.up * 10, Color.red, 2);
+                        transform.position = pointInPath.Current.position;
+                    }
+
+                    if (i > MyPath.Length-1)
+                    {
+                        Debug.Log("i > MyPath.Length");
+                       // MyPath[i].Reached = false;
+                        i = 0;
+                        MyPath[i].movingTo = 0;
+                        pointInPath = MyPath[i].GetNextPathPoint();
+                        pointInPath.MoveNext();
+                        Debug.DrawRay(pointInPath.Current.position, Vector3.up * 10, Color.red, 2);
+                        transform.position = pointInPath.Current.position;
+
+                    }                   
 
                 }
+                
             }
             else
             {
@@ -131,6 +151,7 @@ public class Go : MonoBehaviour
 
             }
 
+           
         }
 
         //Debug.Log("i >= MyPath.Length");

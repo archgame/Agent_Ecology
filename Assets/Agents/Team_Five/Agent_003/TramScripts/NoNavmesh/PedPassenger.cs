@@ -24,7 +24,7 @@ public class PedPassenger : MonoBehaviour
 
     public float waitTime = 0;
     private bool waiting = false;
-    private float waited = 0;
+    public float waited = 0;
 
 
     #endregion
