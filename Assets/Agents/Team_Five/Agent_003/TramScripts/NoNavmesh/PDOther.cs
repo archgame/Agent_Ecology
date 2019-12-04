@@ -38,7 +38,7 @@ public class PDOther : MonoBehaviour
     void Update()
     {
 
-        if (tram.GetComponent<Go>().MyPath[i].Reached == true)
+        if (tram.GetComponent<Go>().MyPath[i].Load == true)
         {
             if (tram.GetComponent<Go>().waited > 2)
             {
@@ -65,7 +65,7 @@ public class PDOther : MonoBehaviour
         }
 
 
-        if (tram.GetComponent<Go>().MyPath[i + ns].Reached == true)
+        if (tram.GetComponent<Go>().MyPath[i + ns].Load == true)
         {
             if (tram.GetComponent<Go>().waited > 2)
             {

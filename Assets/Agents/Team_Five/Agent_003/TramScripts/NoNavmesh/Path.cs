@@ -17,6 +17,7 @@ public class Path : MonoBehaviour
     public int t;
     private Transform Point;
     public int ClosestDistancetoPoint = 2;
+    public bool Load;
 
 
 
@@ -78,6 +79,7 @@ public class Path : MonoBehaviour
                 else if (movingTo >= PathSequence.Length - 1)
                 {
                     Reached = true;
+                    Load = true;
                     movementDirection = 0;
 
                 }
