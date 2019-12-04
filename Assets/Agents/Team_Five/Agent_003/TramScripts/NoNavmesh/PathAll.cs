@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Path : MonoBehaviour
+public class PathAll : MonoBehaviour
 {
     public enum PathTypes
     {
@@ -26,8 +26,7 @@ public class Path : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        t = 0;
-        Point = PathSequence[t];
+       
 
 
     }
@@ -72,7 +71,6 @@ public class Path : MonoBehaviour
             {
                 if (movingTo < PathSequence.Length - 1)
                 {
-                    Debug.Log("train moving");
                     movementDirection = 1;
                 }
                 else if (movingTo >= PathSequence.Length - 1)
@@ -92,8 +90,15 @@ public class Path : MonoBehaviour
             {
                 if (movingTo >= PathSequence.Length)
                 {
-                    yield break;
+                    movingTo = 0;
+                    
                 }
+
+                if (movingTo == 11 || movingTo == 19 || movingTo == 32 || movingTo == 44)
+                {
+                    Reached = true;
+                }
+
                 if (movingTo < 0)
                 {
                     movingTo = PathSequence.Length - 1;
@@ -102,7 +107,7 @@ public class Path : MonoBehaviour
         }
     }
 
-    /*public IEnumerator<Transform> GetStartPathPoint()
+    /*public IEnumerator<Transform> GetStartPathPoint() //matts thing
     {
         yield return PathSequence[0];
         movingTo = 0;

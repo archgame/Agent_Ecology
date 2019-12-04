@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PedPassenger : MonoBehaviour
+public class PedPassengerOther : MonoBehaviour
 {
     #region GLOBAL VARIABLES
     GameObject target;
@@ -78,8 +78,8 @@ public class PedPassenger : MonoBehaviour
                 if (target.name.Contains("Station"))
                 {
                     waitTime = waitTimeStop;
-                    gameObject.GetComponent<PedPassenger>().enabled = false;
-                    gameObject.GetComponent<PUpDoff>().enabled = true;
+                    gameObject.GetComponent<PedPassengerOther>().enabled = false;
+                    gameObject.GetComponent<PDOther>().enabled = true;
 
                 }
 
