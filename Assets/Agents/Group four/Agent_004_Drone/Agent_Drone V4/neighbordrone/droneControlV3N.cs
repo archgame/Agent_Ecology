@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class droneControlV3N : MonoBehaviour
 {
-    public float speed = 1.0F;
+    //public float speed = 1.0F;
 
     public GameObject drone;
 
@@ -13,7 +13,9 @@ public class droneControlV3N : MonoBehaviour
     public Vector3 startPos;
     private Vector3 endPos;
 
-    
+    public float lerpTime = 5;
+    public float currentlerpTime = 0;
+
 
     private bool isColliding;
 
@@ -72,20 +74,21 @@ public class droneControlV3N : MonoBehaviour
         //      GetComponent<droneControlV2>().transform.position.z);
 
         Debug.Log("newlocaldroneendPos " + newlocaldroneendPos);
-       
+
         //Debug.Log("localdronestartPos " + localdronestartPos);
         //Debug.Log("localdroneendPos " + localdroneendPos);
 
-        //currentlerpTime += Time.deltaTime;
-        //if (currentlerpTime >= lerpTime)
-        //{
-        //    currentlerpTime = lerpTime;
-        //}
-        //float perc = currentlerpTime / lerpTime;
+        currentlerpTime += Time.deltaTime;
 
-        //drone.transform.position = Vector3.Lerp(localdronestartPos, localdroneendPos,perc);
-        float step = speed * Time.deltaTime;
-        drone.transform.position = Vector3.MoveTowards(localdronestartPos, newlocaldroneendPos, step);
+
+        if (currentlerpTime >= lerpTime)
+        {
+            currentlerpTime = lerpTime;
+        }
+        float perc = currentlerpTime / lerpTime / 50;
+
+        //float step = speed * Time.deltaTime;
+        drone.transform.position = Vector3.MoveTowards(localdronestartPos, newlocaldroneendPos, perc);
         GetComponent<Collider>().isTrigger = true;
         //Debug.Log("localdronestartPos " + localdronestartPos);
         //Debug.Log("localdroneendPo " + localdroneendPos);
