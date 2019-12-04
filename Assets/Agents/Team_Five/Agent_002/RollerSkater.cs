@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+using UnityEngine.UI;
+
 public class RollerSkater : MonoBehaviour
 {
     Transform target;
@@ -30,6 +32,9 @@ public class RollerSkater : MonoBehaviour
     public float waitTime = 0;
     private bool waiting = false;
     private float waited = 0;
+
+    public bool paralyzed = false;
+    public float time;
 
 
     // Start is called before the first frame update
@@ -144,6 +149,16 @@ public class RollerSkater : MonoBehaviour
                 agent.SetDestination(target.position); //each frame set the agent's destination to the target position
                 waiting = true;
                 agent.isStopped = true;
+
+                if (paralyzed == true && gameObject.GetComponent<NavMeshAgent>().enabled == false)
+                {
+                    time += Time.deltaTime;
+                    if (time > 10) //day in seconds
+                    {
+                        paralyzed = false;
+                        gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                    }
+                }
             }
         }
     }
