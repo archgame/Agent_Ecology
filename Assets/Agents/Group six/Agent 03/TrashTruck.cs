@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class TrashTruck : MonoBehaviour
 {
+    #region GLOBAL VARIABLES
     Transform target;
     NavMeshAgent agent;
 
@@ -24,11 +25,13 @@ public class TrashTruck : MonoBehaviour
    public float waitTimeLongMax = 0;
    */
 
+    [Header("Wait times")]
     public float waitTime = 0;
     private bool waiting = false;
     private float waited = 0;
 
     //Min and Max Scale factor
+    [Header("Random Scale")]
     public bool randomScale = false;
     public float xmin = 1;
     public float xmax = 1;
@@ -36,6 +39,14 @@ public class TrashTruck : MonoBehaviour
     public float ymax = 1;
     public float zmin = 1;
     public float zmax = 1;
+    
+    [Header("Day Night")]
+
+    DayNightCycle timeScript; //from scrip daynight
+    bool nightTime = true;
+
+    #endregion
+
 
     //private int obstacles = 0;
 
@@ -51,94 +62,97 @@ public class TrashTruck : MonoBehaviour
             transform.localScale = new Vector3(x, y, z);
         }
 
+        GetTargets(new string[] { targetNames[0] });
 
-        //grab targets using tags
-        if (targets == null || targets.Length == 0)
+        timeScript = Camera.main.GetComponent<DayNightCycle>(); //get script DayNight
+        float now = timeScript.time;
+        if (nightTime && now > 21600 && now < 64800) //daytime
         {
-            //get all names objects tagget with "Target"
-            targets = GameObject.FindGameObjectsWithTag("target");
-
-            List<GameObject> targetList = new List<GameObject>();
-            foreach (GameObject go in targets) //Seach all "Target" game objects
-            {
-                foreach (string targetName in targetNames)
-                {
-                    if (go.name.Contains(targetName))
-                    {
-                        targetList.Add(go);
-                    }
-                }
-            }
-            targets = targetList.ToArray(); //convert List to our targes List
+            nightTime = false;
         }
-        if (shuffleTargets)
+        else //nigh time
         {
-            targets = Shuffle(targets);
+            nightTime = true;
         }
-
-        //Debug.Log(this.name + hideFlags + " has " + targets.Length + "Target");
-
-        agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
-        t = 0;
-        target = targets[t].transform;
-        agent.SetDestination(target.position);
-        //target = targets[0];
-        //agent.SetDestination(target.transform.position);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (waiting) // saames as ;; if(waiting == false)
+        //time control from scrip
+        float now = timeScript.time;
+        if (nightTime && now > 21600 && now < 64800) //daytime
         {
-            if (agent.enabled)
-                if (waited > waitTime)
-                {
-                    waiting = false;
-                    agent.isStopped = false;
-                    waited = 0;
-                    Debug.Log(name + " moving");
-                }
-                else
-                {
-                    waited += Time.deltaTime;
-                }
-
-        } //if waiting
-        else
-        {
-            Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
-
-            float distancetoTarget = Vector3.Distance(agent.transform.position, target.position);
-            if (changeTargetDistance > distancetoTarget)
-            {
-                /*
-                if(target.name.Contains("short"))
-                {
-                    waitTime = Random.Range(waitTimeShortMin, waitTimeShortMax);
-                }
-                if(target.name.Contains("long"))
-                {
-                    waitTime = Random.Range(waitTimeLongMin, waitTimeLongMax);
-                }
-                */
-
-                t++;
-                if (t == targets.Length)
-                {
-                    t = 0;
-                }
-                //Debug.Log(this.name + "change Target: " + t);
-                target = targets[t].transform;
-                agent.SetDestination(target.transform.position);
-
-                waiting = true;
-                agent.isStopped = true;
-                Debug.Log(this.name + " waiting");
-
-            } // cangue target.distance test
+            nightTime = false;
+            targets = new GameObject[0];
+            GetTargets(new string[] { targetNames[1] });
         }
+        if (!nightTime)
+        {
+            if (now < 21600 || now > 64800) //nigh time
+            {
+                nightTime = true;
+                targets = new GameObject[0];
+                GetTargets(new string[] { targetNames[0] });
+            }
+        }
+
+
+        if (agent.enabled)
+        {
+            if (waiting) // saames as ;; if(waiting == false)
+            {
+                if (agent.enabled)
+                    if (waited > waitTime)
+                    {
+                        waiting = false;
+                        agent.isStopped = false;
+                        waited = 0;
+                        Debug.Log(name + " moving");
+                    }
+                    else
+                    {
+                        waited += Time.deltaTime;
+                    }
+
+            } //if waiting
+            else
+            {
+                Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+
+                float distancetoTarget = Vector3.Distance(agent.transform.position, target.position);
+                if (changeTargetDistance > distancetoTarget)
+                {
+                    /*
+                    if(target.name.Contains("short"))
+                    {
+                        waitTime = Random.Range(waitTimeShortMin, waitTimeShortMax);
+                    }
+                    if(target.name.Contains("long"))
+                    {
+                        waitTime = Random.Range(waitTimeLongMin, waitTimeLongMax);
+                    }
+                    */
+
+                    t++;
+                    if (t == targets.Length)
+                    {
+                        t = 0;
+                    }
+                    //Debug.Log(this.name + "change Target: " + t);
+                    target = targets[t].transform;
+                    agent.SetDestination(target.transform.position);
+
+                    waiting = true;
+                    agent.isStopped = true;
+                    Debug.Log(this.name + " waiting");
+
+                } // cangue target.distance test
+            }
+
+        }
+
 
     }
 
@@ -199,6 +213,41 @@ public class TrashTruck : MonoBehaviour
         }
         return objects;
     }
+    private void GetTargets(string[] targetByNames)
+    {
 
+        //grab targets using tags
+        if (targets == null || targets.Length == 0)
+        {
+            //get all names objects tagget with "Target"
+            targets = GameObject.FindGameObjectsWithTag("target");
 
+            List<GameObject> targetList = new List<GameObject>();
+            foreach (GameObject go in targets) //Seach all "Target" game objects
+            {
+                foreach (string targetName in targetByNames)
+                {
+                    if (go.name.Contains(targetName))
+                    {
+                        targetList.Add(go);
+                    }
+                }
+            }
+            targets = targetList.ToArray(); //convert List to our targes List
+        }
+        if (shuffleTargets)
+        {
+            targets = Shuffle(targets);
+        }
+
+        //Debug.Log(this.name + hideFlags + " has " + targets.Length + "Target");
+
+        agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
+        t = 0;
+        target = targets[t].transform;
+        agent.SetDestination(target.position);
+        //target = targets[0];
+        //agent.SetDestination(target.transform.position);
+
+    }
 }
