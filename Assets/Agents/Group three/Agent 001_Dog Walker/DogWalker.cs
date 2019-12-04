@@ -26,6 +26,9 @@ public class DogWalker : MonoBehaviour
     public float zmin = 1;
     public float zmax = 1;
 
+    public float distance;
+    public GameObject from;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +82,17 @@ public class DogWalker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        distance = 6;
+        float dist = Vector3.Distance(from.transform.position, transform.position);
+        //Debug.Log(dist);
+        if (dist > distance)
+        {
+            gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+        }
+        else
+        {
+            gameObject.GetComponent<NavMeshAgent>().isStopped = false;
+        }
         //original text if (!waiting) // (waiting == false) (1 == 0)
         if (waiting) // (waiting == false) (1 == 0)
         {
@@ -119,7 +133,7 @@ public class DogWalker : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collision)
+    /*void OnTriggerEnter(Collider collision)
     {
         //Debug.Log("collision: " + collision.gameObject.name);
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
@@ -140,7 +154,7 @@ public class DogWalker : MonoBehaviour
         {
             agent.isStopped = false;
         }
-    }
+    }*/
 
     private int obstacles = 0;
 

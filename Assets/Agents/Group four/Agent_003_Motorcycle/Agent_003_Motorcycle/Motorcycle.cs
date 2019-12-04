@@ -45,6 +45,7 @@ public class Motorcycle : MonoBehaviour
     public string m_Scene;
 
     public GameObject passenger;
+    public GameObject mirror;
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +76,7 @@ public class Motorcycle : MonoBehaviour
                 //Debug.Log("go: " + go.name);
                 foreach (string targetName in targetNames)
                 {
-                    //Debug.Log("targetName: " + targetName);
+                    //Debug.Log("targetName: " + targetName);   
                     // "Target" contains: "Tar", "Targ", "get", ! "Trgt"
                     if (go.name.Contains(targetName)) //if GameObject has the same name as targetName, add to list
                     {
@@ -144,25 +145,19 @@ public class Motorcycle : MonoBehaviour
                 //change target once it is reached
                 if (changeTargetDistance > distanceToTarget) //have we reached our target
                 {
-
-                    passenger.GetComponent<MeshRenderer>().enabled = true;
+                    if (t == 0)
+                    {
+                        passenger.GetComponent<MeshRenderer>().enabled = true;
+                        mirror.GetComponent<Elderly>().enabled = false;
+                        mirror.GetComponent<NavMeshAgent>().enabled = false;
+                       
+                        mirror.GetComponent<MeshRenderer>().enabled = false;
+                        mirror.transform.parent = passenger.transform;
+                    }
+                    
 
                     //type of stop
-                    if (target.name.Contains("Parking"))
-                    {
-                        //Debug.Log("long wait");
-                        waitTime = Random.Range(waitTimeLongMin, waitTimeLongMax);
-                    }
-                    if (target.name.Contains("Office"))
-                    {
-                        //Debug.Log("long wait");
-                        waitTime = Random.Range(waitTimeLongMin, waitTimeLongMax);
-                    }
-                    if (target.name.Contains("Gas"))
-                    {
-                        //Debug.Log("short");
-                        waitTime = Random.Range(waitTimeShortMin, waitTimeShortMax);
-                    }
+                   
 
                     /*PickUp[] pickups = gameObject.GetComponentsInChildren<PickUp>();
                     if (pickups.Length > 0)
@@ -187,6 +182,15 @@ public class Motorcycle : MonoBehaviour
 
 
                     t++;
+
+                    if (t == 2)
+                    {
+                        mirror.GetComponent<MeshRenderer>().enabled = true;
+                        mirror.GetComponent<NavMeshAgent>().enabled = true;
+                        mirror.GetComponent<Elderly>().enabled = true;  
+                        passenger.GetComponent<MeshRenderer>().enabled = false;
+                        passenger.transform.DetachChildren();
+                    }
                     if (t == targets.Length)
                     {
                         t = 0;
@@ -238,21 +242,7 @@ public class Motorcycle : MonoBehaviour
         }*/
     }
 
-    void OnTriggerExit(Collider collision)
-    {
-        //Debug.Log("exited");
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
-        {
-            obstacles--; //obstacles = obstacles - 1; || obstacles -= 1;
-        }
-        if (obstacles == 0) //once there are zero obstacles, start the agent moving
-        {
-            if (agent != null)
-            {
-                agent.isStopped = false;
-            }
-        }
-    }
+    
 
     private int obstacles = 0;
 

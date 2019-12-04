@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class move : MonoBehaviour
+public class socialDog : MonoBehaviour
 {
     Transform target;
     NavMeshAgent agent;
@@ -25,19 +25,16 @@ public class move : MonoBehaviour
     public float ymax = 1;
     public float zmin = 1;
     public float zmax = 1;
-    public string m_Scene;
 
-    //signal of changing script
-    public bool findFood = false;
+    public float distance;
+    public GameObject from;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.tag = "SchoolChildren";
+        //gameObject.tag = "DogWalker";
 
         //scale the gameobject randomly
-
-        /*
         if (randomScale)
         {
             float x = Random.Range(xmin, xmax);
@@ -45,22 +42,20 @@ public class move : MonoBehaviour
             float z = Random.Range(zmin, zmax);
             transform.localScale = new Vector3(x, y, z);
         }
-        */
 
         //grab targets using tags
         if (targets.Length == 0)
         {
             //get all game objects tagged with "Target"
-            targets = GameObject.FindGameObjectsWithTag("Busstation");
+            targets = GameObject.FindGameObjectsWithTag("Target");
 
-            /*
-            List<GameObject> targetList = new List<GameObject>();           
-            foreach(GameObject go in targets) //search all "Target" game objects
+            List<GameObject> targetList = new List<GameObject>();
+            foreach (GameObject go in targets) //search all "Target" game objects
             {
-                //Debug.Log("go: " + go.name);
+                Debug.Log("go: " + go.name);
                 foreach (string targetName in targetNames)
                 {
-                    //Debug.Log("targetName: " + targetName);
+                    Debug.Log("targetName: " + targetName);
                     // "Target" contains: "Tar", "Targ", "get", ! "Trgt"
                     if (go.name.Contains(targetName)) //if GameObject has the same name as targetName, add to list
                     {
@@ -69,7 +64,6 @@ public class move : MonoBehaviour
                 }
             }
             targets = targetList.ToArray(); //Convert List to Array, because other code is still using array
-            */
         }
 
         //shuffle targets
@@ -88,6 +82,17 @@ public class move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        distance = 5;
+        float dist = Vector3.Distance(from.transform.position, transform.position);
+        //Debug.Log(dist);
+        if (dist > distance)
+        {
+            gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+        }
+        else
+        {
+            gameObject.GetComponent<NavMeshAgent>().isStopped = false;
+        }
         //original text if (!waiting) // (waiting == false) (1 == 0)
         if (waiting) // (waiting == false) (1 == 0)
         {
@@ -106,42 +111,36 @@ public class move : MonoBehaviour
         else
         {
             //see agent's next destination
-            Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+            // Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
             float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
             //change target once it is reached
             if (changeTargetDistance > distanceToTarget) //have we reached our target
             {
-                if (target.name.Contains("nearFoodTruck") && findFood == false)
+                t++;
+                if (t == targets.Length)
                 {
-                    findFood = true;
+                    t = 0;
                 }
-                else
-                {
-                    t++;
-                    if (t == targets.Length)
-                    {
-                        t = 0;
-                    }
-                    //Debug.Log(this.name + " Change Target: " + t);
-                    target = targets[t].transform;
-                    agent.SetDestination(target.position); //each frame set the agent's destination to the target position
+                //Debug.Log(this.name + " Change Target: " + t);
+                target = targets[t].transform;
+                agent.SetDestination(target.position); //each frame set the agent's destination to the target position
 
-                    waiting = true;
-                    agent.isStopped = true;
-                }
+                waiting = true;
+                agent.isStopped = true;
+
             } // changeTargetDistance test
         }
     }
 
-    void OnTriggerEnter(Collider collision)
+    /*void OnTriggerEnter(Collider collision)
     {
         //Debug.Log("collision: " + collision.gameObject.name);
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
             obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
-        }       
+        }
     }
 
     void OnTriggerExit(Collider collision)
@@ -155,7 +154,7 @@ public class move : MonoBehaviour
         {
             agent.isStopped = false;
         }
-    }
+    }*/
 
     private int obstacles = 0;
 

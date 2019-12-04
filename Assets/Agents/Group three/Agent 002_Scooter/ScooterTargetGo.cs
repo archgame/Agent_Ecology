@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class ScooterTargetGo : MonoBehaviour
 {
     #region Global Variable
+    public bool NTM;
 
 
     GameObject target;
@@ -74,6 +75,9 @@ public class ScooterTargetGo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        NTM = agent.GetComponent<NavMeshAgent>().isStopped;
+
+        //gameObject.AddComponent<Rigidbody>();
 
         /*if (agent.speed != 0)
         {
@@ -111,12 +115,13 @@ public class ScooterTargetGo : MonoBehaviour
         if (changeTargetDistance > distanceToTarget) //have we reached our target
         {
             Rider = transform.Find("Rider");
-            if (transform.childCount > 27) 
+            if (transform.childCount > 5) 
             {
                 Rider.GetComponent<NavMeshAgent>().enabled = true;
                 Rider.GetComponent<RiderTargetGo>().enabled = true;
                 Rider.parent = parent.transform;
-
+                //Rigidbody rb = GetComponent<Rigidbody>();
+                //Destroy(rb);
             }
 
             t++;
@@ -130,15 +135,16 @@ public class ScooterTargetGo : MonoBehaviour
         } // changeTargetDistance test
         else
         {
-            if (transform.childCount < 28)
+            if (transform.childCount < 6)
             {
                 agent.isStopped = true;
                 agent.speed = 0;
-
+                //Rigidbody rb = GetComponent<Rigidbody>();
+                //Destroy(rb);
             }
             else
             {
-                agent.isStopped = false;
+                //agent.isStopped = false;
             }
         }
     }
@@ -160,5 +166,50 @@ public class ScooterTargetGo : MonoBehaviour
         return objects;
     }
 
+    public int obstacles = 0;
 
+    void OnTriggerEnter(Collider collision)
+    {
+        //Debug.Log(obstacles);
+
+        //Debug.Log("collision: " + collision.gameObject.name);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        {
+            agent.isStopped = true;
+            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
+        }
+
+        if (collision.gameObject.name.Contains("RedLight"))
+        {
+            agent.isStopped = true;
+            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
+        }
+        if (collision.gameObject.name.Contains("GreenLight"))
+        {
+            obstacles--; //count as obstacle removal
+            if(obstacles<0)
+            {
+                obstacles = 0;
+            }
+            if (obstacles == 0) //once there are zero obstacles, start the agent moving
+            {
+                agent.isStopped = false;
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider collision)
+    {
+        Debug.Log(obstacles);
+
+        //Debug.Log("exited");
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        {
+            obstacles--; //obstacles = obstacles - 1; || obstacles -= 1;
+        }
+        if (obstacles == 0) //once there are zero obstacles, start the agent moving
+        {
+            agent.isStopped = false;
+        }
+    }
 }
