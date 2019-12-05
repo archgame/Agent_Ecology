@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class droneControlV1N : MonoBehaviour
 {
-    public float speed = 10.0F;
+    //public float speed = 10.0F;
     public GameObject drone;
     private Vector3 startPos;
     private Vector3 endPos;

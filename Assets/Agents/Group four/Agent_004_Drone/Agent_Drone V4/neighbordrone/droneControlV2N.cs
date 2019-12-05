@@ -6,7 +6,7 @@ public class droneControlV2N : MonoBehaviour
 {
 
     public GameObject drone;
-    public float speed = 1.0f;
+    //public float speed = 1.0f;
     public GameObject[] targets;
 
     //public string targetName = "";
@@ -17,6 +17,9 @@ public class droneControlV2N : MonoBehaviour
     public int maximumReduceHeight = 5;
     private float addHeight = 0;
     //private float h = 0.01f;
+
+    public float lerpTime = 5;
+    public float currentlerpTime = 0;
 
     Transform target;
     public float changeTargetDistance = 1;
@@ -79,7 +82,7 @@ public class droneControlV2N : MonoBehaviour
 
             //hangingpoint = GetComponent<droneControlV1>().drone.transform.position;
 
-            float h = Random.Range(-0.01f, 0.01f);
+            float h = Random.Range(-0.001f, 0.001f);
             addHeight = (addHeight + h);
 
             //print(addHeight);
@@ -100,8 +103,16 @@ public class droneControlV2N : MonoBehaviour
                 addHeight = 0;
             }
 
-            float step = speed * Time.deltaTime;
+            //float step = speed * Time.deltaTime;
             target = targets[t].transform;
+
+            currentlerpTime += Time.deltaTime;
+
+            if (currentlerpTime >= lerpTime)
+            {
+                currentlerpTime = lerpTime;
+            }
+            float perc = currentlerpTime / lerpTime / 30;
 
             hangingpoint = GetComponent<droneControlV1N>().drone.transform.position;
             //Debug.Log("hp" + hangingpoint);
@@ -127,7 +138,7 @@ public class droneControlV2N : MonoBehaviour
 
             if (hover == false)
             {
-                drone.transform.position = Vector3.MoveTowards(localdronepoint, localtargetpoint, step);
+                drone.transform.position = Vector3.MoveTowards(localdronepoint, localtargetpoint, perc);
 
                 //transform.position += transform.forward * Time.deltaTime * step;
 
@@ -150,7 +161,7 @@ public class droneControlV2N : MonoBehaviour
                 //target = targets[t].transform;
                 if (hover == false)
                 {
-                    drone.transform.position = Vector3.MoveTowards(localdronepoint, localtargetpoint, step);
+                    drone.transform.position = Vector3.MoveTowards(localdronepoint, localtargetpoint, perc);
 
                     //drone.transform.position = Vector3.Lerp(localdronepoint,
                     //localtargetpoint + drone.transform.forward,

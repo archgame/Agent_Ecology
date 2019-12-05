@@ -6,7 +6,7 @@ public class droneControlV2T : MonoBehaviour
 {
 
     public GameObject drone;
-    public float speed = 1.0f;
+    //public float speed = 1.0f;
     public GameObject[] targets;
     
 
@@ -16,6 +16,9 @@ public class droneControlV2T : MonoBehaviour
     public int maximumReduceHeight = 5;
     private float addHeight = 0;
     //private float h = 0.01f;
+
+    public float lerpTime = 5;
+    public float currentlerpTime = 0;
 
     Transform target;
     public float changeTargetDistance = 1;
@@ -62,11 +65,19 @@ public class droneControlV2T : MonoBehaviour
             //print("H"+h);
             hangingpoint = GetComponent<droneControlV1T>().drone.transform.position;
 
-            
-            
 
 
-            float step = speed * Time.deltaTime;
+            currentlerpTime += Time.deltaTime;
+
+            
+
+            if (currentlerpTime >= lerpTime)
+            {
+                currentlerpTime = lerpTime;
+            }
+            float perc = currentlerpTime / lerpTime / 10;
+
+            //float step = speed * Time.deltaTime;
             target = targets[t].transform;
 
 
@@ -91,7 +102,7 @@ public class droneControlV2T : MonoBehaviour
 
             
 
-            drone.transform.position = Vector3.MoveTowards(localdronepoint, localtargetpoint, step);
+            drone.transform.position = Vector3.MoveTowards(localdronepoint, localtargetpoint, perc);
 
 
             

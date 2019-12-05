@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class droneControlV3N : MonoBehaviour
 {
-    public float speed = 1.0F;
+    //public float speed = 1.0F;
 
     public GameObject drone;
 
@@ -13,7 +13,9 @@ public class droneControlV3N : MonoBehaviour
     public Vector3 startPos;
     private Vector3 endPos;
 
-    
+    public float lerpTime = 5;
+    public float currentlerpTime = 0;
+
 
     private bool isColliding;
 
@@ -72,20 +74,21 @@ public class droneControlV3N : MonoBehaviour
         //      GetComponent<droneControlV2>().transform.position.z);
 
         Debug.Log("newlocaldroneendPos " + newlocaldroneendPos);
-       
+
         //Debug.Log("localdronestartPos " + localdronestartPos);
         //Debug.Log("localdroneendPos " + localdroneendPos);
 
-        //currentlerpTime += Time.deltaTime;
-        //if (currentlerpTime >= lerpTime)
-        //{
-        //    currentlerpTime = lerpTime;
-        //}
-        //float perc = currentlerpTime / lerpTime;
+        currentlerpTime += Time.deltaTime;
 
-        //drone.transform.position = Vector3.Lerp(localdronestartPos, localdroneendPos,perc);
-        float step = speed * Time.deltaTime;
-        drone.transform.position = Vector3.MoveTowards(localdronestartPos, newlocaldroneendPos, step);
+
+        if (currentlerpTime >= lerpTime)
+        {
+            currentlerpTime = lerpTime;
+        }
+        float perc = currentlerpTime / lerpTime / 50;
+
+        //float step = speed * Time.deltaTime;
+        drone.transform.position = Vector3.MoveTowards(localdronestartPos, newlocaldroneendPos, perc);
         GetComponent<Collider>().isTrigger = true;
         //Debug.Log("localdronestartPos " + localdronestartPos);
         //Debug.Log("localdroneendPo " + localdroneendPos);
@@ -102,7 +105,7 @@ public class droneControlV3N : MonoBehaviour
         
 
 
-        if (GetComponent<droneControlV2N>().finishTour == true && drone.transform.position.y <= 0.1f)
+        if (GetComponent<droneControlV2N>().finishTour == true && drone.transform.position.y <= 0.05f)
         {
             //gameObject.GetComponent<droneControlV1>().enabled = true;
 
@@ -146,28 +149,34 @@ public class droneControlV3N : MonoBehaviour
 
        
 
-        if (goods.gameObject.CompareTag("goods") || transform.childCount == 1  )
+        if (goods.gameObject.CompareTag("goods") || transform.childCount == 1)
         {
             //print("item pick up");
             //if (transform.childCount == 0 && getGoods == false)
+
+
+
             if (transform.childCount == 0 && !getGoods)
 
             {
 
-                //print(getGoods);
+                print(getGoods);
                 pickUp = drone.transform.parent;
                 goods.transform.parent = drone.transform;
                 goods.transform.forward = drone.transform.forward;
                 goods.transform.position = drone.transform.position;
                 getGoods = true;
             }
-            
-            else if(goods.gameObject.CompareTag("dronetarget2") && getGoods)
+            ;
+
+
+
+            if(goods.gameObject.CompareTag("dronetarget2") && getGoods)
             {
                 
                 transform.DetachChildren();
                 getGoods = false;
-                //print("1");
+                print("1");
             }
 
 

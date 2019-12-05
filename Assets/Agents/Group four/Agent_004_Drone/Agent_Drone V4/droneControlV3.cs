@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class droneControlV3 : MonoBehaviour
 {
-    public float speed = 1.0F;
+    //public float speed = 1.0F;
+
+    public float lerpTime = 5;
+    public float currentlerpTime = 0;
 
     public GameObject drone;
 
@@ -76,16 +79,16 @@ public class droneControlV3 : MonoBehaviour
         //Debug.Log("localdronestartPos " + localdronestartPos);
         //Debug.Log("localdroneendPos " + localdroneendPos);
 
-        //currentlerpTime += Time.deltaTime;
-        //if (currentlerpTime >= lerpTime)
-        //{
-        //    currentlerpTime = lerpTime;
-        //}
-        //float perc = currentlerpTime / lerpTime;
+        currentlerpTime += Time.deltaTime;
+        if (currentlerpTime >= lerpTime)
+        {
+            currentlerpTime = lerpTime;
+        }
+        float perc = currentlerpTime / lerpTime / 100;
 
         //drone.transform.position = Vector3.Lerp(localdronestartPos, localdroneendPos,perc);
-        float step = speed * Time.deltaTime;
-        drone.transform.position = Vector3.MoveTowards(localdronestartPos, newlocaldroneendPos, step);
+        //float step = speed * Time.deltaTime * 0.2f;
+        drone.transform.position = Vector3.Lerp(localdronestartPos, newlocaldroneendPos, perc);
         GetComponent<Collider>().isTrigger = true;
         //Debug.Log("localdronestartPos " + localdronestartPos);
         //Debug.Log("localdroneendPo " + localdroneendPos);

@@ -95,7 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25853b64f6e4e984db9235b73a60c6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   drone: {fileID: 7585887552995345856}
   distance: 10
   lerpTime: 3
@@ -115,10 +114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drone: {fileID: 7585887552995345856}
-  speed: 5
   targets: []
   maximumAddHeight: 15
   maximumReduceHeight: 10
+  lerpTime: 5
+  currentlerpTime: 0
   changeTargetDistance: 1
   ShuffleTargets: 1
   hangingpoint: {x: 0, y: 0, z: 0}
@@ -136,9 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3c1408c7486e84092fb212e08c3700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
   drone: {fileID: 7585887552995345856}
   startPos: {x: 0, y: 0, z: 0}
+  lerpTime: 5
+  currentlerpTime: 0
   getGoods: 0
 --- !u!135 &7585887552995345858
 SphereCollider:
