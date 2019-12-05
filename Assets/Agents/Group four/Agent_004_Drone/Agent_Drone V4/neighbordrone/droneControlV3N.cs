@@ -105,7 +105,7 @@ public class droneControlV3N : MonoBehaviour
         
 
 
-        if (GetComponent<droneControlV2N>().finishTour == true && drone.transform.position.y <= 0.1f)
+        if (GetComponent<droneControlV2N>().finishTour == true && drone.transform.position.y <= 0.05f)
         {
             //gameObject.GetComponent<droneControlV1>().enabled = true;
 
@@ -149,28 +149,34 @@ public class droneControlV3N : MonoBehaviour
 
        
 
-        if (goods.gameObject.CompareTag("goods") || transform.childCount == 1  )
+        if (goods.gameObject.CompareTag("goods") || transform.childCount == 1)
         {
             //print("item pick up");
             //if (transform.childCount == 0 && getGoods == false)
+
+
+
             if (transform.childCount == 0 && !getGoods)
 
             {
 
-                //print(getGoods);
+                print(getGoods);
                 pickUp = drone.transform.parent;
                 goods.transform.parent = drone.transform;
                 goods.transform.forward = drone.transform.forward;
                 goods.transform.position = drone.transform.position;
                 getGoods = true;
             }
-            
-            else if(goods.gameObject.CompareTag("dronetarget2") && getGoods)
+            ;
+
+
+
+            if(goods.gameObject.CompareTag("dronetarget2") && getGoods)
             {
                 
                 transform.DetachChildren();
                 getGoods = false;
-                //print("1");
+                print("1");
             }
 
 

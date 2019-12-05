@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //public GameObject goods;
-public class forCargo : MonoBehaviour
+public class forCargo2 : MonoBehaviour
 {
 
     private bool destroy = false;
