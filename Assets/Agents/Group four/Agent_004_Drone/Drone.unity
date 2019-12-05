@@ -395,6 +395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
         type: 3}
+      propertyPath: targets.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
       propertyPath: lerpTime
       value: 3
       objectReference: {fileID: 0}
@@ -403,6 +408,16 @@ PrefabInstance:
       propertyPath: changeTargetDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
+      propertyPath: targets.Array.data[0]
+      value: 
+      objectReference: {fileID: 1740314790}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
+      propertyPath: targets.Array.data[1]
+      value: 
+      objectReference: {fileID: 1019313656}
     - target: {fileID: 7585887552995345871, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
         type: 3}
       propertyPath: speed
@@ -2198,6 +2213,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
         type: 3}
+      propertyPath: targets.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
       propertyPath: lerpTime
       value: 3
       objectReference: {fileID: 0}
@@ -2206,6 +2226,16 @@ PrefabInstance:
       propertyPath: changeTargetDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
+      propertyPath: targets.Array.data[0]
+      value: 
+      objectReference: {fileID: 1740314790}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
+      propertyPath: targets.Array.data[1]
+      value: 
+      objectReference: {fileID: 1731903985}
     - target: {fileID: 7585887552995345871, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
         type: 3}
       propertyPath: speed
@@ -2754,6 +2784,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
         type: 3}
+      propertyPath: targets.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
       propertyPath: lerpTime
       value: 3
       objectReference: {fileID: 0}
@@ -2762,6 +2797,16 @@ PrefabInstance:
       propertyPath: changeTargetDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
+      propertyPath: targets.Array.data[0]
+      value: 
+      objectReference: {fileID: 1740314790}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
+      propertyPath: targets.Array.data[1]
+      value: 
+      objectReference: {fileID: 570430630}
     - target: {fileID: 7585887552995345871, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
         type: 3}
       propertyPath: speed
@@ -7682,6 +7727,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
         type: 3}
+      propertyPath: targets.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
       propertyPath: lerpTime
       value: 3
       objectReference: {fileID: 0}
@@ -7690,6 +7740,16 @@ PrefabInstance:
       propertyPath: changeTargetDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
+      propertyPath: targets.Array.data[0]
+      value: 
+      objectReference: {fileID: 1740314790}
+    - target: {fileID: 7585887552995345868, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
+        type: 3}
+      propertyPath: targets.Array.data[1]
+      value: 
+      objectReference: {fileID: 1079319295}
     - target: {fileID: 7585887552995345871, guid: a8c3ce8702cb0de43bc08955f48a0cf4,
         type: 3}
       propertyPath: speed
