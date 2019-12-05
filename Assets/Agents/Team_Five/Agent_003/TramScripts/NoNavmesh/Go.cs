@@ -133,7 +133,7 @@ public class Go : MonoBehaviour
                     {
                         Debug.Log("i > MyPath.Length");
                        // MyPath[i].Reached = false;
-                        i = 0;
+                        i = 1;
                         MyPath[i].movingTo = 0;
                         pointInPath = MyPath[i].GetNextPathPoint();
                         pointInPath.MoveNext();

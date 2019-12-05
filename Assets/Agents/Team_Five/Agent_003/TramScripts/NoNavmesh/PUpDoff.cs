@@ -43,7 +43,7 @@ public class PUpDoff : MonoBehaviour
         if (tram.GetComponent<Go>().MyPath[i].Load== true)
         {
             gameObject.transform.position = Vector3.MoveTowards(transform.position, Bustarget.transform.position, PassengerSpeed * Time.deltaTime);
-            Debug.Log("went to tram");
+            Debug.Log("went to tram");                                      
 
             if (tram.GetComponent<Go>().ReadyToGo == true)
             {
