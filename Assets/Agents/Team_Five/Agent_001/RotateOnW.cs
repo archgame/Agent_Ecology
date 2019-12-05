@@ -22,6 +22,7 @@ public class RotateOnW : MonoBehaviour
     public float returnTimer;
     public Vector3 target;
     float counterLast;
+    float lastTiltAngle = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,7 @@ public class RotateOnW : MonoBehaviour
             //returnTimer = 0;
             target = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y, tiltAngle);
             transform.localEulerAngles = Vector3.Lerp(transform.localEulerAngles, target, timer / totalTime);
+            lastTiltAngle = tiltAngle;
         }
 
 
@@ -56,6 +58,7 @@ public class RotateOnW : MonoBehaviour
             //returnTimer = 0;
             target = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, -tiltAngle);
             transform.localEulerAngles = Vector3.Lerp(transform.localEulerAngles, target, timer / totalTime);
+            lastTiltAngle = -tiltAngle;
         }
 
         //if there is no turn
@@ -63,8 +66,9 @@ public class RotateOnW : MonoBehaviour
         {
             timer = timer + Time.deltaTime;
             //returnTimer = 0;
-            target = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
-            transform.localEulerAngles = Vector3.Lerp(transform.localEulerAngles, target, timer / totalTime);
+            target = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, lastTiltAngle);
+            Debug.Log("z" + transform.localEulerAngles.z);
+            transform.localEulerAngles = Vector3.Lerp(target, transform.localEulerAngles, timer / totalTime);
         }
         /*{
             // Smoothly tilts a transform towards a target rotation.

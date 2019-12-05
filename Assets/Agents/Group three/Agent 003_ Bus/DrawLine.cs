@@ -9,14 +9,14 @@ public class DrawLine : MonoBehaviour
     private float counter;
     private float dist;
 
-    public Transform origin;
-    public Transform destination;
+    public GameObject origin;
+    public GameObject destination;
 
     public float lineDrawSpeed = 6f;
 
     void Start()
     {
-
+        lineRender = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -24,24 +24,28 @@ public class DrawLine : MonoBehaviour
 
     {
 
-        lineRender = GetComponent<LineRenderer>();
-        lineRender.SetPosition(0, origin.position);
+       
+        //lineRender.SetPosition(0, origin.position);
         lineRender.SetWidth(0.1f, 0.1f);
         
 
 
-        dist = Vector3.Distance(origin.position, destination.position);
+        //dist = Vector3.Distance(origin.position, destination.position);
 
-        if (counter < dist)
-        {
-            counter += .1f / lineDrawSpeed;
-            float x = Mathf.Lerp(0, dist, counter);
-            Vector3 pointA = origin.position;
-            Vector3 pointB = destination.position;
+        //if (counter < dist)
+        //{
+            //counter += .1f / lineDrawSpeed;
+            //float x = Mathf.Lerp(0, dist, counter);
+            Vector3 pointA = origin.transform.position;
+            Vector3 pointB = destination.transform.position;
+        Debug.Log("pointA " + origin.name + "," + pointA);
+        Debug.Log("pointB " + destination.name + "," + pointB);
+        //Debug.DrawLine(pointA, pointB, Color.magenta);
+            //Vector3 pointAlongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
+            //Vector3 pointAlongLine = pointA - pointB;
+            //lineRender.SetPosition(1, pointAlongLine);
+            lineRender.SetPositions(new Vector3[] { pointA, pointB });
 
-            Vector3 pointAlongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
-
-            lineRender.SetPosition(1, pointAlongLine);
-        }
+        //}
     }
 }
