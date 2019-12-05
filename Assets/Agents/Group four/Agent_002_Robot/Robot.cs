@@ -52,6 +52,8 @@ public class Robot : MonoBehaviour
 
     public bool ifCreate;
 
+    public GameObject Red;
+    public GameObject Green;
 
     // Start is called before the first frame update
     void Start()
@@ -138,6 +140,7 @@ public class Robot : MonoBehaviour
     {
         if (target.name.Contains("Office"))
         {
+
             if (ifCreate)
             {
             }
@@ -161,9 +164,18 @@ public class Robot : MonoBehaviour
                 }
             }
         }
-       
+        if (target.name.Contains("Charging"))
+        {
+            Red.GetComponent<MeshRenderer>().enabled = true;
+            Green.GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+            Red.GetComponent<MeshRenderer>().enabled = false;
+            Green.GetComponent<MeshRenderer>().enabled = true;
+        }
     
-        //if (target.name.Contains("Food Truck Cube"))
+        /*if (target.name.Contains("Food Truck Cube"))
         {
             float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
             //change target once it is reached
@@ -177,8 +189,8 @@ public class Robot : MonoBehaviour
             }
           
                 
-        }
-        //if (target.name.Contains("Charging"))
+        }*/
+        /*if (target.name.Contains("Charging"))
         {
 
             float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
@@ -191,8 +203,8 @@ public class Robot : MonoBehaviour
                     ifCreate = false;
                 }
             }
-        }
-        //if (target.name.Contains("Shop"))
+        }*/
+        /*if (target.name.Contains("Shop"))
         {
             float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
             //change target once it is reached
@@ -206,7 +218,7 @@ public class Robot : MonoBehaviour
 
                
             }
-        }
+        }*/
       
 
 
@@ -285,6 +297,7 @@ public class Robot : MonoBehaviour
                         {
                             targetNumber++;
                             target = shopTargetList[Random.Range(0, shopTargetList.Length)];
+                            ifPickup = false;
                         }
 
                         else
@@ -298,7 +311,7 @@ public class Robot : MonoBehaviour
                     }
                     else
                     {
-                        targetNumber = 1;
+                        targetNumber = 0;
                         target=chargingTargetList[Random.Range(0, chargingTargetList.Length)];
                     }
 
