@@ -163,7 +163,7 @@ public class Robot : MonoBehaviour
         }
        
     
-        //if (target.name.Contains("Food Truck Cube"))
+        /*if (target.name.Contains("Food Truck Cube"))
         {
             float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
             //change target once it is reached
@@ -177,8 +177,8 @@ public class Robot : MonoBehaviour
             }
           
                 
-        }
-        //if (target.name.Contains("Charging"))
+        }*/
+        /*if (target.name.Contains("Charging"))
         {
 
             float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
@@ -191,8 +191,8 @@ public class Robot : MonoBehaviour
                     ifCreate = false;
                 }
             }
-        }
-        //if (target.name.Contains("Shop"))
+        }*/
+        /*if (target.name.Contains("Shop"))
         {
             float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
             //change target once it is reached
@@ -206,7 +206,7 @@ public class Robot : MonoBehaviour
 
                
             }
-        }
+        }*/
       
 
 
