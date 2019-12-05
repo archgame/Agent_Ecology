@@ -6,11 +6,13 @@ public class gangUp : MonoBehaviour
 {
     #region GLOBAL VARIABLES
 
-    public bool notFirst;
+    public bool notFirst = false;
     public float wheelNumber;
     public float wheelerNumber;
     public bool strike;
     public GameObject[] wheelers;
+    public GameObject alphamade;
+
 
 
 
@@ -18,53 +20,61 @@ public class gangUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         wheelNumber = 0;
         strike = false;
         wheelers = GameObject.FindGameObjectsWithTag("OneWheel");
+        foreach (GameObject wheeler in wheelers)
+        {
+            wheelerNumber++;
+        }
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (GameObject wheeler in wheelers)
-        {
-            wheelerNumber++;
-        }
+
 
         if (wheelNumber == wheelerNumber)
         {
             strike = true;
+            Debug.Log("STRIKE");
+            alphamade.GetComponent<GoForRoller>().GO = enabled;
         }
+
     }
 
     void OnTriggerEnter(Collider collision)
     {
-        foreach (GameObject wheeler in wheelers)
+        if (collision.gameObject.tag == "OneWheel")
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("OneWheel"))
+            Debug.Log("first one arrived");
+            //if (collision.gameObject.GetComponent<one>().notFirst == false)
+            if (notFirst == false)
             {
-                if (collision.gameObject.GetComponent<gangUp>().notFirst == false)
-                {
-                    collision.gameObject.GetComponent<GoForRoller>().alpha = true;
-                }
+                Debug.Log("alpha was made");
+                collision.gameObject.GetComponent<GoForRoller>().alpha = true;
                 notFirst = true;
-                wheelNumber++;
+                alphamade = collision.gameObject;
 
             }
+
+            wheelNumber++;
+            Debug.Log("num of one wheel " + wheelerNumber);
+
+        }
+
+        if (strike == true)
+        {
+            collision.gameObject.GetComponent<GoForRoller>().GO = true;
         }
 
     }
 
     void OnTriggerExit(Collider collision)
     {
-        if (strike == true)
-        {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("OneWheel"))
-            {
-                gameObject.GetComponent<Collider>().enabled = false;
-            }
 
-        }
     }
 }

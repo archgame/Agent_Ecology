@@ -46,7 +46,7 @@ public class RotateOnTarget : MonoBehaviour
         if (other.name.Contains("Jump"))
         {
 
-            Debug.Log("Tilting");
+            //Debug.Log("Tilting");
             tilt = true;
         }
     }
@@ -54,6 +54,6 @@ public class RotateOnTarget : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         tilt = false;
-        Debug.Log("Tilting false");
+        //Debug.Log("Tilting false");
     }
 }
