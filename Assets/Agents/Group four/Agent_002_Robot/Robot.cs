@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Robot : MonoBehaviour
 {
     #region GLOBAL VARIABLES
-    GameObject target;
+    public GameObject target;
     NavMeshAgent agent;
     public bool isRider = false;
 
@@ -16,7 +16,7 @@ public class Robot : MonoBehaviour
     public string[] targetNames;
     [HideInInspector]
     public Vector3 position;
-    public float changeTargetDistance = 3;
+    public float changeTargetDistance = 1;
     private int t;
     public bool shuffleTargets = true;
     public GameObject[] targets;
@@ -41,6 +41,20 @@ public class Robot : MonoBehaviour
     public float zmax = 1.1f;
     #endregion
     public string m_Scene;
+    public GameObject goods;
+    private bool ifGoods;
+
+    public GameObject[] shopTargetList;
+    public GameObject[] officeTargetList;
+    public GameObject[] chargingTargetList;
+    public bool ifPickup;
+    public int targetNumber;
+
+    public bool ifCreate;
+
+    public GameObject Red;
+    public GameObject Green;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,23 +73,47 @@ public class Robot : MonoBehaviour
         if (targets.Length == 0)
         {
             //get all game objects tagged with "Target"
-            targets = GameObject.FindGameObjectsWithTag("target");
+            List<GameObject> shopList = new List<GameObject>();
+            List<GameObject> officeList = new List<GameObject>();
+            List<GameObject> chargingList = new List<GameObject>();
 
-            List<GameObject> targetList = new List<GameObject>();
+            
+
+            GameObject[] foodtTrucks = GameObject.FindGameObjectsWithTag("IceCreamTruck");
+            foreach (GameObject truck in foodtTrucks) //search all "Target" game objects
+            {
+                if (truck.name.Contains("Food Truck Cube")) //if GameObject has the same name as targetName, add to list
+                {
+                    shopList.Add(truck);
+                }
+
+            }
+
+
+            targets = GameObject.FindGameObjectsWithTag("target");
             foreach (GameObject go in targets) //search all "Target" game objects
             {
-                //Debug.Log("go: " + go.name);
-                foreach (string targetName in targetNames)
+
+                if (go.name.Contains("Shop"))
                 {
-                    //Debug.Log("targetName: " + targetName);
-                    // "Target" contains: "Tar", "Targ", "get", ! "Trgt"
-                    if (go.name.Contains(targetName)) //if GameObject has the same name as targetName, add to list
-                    {
-                        targetList.Add(go);
-                    }
+                    shopList.Add(go);
                 }
+                if (go.name.Contains("Office"))
+                {
+                    officeList.Add(go);
+                }
+                if (go.name.Contains("Charging"))
+                {
+                    chargingList.Add(go);
+                }
+
+
+
             }
-            targets = targetList.ToArray(); //Convert List to Array, because other code is still using array
+            shopTargetList = shopList.ToArray();
+            officeTargetList = officeList.ToArray();
+            chargingTargetList = chargingList.ToArray();
+            targets = shopList.ToArray(); //Convert List to Array, because other code is still using array
         }
 
         //shuffle targets
@@ -86,14 +124,119 @@ public class Robot : MonoBehaviour
         //Debug.Log(this.name + " has " + targets.Length + "Targets");
 
         agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
-        t = 0;
-        target = targets[t];
+       
+        ifPickup = false;
+        ifCreate = false;
+        targetNumber = 0;
+        target = shopTargetList[Random.Range(0, shopTargetList.Length)];
         agent.SetDestination(target.transform.position);
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (target.name.Contains("Office"))
+        {
+
+            if (ifCreate)
+            {
+            }
+            else
+            {
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.position = gameObject.transform.position + new Vector3(0, 0.5f, 0);
+                cube.transform.parent = transform;
+                cube.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                ifCreate = true;
+            }
+
+            float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
+            //change target once it is reached
+            if (changeTargetDistance > distanceToOffice) //have we reached our target
+            {
+                if (ifCreate)
+                {
+                    transform.DetachChildren();
+                    ifCreate = false;
+                }
+            }
+        }
+        if (target.name.Contains("Charging"))
+        {
+            Red.GetComponent<MeshRenderer>().enabled = true;
+            Green.GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+            Red.GetComponent<MeshRenderer>().enabled = false;
+            Green.GetComponent<MeshRenderer>().enabled = true;
+        }
+    
+        /*if (target.name.Contains("Food Truck Cube"))
+        {
+            float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
+            //change target once it is reached
+            if (changeTargetDistance > distanceToOffice) //have we reached our target
+            {
+                if (ifCreate)
+                {
+                    transform.DetachChildren();
+                    ifCreate = false;
+                }
+            }
+          
+                
+        }*/
+        /*if (target.name.Contains("Charging"))
+        {
+
+            float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
+            //change target once it is reached
+            if (changeTargetDistance > distanceToOffice) //have we reached our target
+            {
+                if (ifCreate)
+                {
+                    transform.DetachChildren();
+                    ifCreate = false;
+                }
+            }
+        }*/
+        /*if (target.name.Contains("Shop"))
+        {
+            float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
+            //change target once it is reached
+            if (changeTargetDistance > distanceToOffice) //have we reached our target
+            {
+                if (ifCreate)
+                {
+                    transform.DetachChildren();
+                    ifCreate = false;
+                }
+
+               
+            }
+        }*/
+      
+
+
+
+        if (target.name.Contains("Food Truck Cube")) //if GameObject has the same name as Food Truck Cube, change TargetDistance
+        {
+            Debug.DrawLine(transform.position, target.transform.position, Color.yellow);
+            changeTargetDistance = 5f;
+
+        }
+        else
+        {
+            changeTargetDistance = 1f;
+        }
+        
+
+
+
         if (agent.enabled)
         {
             if (target.transform.position != position)
@@ -124,11 +267,7 @@ public class Robot : MonoBehaviour
             } //if waiting
             else
             {
-                //see agent's next destination
-                //Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
-                //Debug.DrawLine(transform.position, agent.pathEndPosition, Color.cyan);
-                //Debug.DrawRay(agent.pathEndPosition, Vector3.up * 10, Color.red);
-                //Debug.DrawRay(target.transform.position, Vector3.up * 40, Color.yellow);
+               
 
                 float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
                 //change target once it is reached
@@ -151,35 +290,39 @@ public class Robot : MonoBehaviour
                         waitTime = Random.Range(waitTimeShortMin, waitTimeShortMax);
                     }
 
-                    /*PickUp[] pickups = gameObject.GetComponentsInChildren<PickUp>();
-                    if (pickups.Length > 0)
+
+                    if (targetNumber < 2)
                     {
-                        int riderCount = pickups[0].peopleAtStop;
-                        Debug.Log("riderCount: " + riderCount);
-                        if (riderCount > 0)
+                        if (ifPickup)
                         {
-                            waitTime = waitTimeShortMax * riderCount;
+                            targetNumber++;
+                            target = shopTargetList[Random.Range(0, shopTargetList.Length)];
+                            ifPickup = false;
                         }
+
                         else
                         {
-                            waitTime = waitTimeShortMin;
+                            target = officeTargetList[Random.Range(0, officeTargetList.Length)];
+                            ifPickup = true;
                         }
+
+                      
+                        
                     }
                     else
                     {
-                        waitTime = waitTimeShortMin;
-                    }*/
-                    //Debug.Log("waitTime: " + waitTime);
-
-
-
-                    t++;
-                    if (t == targets.Length)
-                    {
-                        t = 0;
+                        targetNumber = 0;
+                        target=chargingTargetList[Random.Range(0, chargingTargetList.Length)];
                     }
+
+                    
+
+               
+
+
+                
                     //Debug.Log(this.name + " Change Target: " + t);
-                    target = targets[t];
+                  
                     agent.SetDestination(target.transform.position); //each frame set the agent's destination to the target position
                     waiting = true;
                     agent.isStopped = true;
@@ -204,6 +347,29 @@ public class Robot : MonoBehaviour
             agent.isStopped = true;
             obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
         }
+   
+
+        if (collision.gameObject.name.Contains("NoWalk"))
+        {
+            agent.isStopped = true;
+            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
+        }
+
+        if (collision.gameObject.name.Contains("Green"))
+        {
+            obstacles--; //count as obstacle removal
+            if (obstacles < 0)
+            {
+                obstacles = 0;
+            }
+            if (obstacles == 0) //once there are zero obstacles, start the agent moving
+            {
+                agent.isStopped = false;
+            }
+        }
+
+
+
     }
 
     void OnTriggerExit(Collider collision)
@@ -217,9 +383,11 @@ public class Robot : MonoBehaviour
         {
             agent.isStopped = false;
         }
+
+  
     }
 
-    private int obstacles = 0;
+    public int obstacles = 0;
 
     GameObject[] Shuffle(GameObject[] objects)
     {
