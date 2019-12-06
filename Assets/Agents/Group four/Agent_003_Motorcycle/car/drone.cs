@@ -135,18 +135,7 @@ public class drone : MonoBehaviour
         }       
     }
 
-    void OnTriggerExit(Collider collision)
-    {
-        Debug.Log("exited");
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
-        {
-            obstacles--; //obstacles = obstacles - 1; || obstacles -= 1;
-        }
-        if (obstacles == 0) //once there are zero obstacles, start the agent moving
-        {
-            agent.isStopped = false;
-        }
-    }
+    
 
     private int obstacles = 0;
 
