@@ -36,13 +36,14 @@ public class gangUp : MonoBehaviour
     void Update()
     {
 
-
+        /*
         if (wheelNumber == wheelerNumber)
         {
             strike = true;
             Debug.Log("STRIKE");
             alphamade.GetComponent<GoForRoller>().GO = enabled;
         }
+        */
 
     }
 
@@ -60,6 +61,10 @@ public class gangUp : MonoBehaviour
                 alphamade = collision.gameObject;
 
             }
+            else
+            {
+                collision.gameObject.GetComponent<GoForRoller>().GO = true;
+            }
 
             wheelNumber++;
             Debug.Log("num of one wheel " + wheelerNumber);
@@ -68,11 +73,21 @@ public class gangUp : MonoBehaviour
 
         if (strike == true)
         {
-            collision.gameObject.GetComponent<GoForRoller>().GO = true;
+            if(collision.gameObject.GetComponent<GoForRoller>() != null)
+                collision.gameObject.GetComponent<GoForRoller>().GO = true;
         }
 
     }
 
+    void OnTriggerStay(Collider collision)
+    {
+        if (wheelNumber == wheelerNumber)
+        {
+            strike = true;
+            Debug.Log("STRIKE");
+            alphamade.GetComponent<GoForRoller>().GO = enabled;
+        }
+    }
     void OnTriggerExit(Collider collision)
     {
 

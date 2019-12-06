@@ -14,6 +14,7 @@ public class RollerSkater : MonoBehaviour
     int t;
     public bool shuffleTargets = true;
     public string[] targetNames;
+    
 
     public bool randomScale = false;
     public float xmin = 1;
@@ -59,105 +60,114 @@ public class RollerSkater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
-
-        if (waiting) // (waiting == false) (1 == 0)
+        if (paralyzed == true)
         {
-            if (waited > waitTime)
+
+            //Debug.DrawLine(transform.position, Vector3.up * 40, Color.red, 10f);
+            agent.isStopped = true;
+            time += Time.deltaTime;
+            if (time > 10) //day in seconds
             {
-                waiting = false;
+                paralyzed = false;
                 agent.isStopped = false;
-                waited = 0;
+                agent.enabled = true;
+                agent.SetDestination(target.transform.position);
+            }
+        }
+
+        else
+        {
+
+            Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+
+            if (waiting) // (waiting == false) (1 == 0)
+            {
+                if (waited > waitTime)
+                {
+                    waiting = false;
+                    agent.isStopped = false;
+                    waited = 0;
+                }
+                else
+                {
+                    waited += Time.deltaTime;
+                }
             }
             else
             {
-                waited += Time.deltaTime;
-            }
-        }
-        else
-        {
-            float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
-            if (changeTargetDistance > distanceToTarget)
-            {
-                if (target.name.Contains("Intezaar"))
+                float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
+                if (changeTargetDistance > distanceToTarget)
                 {
-                   //Debug.Log("intezaar reached");
-                    waitTime = meetingWait;
-                }
-                else
-                {
-                    waitTime = 0;
-                }
-
-                if (target.name.Contains("Painting"))
-                {
-                    waitTime = paintingTime;
-                }
-               /* else
-                {
-                    waitTime = 0;
-                }*/
-
-                if (target.name.Contains("PaintNow"))
-                {
-                    //Debug.Log("paintpaint");
-                    waitTime = 12;
-                }
-                /*else
-                {
-                    waitTime = 0;
-                }*/
-
-                /*if (target.name.Contains("Last"))
-                {
-                    //gameObject.GetComponent<MeshRenderer>().enabled = false;
-                    //gameObject.GetComponent<NavMeshAgent>().enabled = false;
-                    //gameObject.GetComponent<CapsuleCollider>().enabled = false;
-                    //gameObject.GetComponent<Rigidbody>().useGravity = true;
-                    //gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
-                    waitTime = 10000000;
-                }
-                else
-                {
-                    waitTime = 0;
-                }*/
-
-                if (target.name.Contains("Last"))
-                {
-                    //Debug.Log("paintpaint");
-                    waitTime = DestinationTime;
-                }
-
-                /*if (target.name.Contains("Stop"))
-                {
-                    Debug.Log("Tilting");
-                    GetComponent<RotateOnTarget>().tilt = true;
-                }
-                else
-                {
-                    Debug.Log("Tilting ended");
-                    //GetComponent<RotateOnTarget>().tilt = false;
-                }*/
-
-                t++;
-                if (t == targets.Length)
-                {
-                    t = 0;
-                }
-                //Debug.Log(this.name + " Change Target: " + t);
-                target = targets[t].transform;
-                agent.SetDestination(target.position); //each frame set the agent's destination to the target position
-                waiting = true;
-                agent.isStopped = true;
-
-                if (paralyzed == true && gameObject.GetComponent<NavMeshAgent>().enabled == false)
-                {
-                    time += Time.deltaTime;
-                    if (time > 10) //day in seconds
+                    if (target.name.Contains("Intezaar"))
                     {
-                        paralyzed = false;
-                        gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                        //Debug.Log("intezaar reached");
+                        waitTime = meetingWait;
                     }
+                    else
+                    {
+                        waitTime = 0;
+                    }
+
+                    if (target.name.Contains("Painting"))
+                    {
+                        waitTime = paintingTime;
+                    }
+                    /* else
+                     {
+                         waitTime = 0;
+                     }*/
+
+                    if (target.name.Contains("PaintNow"))
+                    {
+                        //Debug.Log("paintpaint");
+                        waitTime = 12;
+                    }
+                    /*else
+                    {
+                        waitTime = 0;
+                    }*/
+
+                    /*if (target.name.Contains("Last"))
+                    {
+                        //gameObject.GetComponent<MeshRenderer>().enabled = false;
+                        //gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                        //gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                        //gameObject.GetComponent<Rigidbody>().useGravity = true;
+                        //gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+                        waitTime = 10000000;
+                    }
+                    else
+                    {
+                        waitTime = 0;
+                    }*/
+
+                    if (target.name.Contains("Last"))
+                    {
+                        //Debug.Log("paintpaint");
+                        waitTime = DestinationTime;
+                    }
+
+                    /*if (target.name.Contains("Stop"))
+                    {
+                        Debug.Log("Tilting");
+                        GetComponent<RotateOnTarget>().tilt = true;
+                    }
+                    else
+                    {
+                        Debug.Log("Tilting ended");
+                        //GetComponent<RotateOnTarget>().tilt = false;
+                    }*/
+
+                    t++;
+                    if (t == targets.Length)
+                    {
+                        t = 0;
+                    }
+                    //Debug.Log(this.name + " Change Target: " + t);
+                    target = targets[t].transform;
+                    agent.SetDestination(target.position); //each frame set the agent's destination to the target position
+                    waiting = true;
+                    agent.isStopped = true;
                 }
             }
         }
