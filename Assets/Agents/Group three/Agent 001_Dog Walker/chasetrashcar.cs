@@ -9,7 +9,7 @@ public class chasetrashcar : MonoBehaviour
     void OnTriggerStay(Collider col)
     {
         //guard statement
-        if (col.gameObject.tag != "DogWalker") { return; }
+        if (col.gameObject.tag != "Dog") { return; }
         Debug.Log("Stay: " + col.gameObject.name);
 
         NavMeshAgent agent = col.gameObject.GetComponent<NavMeshAgent>();

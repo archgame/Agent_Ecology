@@ -67,7 +67,7 @@ public class RotateOnW : MonoBehaviour
             timer = timer + Time.deltaTime;
             //returnTimer = 0;
             target = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, lastTiltAngle);
-            Debug.Log("z" + transform.localEulerAngles.z);
+            //Debug.Log("z" + transform.localEulerAngles.z);
             transform.localEulerAngles = Vector3.Lerp(target, transform.localEulerAngles, timer / totalTime);
         }
         /*{

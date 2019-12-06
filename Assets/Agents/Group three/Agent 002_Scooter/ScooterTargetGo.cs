@@ -8,6 +8,7 @@ public class ScooterTargetGo : MonoBehaviour
 {
     #region Global Variable
     public bool NTM;
+    public bool avaliable;
 
 
     GameObject target;
@@ -120,8 +121,7 @@ public class ScooterTargetGo : MonoBehaviour
                 Rider.GetComponent<NavMeshAgent>().enabled = true;
                 Rider.GetComponent<RiderTargetGo>().enabled = true;
                 Rider.parent = parent.transform;
-                //Rigidbody rb = GetComponent<Rigidbody>();
-                //Destroy(rb);
+
             }
 
             t++;
@@ -139,8 +139,8 @@ public class ScooterTargetGo : MonoBehaviour
             {
                 agent.isStopped = true;
                 agent.speed = 0;
-                //Rigidbody rb = GetComponent<Rigidbody>();
-                //Destroy(rb);
+                avaliable = true;
+
             }
             else
             {

@@ -477,7 +477,8 @@ GameObject:
   - component: {fileID: 5193526560299850763}
   - component: {fileID: 5193526560299850762}
   - component: {fileID: 5193526560299850761}
-  - component: {fileID: 5193526560299850760}
+  - component: {fileID: 4186126360374181638}
+  - component: {fileID: 7354190569824735967}
   m_Layer: 10
   m_Name: Rider
   m_TagString: Scooter
@@ -581,23 +582,36 @@ NavMeshAgent:
   m_BaseOffset: 1.0000002
   m_WalkableMask: 85119
   m_ObstacleAvoidanceType: 4
---- !u!114 &5193526560299850760
+--- !u!114 &4186126360374181638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5193526560299850766}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a997732a7995b1a4b89a445fed1b6b28, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c7fb474691f2da4f812244fde2517e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AvailableScooters: []
-  GetScooter: {fileID: 0}
-  baba: {fileID: 0}
-  parent: {fileID: 0}
-  Riders: []
+  ScooterDestination2: []
+--- !u!114 &7354190569824735967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5193526560299850766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ff316f53e39374cb36aa38ab8d7c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  targets: []
+  targetNames: []
+  ReachTargetDistance: 0
+  board: 0
 --- !u!1 &6877096800589619885
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,9 +623,9 @@ GameObject:
   - component: {fileID: 6877096800589619886}
   - component: {fileID: 6877096800589619892}
   - component: {fileID: 6877096800589619883}
-  - component: {fileID: 6877096800589619882}
   - component: {fileID: 6877096800589619881}
   - component: {fileID: 2571585644702176318}
+  - component: {fileID: 3249264035538139771}
   m_Layer: 10
   m_Name: Scooter
   m_TagString: Scooter
@@ -685,25 +699,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6877096800589619882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6877096800589619885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 152f070f6b2650c46b75e29a71964977, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetNames:
-  - Scooter
-  changeTargetDistance: 1
-  shuffleTargets: 1
-  targets: []
-  isStopped: 0
-  parent: {fileID: 0}
 --- !u!195 &6877096800589619881
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -739,3 +734,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5279173, y: 1, z: 3.871686}
   m_Center: {x: 0.0012658287, y: 0.49, z: 0.49584228}
+--- !u!114 &3249264035538139771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6877096800589619885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64462c0b1f582174abd011c448efb0c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets: []
+  targetNames: []
+  ReachTargetDistance: 0
+  Parent: {fileID: 0}
+  ScooterAvaliable: 0
+  obstacles: 0
