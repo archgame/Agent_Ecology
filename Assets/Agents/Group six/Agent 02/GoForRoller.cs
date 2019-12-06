@@ -13,6 +13,7 @@ public class GoForRoller : MonoBehaviour
     NavMeshAgent killer;
     public List<float> distances = new List<float>();
     public GameObject[] preys;
+    public GameObject prey;
     bool preySelected;
     public bool alpha;
     GameObject leader;
@@ -43,40 +44,47 @@ public class GoForRoller : MonoBehaviour
         {
             leader = gameObject;
             Debug.Log("leader selected");
+            if (preySelected)
+            {
+                killer.SetDestination(prey.transform.position);
+                Debug.DrawLine(prey.transform.position, gameObject.transform.position, Color.blue);
+            }
+
         }
        
         if (!preySelected && alpha == true && GO == true)
         {
             rollers = GameObject.FindGameObjectsWithTag("RollerSkates");
+            float mindistance = 10000000;
+
+
             foreach (GameObject roller in rollers)
             {
-                //if (1==1)
+                
                 if (roller.GetComponent<RollerSkater>().paralyzed == false)
                 {
                     Distance = Vector3.Distance(gameObject.transform.position, roller.transform.position);   //Debug.Log(Distance + roller.name);
 
-                    distances.Add(Distance);            //making a list of distances
+                    Debug.Log("bulshit " + Distance);
 
-                    float distancetoprey = distances.Min();
-                    Debug.Log("bulshit " + distancetoprey);
-
-                    if (Distance == distancetoprey)    // defining prey as target
-
+                    if (Distance < mindistance)    // defining prey as target
                     {
-
-                        Debug.DrawLine(roller.transform.position, gameObject.transform.position, Color.blue);
-                        killer.SetDestination(roller.transform.position);
+                        Debug.Log("prey selected");
+                        mindistance = Distance;
+                        prey = roller;            
                         preySelected = true;
 
                     }
                 }
             }
         }
+
         if (GO == true && !alpha)
         {
+            Debug.DrawLine(leader.transform.position, gameObject.transform.position, Color.red);
             killer.SetDestination(leader.transform.position);
-
         }
+
 
     }
 
@@ -86,20 +94,13 @@ public class GoForRoller : MonoBehaviour
 
         if (collision.gameObject.tag == ("RollerSkates"))
         {
-            collision.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            //collision.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            collision.gameObject.GetComponent<RollerSkater>().paralyzed = true;
             preySelected = false;
+            gameObject.GetComponent<NavMeshAgent>().SetDestination(meetinPoint.transform.position);
+            //GO = false;
 
         }
-
-
-        if (collision.gameObject.tag == ("Robot"))
-        {
-            //afterPark = true;
-            //collision.gameObject.GetComponent<Transform>().rotation.x = 90;
-
-
-        }
-
 
 
     }
