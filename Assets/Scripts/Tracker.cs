@@ -115,7 +115,7 @@ public class Tracker : MonoBehaviour
         {
             if (!toggleViewType)
             {
-                Debug.Log("scroll: " + Input.mouseScrollDelta);
+                //Debug.Log("scroll: " + Input.mouseScrollDelta);
                 cameraY = Mathf.Clamp(cameraY + Input.mouseScrollDelta.y * -2, minY, maxY);
             }
             else
