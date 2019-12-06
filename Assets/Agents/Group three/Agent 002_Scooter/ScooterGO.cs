@@ -125,47 +125,4 @@ public class ScooterGO : MonoBehaviour
         return objects;
     }
 
-    public int obstacles = 0;
-
-    void OnTriggerEnter(Collider collision)
-    {
-
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
-        {
-            agent.isStopped = true;
-            obstacles++; 
-        }
-
-        #region
-        /*if (collision.gameObject.name.Contains("RedLight"))
-        {
-            agent.isStopped = true;
-            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
-        }
-        if (collision.gameObject.name.Contains("GreenLight"))
-        {
-            obstacles--; //count as obstacle removal
-            if (obstacles < 0)
-            {
-                obstacles = 0;
-            }
-            if (obstacles == 0) //once there are zero obstacles, start the agent moving
-            {
-                agent.isStopped = false;
-            }
-        }*/
-        #endregion
-    }
-
-    void OnTriggerExit(Collider collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
-        {
-            obstacles--; //obstacles = obstacles - 1; || obstacles -= 1;
-        }
-        if (obstacles <= 0) //once there are zero obstacles, start the agent moving
-        {
-            agent.isStopped = false;
-        }
-    }
 }
