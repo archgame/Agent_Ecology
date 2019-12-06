@@ -18,10 +18,10 @@ public class Manager : MonoBehaviour
         {
             CheckScene("Team_001");
         }
-        if (Input.GetKeyUp("2"))
+        /*if (Input.GetKeyUp("2"))
         {
             CheckScene("Team_002");
-        }
+        }*/
         if (Input.GetKeyUp("3"))
         {
             CheckScene("Team_003");
@@ -42,7 +42,7 @@ public class Manager : MonoBehaviour
         if (Input.GetKeyUp("0"))
         {
             SceneManager.LoadScene("Team_001", LoadSceneMode.Additive);
-            SceneManager.LoadScene("Team_002", LoadSceneMode.Additive);
+            //SceneManager.LoadScene("Team_002", LoadSceneMode.Additive);
             SceneManager.LoadScene("Team_003", LoadSceneMode.Additive);
             SceneManager.LoadScene("Team_004", LoadSceneMode.Additive);
             SceneManager.LoadScene("Team_005", LoadSceneMode.Additive);
