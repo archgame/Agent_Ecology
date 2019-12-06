@@ -18423,5 +18423,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5428960941058765384, guid: 27625dd546e984749987226d888afb81,
+        type: 3}
+      propertyPath: m_TagString
+      value: IceCreamTruck
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428960941574531100, guid: 27625dd546e984749987226d888afb81,
+        type: 3}
+      propertyPath: m_TagString
+      value: IceCreamTruck
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27625dd546e984749987226d888afb81, type: 3}
