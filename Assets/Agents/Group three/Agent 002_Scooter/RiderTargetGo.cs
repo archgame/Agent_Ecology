@@ -12,6 +12,7 @@ public class RiderTargetGo : MonoBehaviour
     NavMeshAgent agent;
 
     private Vector3 position;
+    public GameObject[] Scooters;
     public GameObject[] AvailableScooters;
     public GameObject GetScooter;
     public GameObject baba;
@@ -33,10 +34,10 @@ public class RiderTargetGo : MonoBehaviour
         List<GameObject> shuffledList = new List<GameObject>();
 
 
-        GameObject[] Scooters = GameObject.FindGameObjectsWithTag("Scooter");
+        Scooters = GameObject.FindGameObjectsWithTag("Scooter");
         foreach (GameObject Scooter in Scooters)
         {
-            if (Scooter.GetComponent<NavMeshAgent>().speed == 0)
+            if (Scooter.GetComponent<ScooterTargetGo>().avaliable)
             {
                 ScooterList.Add(Scooter);
                 //shuffledList = ScooterList.OrderBy(x => Random.value).ToList();
@@ -59,31 +60,7 @@ public class RiderTargetGo : MonoBehaviour
                 Riders[i] = gameObject;
                 GetScooter = AvailableScooters[i];
                 AvailableScooters[i].GetComponent<NavMeshAgent>().speed = Random.Range(9, 12);
-                /*NavMeshAgent agent = AvailableScooters[i].GetComponent<NavMeshAgent>();
-                NavMeshHit navHit;
-                agent.SamplePathPosition(-1, 0.0f, out navHit);
-                //Debug.Log("mask: " + navHit.mask);
-                int bikelaneArea = 1 << NavMesh.GetAreaFromName("Bikelane");
-                //Debug.Log("Bikelane " + bikelaneArea);
-                if (bikelaneArea == navHit.mask)
-                {
-                    agent.speed = Random.Range(10, 15);
-                    //agent.acceleration = Random.Range(12, 15);
-                    //Debug.Log("Change Speed");
-                }
-                else
-                {
-                    agent.speed = 5;
-                    agent.acceleration = 5;
-                }
-                if (agent.hasPath)
-                {
-                    Vector3 toSteeringTarget = agent.steeringTarget - transform.position;
-                    float turnAngle = Vector3.Angle(transform.forward, toSteeringTarget);
-                    agent.acceleration = turnAngle * agent.speed * 0.01f;
-                }*/
-
-                //AvailableScooters[i].GetComponent<NavMeshAgent>().isStopped = true;
+                
                 agent.SetDestination(GetScooter.transform.position);
                 float dist = Vector3.Distance(agent.transform.position, GetScooter.transform.position);
                 if (1f > dist)
@@ -91,6 +68,7 @@ public class RiderTargetGo : MonoBehaviour
                     //Rigidbody rb = GetComponent<Rigidbody>();
                     //Destroy(rb);
                     GetScooter.GetComponent<NavMeshAgent>().isStopped = false;
+                    GetScooter.GetComponent<ScooterTargetGo>().avaliable = false;
                     transform.parent = GetScooter.transform;
                     GetComponent<NavMeshAgent>().enabled = false;
                     GetComponent<RiderTargetGo>().enabled = false;

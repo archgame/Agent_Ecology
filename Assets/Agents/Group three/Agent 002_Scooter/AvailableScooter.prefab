@@ -477,9 +477,9 @@ GameObject:
   - component: {fileID: 2118065016637643584}
   - component: {fileID: 2118065016637643586}
   - component: {fileID: 7035924952150142421}
-  - component: {fileID: 5059610946827998243}
+  - component: {fileID: 4196302008927531015}
   m_Layer: 10
-  m_Name: Scooter (2)
+  m_Name: AvailableScooter
   m_TagString: Scooter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,7 +585,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.36, y: 1, z: 2.658233}
   m_Center: {x: 0.0012658287, y: 0.49, z: 0.43911675}
---- !u!114 &5059610946827998243
+--- !u!114 &4196302008927531015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -598,10 +598,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  targetNames: []
+  targetNames:
+  - ScooterTarget
   ReachTargetDistance: 0
   Parent: {fileID: 0}
   ScooterAvaliable: 0
-  ScooterPicked: 0
-  ScooterIsStopped: 0
   obstacles: 0

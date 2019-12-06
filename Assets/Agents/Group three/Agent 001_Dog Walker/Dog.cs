@@ -5,6 +5,13 @@ using UnityEngine.AI;
 
 public class Dog : MonoBehaviour
 {
+    public bool randomScale = true;
+    public float xmin = 1;
+    public float xmax = 1;
+    public float ymin = 1;
+    public float ymax = 1;
+    public float zmin = 1;
+    public float zmax = 1;
 
     public Transform goal;
     public float speed = 5f;
@@ -16,7 +23,13 @@ public class Dog : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        if (randomScale)
+        {
+            float x = Random.Range(xmin, xmax);
+            float y = Random.Range(ymin, ymax);
+            float z = Random.Range(zmin, zmax);
+            transform.localScale = new Vector3(x, y, z);
+        }
     }
     private void Update()
     {

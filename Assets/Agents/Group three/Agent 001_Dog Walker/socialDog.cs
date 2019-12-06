@@ -82,9 +82,9 @@ public class socialDog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distance = 1;
+        distance = 5;
         float dist = Vector3.Distance(from.transform.position, transform.position);
-        Debug.Log(dist);
+        //Debug.Log(dist);
         if (dist > distance)
         {
             gameObject.GetComponent<NavMeshAgent>().isStopped = true;
