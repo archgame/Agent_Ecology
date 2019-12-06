@@ -54,6 +54,7 @@ public class Robot : MonoBehaviour
 
     public GameObject Red;
     public GameObject Green;
+    private GameObject item;
 
     // Start is called before the first frame update
     void Start()
@@ -151,6 +152,7 @@ public class Robot : MonoBehaviour
                 cube.transform.parent = transform;
                 cube.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 ifCreate = true;
+                item = cube;
             }
 
             float distanceToOffice = Vector3.Distance(agent.transform.position, target.transform.position);
@@ -159,7 +161,8 @@ public class Robot : MonoBehaviour
             {
                 if (ifCreate)
                 {
-                    transform.DetachChildren();
+                    item.transform.parent = null;
+                    //transform.DetachChildren();
                     ifCreate = false;
                 }
             }
@@ -291,7 +294,7 @@ public class Robot : MonoBehaviour
                     }
 
 
-                    if (targetNumber < 2)
+                    if (targetNumber < 3)
                     {
                         if (ifPickup)
                         {
@@ -302,8 +305,10 @@ public class Robot : MonoBehaviour
 
                         else
                         {
+                            targetNumber++;
                             target = officeTargetList[Random.Range(0, officeTargetList.Length)];
                             ifPickup = true;
+                           
                         }
 
                       
@@ -311,7 +316,7 @@ public class Robot : MonoBehaviour
                     }
                     else
                     {
-                        targetNumber = 0;
+                        targetNumber = -1;
                         target=chargingTargetList[Random.Range(0, chargingTargetList.Length)];
                     }
 
