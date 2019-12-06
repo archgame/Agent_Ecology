@@ -152,7 +152,7 @@ public class Motorcycle : MonoBehaviour
                         mirror.GetComponent<NavMeshAgent>().enabled = false;
                        
                         mirror.GetComponent<MeshRenderer>().enabled = false;
-                        mirror.transform.parent = passenger.transform;
+                        mirror.transform.parent = transform;
                     }
                     
 
@@ -189,7 +189,7 @@ public class Motorcycle : MonoBehaviour
                         mirror.GetComponent<NavMeshAgent>().enabled = true;
                         mirror.GetComponent<Elderly>().enabled = true;  
                         passenger.GetComponent<MeshRenderer>().enabled = false;
-                        passenger.transform.DetachChildren();
+                        mirror.transform.parent = null;
                     }
                     if (t == targets.Length)
                     {
