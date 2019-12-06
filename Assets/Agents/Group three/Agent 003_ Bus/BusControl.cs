@@ -6,7 +6,6 @@ public class BusControl : MonoBehaviour
 {
     public GameObject MIDbus;
     public GameObject ReMIDbus;
-    public GameObject Circlebus;
     bool active;
 
 
@@ -19,10 +18,7 @@ public class BusControl : MonoBehaviour
             MIDbus.SetActive(active);
             ReMIDbus.SetActive(active);
         }
-        if (!Circlebus.activeInHierarchy)
-        {
-            Circlebus.SetActive(active);
-        }
+
 
     }
 
