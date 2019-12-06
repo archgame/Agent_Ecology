@@ -16,7 +16,7 @@ public class followDog : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        gameObject.tag = "DogWalker";
     }
     private void Update()
     {
