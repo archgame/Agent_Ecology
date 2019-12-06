@@ -27,7 +27,7 @@ public class ScooterGO : MonoBehaviour
         if (targets.Length == 0)
         {
             //get all game objects tagged with "Target"
-            targets = GameObject.FindGameObjectsWithTag("target");
+            targets = GameObject.FindGameObjectsWithTag("Target");
 
             List<GameObject> targetList = new List<GameObject>();
             foreach (GameObject go in targets) //search all "Target" game objects
