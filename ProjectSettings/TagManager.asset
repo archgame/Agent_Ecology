@@ -42,6 +42,7 @@ TagManager:
   - Starship
   - childtargets
   - stop bike
+  - Dog
   layers:
   - Default
   - TransparentFX
@@ -52,10 +53,10 @@ TagManager:
   - 
   - 
   - ground
-  - 
-  - 
-  - 
-  - 
+  - Pedestrian
+  - SmallVehicle
+  - LargeVehicle
+  - Passenger
   - 
   - 
   - 
