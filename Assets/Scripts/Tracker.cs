@@ -38,75 +38,75 @@ public class Tracker : MonoBehaviour
         //x key click example
         if (Input.GetKeyDown("q"))
         {
-            taggedGameObjects = SetGameObject("SchoolChildren");
+            SetGlobalGameObject("SchoolChildren");
         }
         if (Input.GetKeyDown("w"))
         {
-            taggedGameObjects = SetGameObject("Skateboarder");
+            SetGlobalGameObject("Skateboarder");
         }
         if (Input.GetKeyDown("s"))
         {
-            taggedGameObjects = SetGameObject("Bus");
+            SetGlobalGameObject("Bus");
         }
         if (Input.GetKeyDown("r"))
         {
-            taggedGameObjects = SetGameObject("Jaywalker");
+            SetGlobalGameObject("Jaywalker");
         }
         if (Input.GetKeyDown("t"))
         {
-            taggedGameObjects = SetGameObject("Drone");
+            SetGlobalGameObject("Drone");
         }
         if (Input.GetKeyDown("y"))
         {
-            taggedGameObjects = SetGameObject("Delivery");
+            SetGlobalGameObject("Delivery");
         }
         if (Input.GetKeyDown("u"))
         {
-            taggedGameObjects = SetGameObject("Elderly");
+            SetGlobalGameObject("Elderly");
         }
         if (Input.GetKeyDown("i"))
         {
-            taggedGameObjects = SetGameObject("Robot");
+            SetGlobalGameObject("Robot");
         }
         if (Input.GetKeyDown("o"))
         {
-            taggedGameObjects = SetGameObject("Motorcycle");
+            SetGlobalGameObject("Motorcycle");
         }
         if (Input.GetKeyDown("p"))
         {
-            taggedGameObjects = SetGameObject("DogWalker");
+            SetGlobalGameObject("DogWalker");
         }
         if (Input.GetKeyDown("a"))
         {
-            taggedGameObjects = SetGameObject("Scooter");
+            SetGlobalGameObject("Scooter");
         }
         if (Input.GetKeyDown("e"))
         {
-            taggedGameObjects = SetGameObject("IceCreamTruck");
+            SetGlobalGameObject("IceCreamTruck");
         }
         if (Input.GetKeyDown("d"))
         {
-            taggedGameObjects = SetGameObject("Wheelchair");
+            SetGlobalGameObject("Wheelchair");
         }
         if (Input.GetKeyDown("f"))
         {
-            taggedGameObjects = SetGameObject("RollerSkates");
+            SetGlobalGameObject("RollerSkates");
         }
         if (Input.GetKeyDown("g"))
         {
-            taggedGameObjects = SetGameObject("Tram");
+            SetGlobalGameObject("Tram");
         }
         if (Input.GetKeyDown("h"))
         {
-            taggedGameObjects = SetGameObject("Runner");
+            SetGlobalGameObject("Runner");
         }
         if (Input.GetKeyDown("j"))
         {
-            taggedGameObjects = SetGameObject("OneWheel");
+            SetGlobalGameObject("OneWheel");
         }
         if (Input.GetKeyDown("k"))
         {
-            taggedGameObjects = SetGameObject("TrashTruck");
+            SetGlobalGameObject("TrashTruck");
         }
         #endregion
 
@@ -131,29 +131,19 @@ public class Tracker : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                taggedIndex--;
+                NextFollowTarget(-1);
                 Debug.Log("Left Arrow" + taggedIndex);              
             }
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                taggedIndex++;
+                NextFollowTarget(1);
                 Debug.Log("Right Arrow:" + taggedIndex);
             }
-
-            if(taggedIndex < 0)
-            {
-                taggedIndex = taggedGameObjects.Length - 1;
-            }
-            if(taggedIndex >= taggedGameObjects.Length)
-            {
-                taggedIndex = 0;
-            }
-
 
             //change view type by clicking space
             if (Input.GetKeyDown("space"))
             {
-                toggleViewType = !toggleViewType;
+                ChangeViewType();
             }
 
             newPosition = taggedGameObjects[taggedIndex].transform.position;
@@ -193,7 +183,7 @@ public class Tracker : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Debug.Log("Left Click");
-            //Vector3 hit = GetClickHit("ground");
+            Vector3 hit = GetClickHit("ground");
             //if(hit != Vector3.zero)
             //{
                 //target.transform.position = hit;
@@ -235,6 +225,36 @@ public class Tracker : MonoBehaviour
             taggedIndex = 0;
         }
         return array;
+    }
+
+    public void SetGlobalGameObject(string tag)
+    {
+        taggedGameObjects = SetGameObject(tag);
+    }
+
+    public void NextFollowTarget(int update)
+    {
+        if (followGameObject)
+        {
+            taggedIndex = taggedIndex + update;
+
+            if (taggedIndex < 0)
+            {
+                taggedIndex = taggedGameObjects.Length - 1;
+            }
+            if (taggedIndex >= taggedGameObjects.Length)
+            {
+                taggedIndex = 0;
+            }
+        }
+    }
+
+    public void ChangeViewType()
+    {
+        if (followGameObject)
+        {
+            toggleViewType = !toggleViewType;
+        }
     }
 
     Vector3 GetClickHit(string tag)
