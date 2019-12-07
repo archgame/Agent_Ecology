@@ -71,7 +71,7 @@ public class PedPassenger : MonoBehaviour
                     {
                         if (tram.GetComponent<Go>().MyPath[x].Load == true)
                         {
-                            Debug.Log("TO EIDE KAI THA PAEI 0");
+                           // Debug.Log("TO EIDE KAI THA PAEI 0");
                             gameObject.GetComponent<PUpDoff>().enabled = true;
                             gameObject.GetComponent<PedPassenger>().enabled = false;
                         }
@@ -80,10 +80,10 @@ public class PedPassenger : MonoBehaviour
 
                     if (x == 4)
                     {
-                        Debug.Log("4");
+                       // Debug.Log("4");
                         if (tram.GetComponent<Go>().MyPath[x].Load == true)
                         {
-                            Debug.Log("TO EIDE KAI THA PAEI 4");
+                            //Debug.Log("TO EIDE KAI THA PAEI 4");
                             gameObject.GetComponent<PUpDoff>().enabled = true;
                             gameObject.GetComponent<PedPassenger>().enabled = false;
                         }
@@ -95,7 +95,7 @@ public class PedPassenger : MonoBehaviour
                     {
                         if (tram.GetComponent<Go>().MyPath[x].Load == true)
                         {
-                            Debug.Log("TO EIDE KAI THA PAEI other");
+                            //Debug.Log("TO EIDE KAI THA PAEI other");
                             gameObject.GetComponent<PUpDoff>().enabled = true;
                             gameObject.GetComponent<PedPassenger>().enabled = false;
                         }
@@ -133,7 +133,7 @@ public class PedPassenger : MonoBehaviour
                 {
                     t = 0;
                 }
-                Debug.Log(this.name + " Change Target: " + t);
+                //Debug.Log(this.name + " Change Target: " + t);
                 target = targets[t];
                 agent.SetDestination(target.transform.position); //each frame set the agent's destination to the target position
 

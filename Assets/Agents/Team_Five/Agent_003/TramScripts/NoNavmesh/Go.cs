@@ -35,7 +35,7 @@ public class Go : MonoBehaviour
 
         if (MyPath == null)
         {
-            Debug.LogError("Movement Path cannot be null, I must have a path to follow.", gameObject);
+            //Debug.LogError("Movement Path cannot be null, I must have a path to follow.", gameObject);
             return;
         }
 
@@ -50,7 +50,7 @@ public class Go : MonoBehaviour
 
         if (pointInPath.Current == null)
         {
-            Debug.LogError("A path must have points in it to follow", gameObject);
+            //Debug.LogError("A path must have points in it to follow", gameObject);
             return;
         }
 
@@ -122,10 +122,10 @@ public class Go : MonoBehaviour
                     if (i <= MyPath.Length - 1)
                     {
                         MyPath[i].movingTo = 0;
-                        Debug.Log("i <= MyPath.Length");
+                        //Debug.Log("i <= MyPath.Length");
                         pointInPath = MyPath[i].GetNextPathPoint();
                         pointInPath.MoveNext();
-                        Debug.DrawRay(pointInPath.Current.position, Vector3.up * 10, Color.red, 2);
+                        //Debug.DrawRay(pointInPath.Current.position, Vector3.up * 10, Color.red, 2);
                         transform.position = pointInPath.Current.position;
                     }
 
