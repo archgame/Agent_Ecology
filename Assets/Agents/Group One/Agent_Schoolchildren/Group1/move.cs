@@ -61,7 +61,7 @@ public class move : MonoBehaviour
         foreach (GameObject go in Player)
         {
             float distance = Vector3.Distance(transform.position, go.transform.position);
-            Debug.Log("Distance: " + distance);
+            //Debug.Log("Distance: " + distance);
             if (!Doglover)
             {
 

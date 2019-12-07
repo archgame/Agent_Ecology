@@ -73,7 +73,7 @@ public class droneControlV3N : MonoBehaviour
         //      GetComponent<droneControlV2>().transform.position.y - h,
         //      GetComponent<droneControlV2>().transform.position.z);
 
-        Debug.Log("newlocaldroneendPos " + newlocaldroneendPos);
+        //Debug.Log("newlocaldroneendPos " + newlocaldroneendPos);
 
         //Debug.Log("localdronestartPos " + localdronestartPos);
         //Debug.Log("localdroneendPos " + localdroneendPos);
@@ -160,7 +160,7 @@ public class droneControlV3N : MonoBehaviour
 
             {
 
-                print(getGoods);
+                //print(getGoods);
                 pickUp = drone.transform.parent;
                 goods.transform.parent = drone.transform;
                 goods.transform.forward = drone.transform.forward;
@@ -176,7 +176,7 @@ public class droneControlV3N : MonoBehaviour
                 
                 transform.DetachChildren();
                 getGoods = false;
-                print("1");
+                //print("1");
             }
 
 

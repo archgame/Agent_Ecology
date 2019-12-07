@@ -62,10 +62,12 @@ public class Elderly : MonoBehaviour
         //Add Components
         g.transform.parent = this.gameObject.transform;
         g.transform.position = gameObject.transform.position;
-        gameObject.transform.DetachChildren();
+
+        g.transform.parent = null;
+        //gameObject.transform.DetachChildren();
 
 
-        avoidsphere.transform.parent = transform;
+        //avoidsphere.transform.parent = transform;
 
         //scale the gameobject randomly
         if (randomScale)

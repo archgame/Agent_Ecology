@@ -31,21 +31,29 @@ public class BusRider : MonoBehaviour
 
         target = FindNearest(targets);
 
-        //防止路上不小心经过bus stop
-        //没有爸爸才可以board
 
-        float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
 
-        if (3f > distanceToTarget && transform.parent==null) //have we reached our target
+        if (gameObject.transform.parent == null)
         {
-            board = true;
-            mode = "Bus";
+            float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
+
+            //防止路上不小心经过bus stop
+            //没有爸爸才可以board
+            if (3f > distanceToTarget && transform.parent == null) //have we reached our target
+            {
+                board = true;
+                mode = "Bus";
+            }
+            else
+            {
+                agent.SetDestination(target.transform.position);
+                board = false;
+            }
         }
-        else
-        {
-            agent.SetDestination(target.transform.position);
-            board = false;
-        }
+
+
+
+       
         return mode;
     }
 
