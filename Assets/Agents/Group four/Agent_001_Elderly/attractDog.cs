@@ -27,7 +27,8 @@ public class attractDog : MonoBehaviour
         float angle = Vector3.Angle(velocity, agent.velocity);
         if (angle < 90)  //angle < 90
         {
-            Debug.DrawRay(col.gameObject.transform.position, velocity, Color.green);
+            Debug.DrawRay(col.gameObject.transform.position, velocity, Color.black);
+            //Debug.Log("1111");
             agent.velocity += velocity;
         }
 

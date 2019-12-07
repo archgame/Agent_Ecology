@@ -17811,7 +17811,7 @@ PrefabInstance:
     - target: {fileID: 6994188294063769134, guid: 45b70db6f0a99564a88146ca985db2c8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -62.81
+      value: -66.68
       objectReference: {fileID: 0}
     - target: {fileID: 6994188294063769134, guid: 45b70db6f0a99564a88146ca985db2c8,
         type: 3}
@@ -36303,7 +36303,7 @@ PrefabInstance:
     - target: {fileID: 6994188294063769134, guid: 45b70db6f0a99564a88146ca985db2c8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -286.72
+      value: -157.85
       objectReference: {fileID: 0}
     - target: {fileID: 6994188294063769134, guid: 45b70db6f0a99564a88146ca985db2c8,
         type: 3}
@@ -36313,7 +36313,7 @@ PrefabInstance:
     - target: {fileID: 6994188294063769134, guid: 45b70db6f0a99564a88146ca985db2c8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -131.8
+      value: -197.1
       objectReference: {fileID: 0}
     - target: {fileID: 6994188294063769134, guid: 45b70db6f0a99564a88146ca985db2c8,
         type: 3}
@@ -36374,6 +36374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481875457518176395, guid: 45b70db6f0a99564a88146ca985db2c8,
+        type: 3}
+      propertyPath: tagName
+      value: Dog
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45b70db6f0a99564a88146ca985db2c8, type: 3}
