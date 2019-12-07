@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class Runner : MonoBehaviour
 {
     // Start is called before the first frame update
-    Transform target;
+    GameObject target;
     NavMeshAgent agent;
 
     [Header("Target info")]
@@ -33,12 +33,18 @@ public class Runner : MonoBehaviour
     public float zmin = 1;
     public float zmax = 1;
 
-    private int obstacles = 0;
+    //private int obstacles = 0;
 
     [Header("Day Night")]
 
     DayNightCycle timeScript; //from scrip daynight
     bool nightTime = true;
+
+   // [Header("Atractor")]
+    //Atractor atractorScript;
+
+
+
 
     //Star is called before the first frame update
     void Start()
@@ -64,11 +70,30 @@ public class Runner : MonoBehaviour
         {
             nightTime = true;
         }
+
+       //atractorScript = gameObject.GetComponentInChildren<Atractor>(); //Get Atractor script
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
+        //atractor controller
+        bool magnet = atractorScript.stay; 
+        if(magnet)
+        {
+            Debug.Log("Margner ON");
+        }
+
+        if(!magnet)
+        {
+            Debug.Log("Magnet OFF");
+        }
+
+        */
+
+
         //time control from scrip
         float now = timeScript.time;
         if (nightTime && now > 21600 && now < 72000) //daytime
@@ -114,9 +139,9 @@ public class Runner : MonoBehaviour
             } //if waiting
             else
             {
-                Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
+               // Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
-                float distancetoTarget = Vector3.Distance(agent.transform.position, target.position);
+                float distancetoTarget = Vector3.Distance(agent.transform.position, target.transform.position);
                 if (changeTargetDistance > distancetoTarget)
                 {
                     t++;
@@ -125,7 +150,7 @@ public class Runner : MonoBehaviour
                         t = 0;
                     }
                     //Debug.Log(this.name + "change Target: " + t);
-                    target = targets[t].transform;
+                    target = targets[t];
                     agent.SetDestination(target.transform.position);
 
                     waiting = true;
@@ -147,6 +172,7 @@ public class Runner : MonoBehaviour
 
     }
 
+    /*
     void OnTriggerEnter(Collider collision)
     {
         //Debug.Log("collision: " + collision.gameObject.name);
@@ -169,6 +195,8 @@ public class Runner : MonoBehaviour
             agent.isStopped = false;
         }
     }
+
+    */
 
     GameObject[] Shuffle(GameObject[] objects) 
     {
@@ -212,11 +240,14 @@ public class Runner : MonoBehaviour
         }
 
         //Debug.Log(this.name + hideFlags + " has " + targets.Length + "Target");
-
-        agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
-        t = 0;
-        target = targets[t].transform;
-        agent.SetDestination(target.position);
+        SetTarget(targets[t]);
     }
 
+    public void SetTarget(GameObject go)
+    {
+        agent = GetComponent<NavMeshAgent>(); //set the agent variable to this game object's navmesh
+        t = 0;
+        target = go;
+        agent.SetDestination(go.transform.position);
+    }
 }

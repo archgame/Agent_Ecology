@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WCDrawLine : MonoBehaviour
+public class DrawLine : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private LineRenderer lineRender;
+    // Start is called before the first frame update
+    private LineRenderer lineRender;
     private float counter;
     private float dist;
 
@@ -19,8 +19,8 @@ public class WCDrawLine : MonoBehaviour
         lineRender = GetComponent<LineRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Update is called once per frame
+    void Update()
 
     {
 
@@ -46,6 +46,6 @@ public class WCDrawLine : MonoBehaviour
         //lineRender.SetPosition(1, pointAlongLine);
         lineRender.SetPositions(new Vector3[] { pointA, pointB });
 
-        //}
-    }
+        //}
+    }
 }

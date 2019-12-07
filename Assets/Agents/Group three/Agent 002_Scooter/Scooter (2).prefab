@@ -570,7 +570,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 0.06
   m_BaseOffset: 0.05190707
-  m_WalkableMask: 12633
+  m_WalkableMask: 14681
   m_ObstacleAvoidanceType: 4
 --- !u!65 &7035924952150142421
 BoxCollider:
@@ -604,4 +604,3 @@ MonoBehaviour:
   ScooterAvaliable: 0
   ScooterPicked: 0
   ScooterIsStopped: 0
-  obstacles: 0

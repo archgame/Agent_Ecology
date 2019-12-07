@@ -106,7 +106,7 @@ public class RobotPickup : MonoBehaviour
             }
             if (distancePeopletoTargetList[i] < PeopleTargetDistance)
             {
-                Debug.Log("1111");
+                //Debug.Log("1111");
                 int rnd = Random.Range(5, 9);
                 int rnd1 = Random.Range(10, 14);
                 GameObject tempDrone = drones[rnd];

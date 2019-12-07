@@ -99,6 +99,8 @@ public class another: MonoBehaviour
 
                 if (waited > waitTime)
                 {
+                    cloest.transform.position = transform.position;
+                    cloest.transform.forward = transform.forward;
                     transform.SetParent(cloest.transform);
                     waited = 0;
                     gameObject.GetComponent<NavMeshAgent>().enabled = false;

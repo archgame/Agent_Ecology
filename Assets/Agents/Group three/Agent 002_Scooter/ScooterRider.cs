@@ -42,7 +42,7 @@ public class ScooterRider : MonoBehaviour
         //找到最近的scooter
         closestScooter = FindNearest(UnpickedScooters);
 
-        Debug.DrawLine(transform.position, closestScooter.transform.position, Color.red);
+        //Debug.DrawLine(transform.position, closestScooter.transform.position, Color.red);
         float dist = Vector3.Distance(transform.position, closestScooter.transform.position);
         if (dist > 1f)
         {
