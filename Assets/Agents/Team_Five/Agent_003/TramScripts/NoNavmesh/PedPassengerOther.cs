@@ -65,10 +65,14 @@ public class PedPassengerOther : MonoBehaviour
             {
                 waited += Time.deltaTime;
 
+                if(agent == null) { return; }
+                if(agent.enabled == false) { return; }
+
                 if (waited > 0 && agent.isStopped == true)
                 {
                     if (x == 0)
                     {
+                        if (tram.GetComponent<Go>() == null) { return; }
                         if (tram.GetComponent<Go>().MyPath[x].Load == true)
                         {
                             //Debug.Log("TO EIDE KAI THA PAEI 0");
@@ -80,7 +84,8 @@ public class PedPassengerOther : MonoBehaviour
 
                     if (x == 4)
                     {
-                       // Debug.Log("4");
+                        if (tram.GetComponent<Go>() == null) { return; }
+                        // Debug.Log("4");
                         if (tram.GetComponent<Go>().MyPath[x].Load == true)
                         {
                            // Debug.Log("TO EIDE KAI THA PAEI 4");
@@ -93,6 +98,11 @@ public class PedPassengerOther : MonoBehaviour
 
                     if (x != 0 && x != 4)
                     {
+                        if (tram.GetComponent<Go>() == null) { return; }
+                            //Debug.Log("null no Go: " + tram.name);
+                        Debug.Log("x" + x);
+                        Debug.Log("path link" + tram.GetComponent<Go>().MyPath.Length);
+                        
                         if (tram.GetComponent<Go>().MyPath[x].Load == true)
                         {
                             //Debug.Log("TO EIDE KAI THA PAEI other");

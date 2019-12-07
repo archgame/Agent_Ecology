@@ -118,6 +118,7 @@ public class RiderTargetGo : MonoBehaviour
         }
         if (obstacles == 0) //once there are zero obstacles, start the agent moving
         {
+            if(agent == null) { return; }
             agent.isStopped = false;
         }
     }
