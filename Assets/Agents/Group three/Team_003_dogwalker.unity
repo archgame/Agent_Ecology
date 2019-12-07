@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae218862aa893546906aa3a247cfdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastMobility: 
   mobilityType: 0
 --- !u!54 &41936563
 Rigidbody:
@@ -1749,13 +1750,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4da614557b0694ca6b9bc07d673b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRider: 0
   isTheBus: 1
   targetNames:
   - RID
   position: {x: 0, y: 0, z: 0}
   changeTargetDistance: 3
+  shuffleTargets: 1
   targets: []
+  waitTimeShortMin: 0
+  waitTimeShortMax: 0
+  waitTimeLongMin: 0
+  waitTimeLongMax: 0
   waitTime: 3
+  randomScale: 0
+  xmin: 1
+  xmax: 1
+  ymin: 1
+  ymax: 1
+  zmin: 1
+  zmax: 1
   TurningMultiplier: 1
   obstacles: 0
 --- !u!195 &145628261
@@ -4214,6 +4228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae218862aa893546906aa3a247cfdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastMobility: 
   mobilityType: 0
 --- !u!54 &326970785
 Rigidbody:
@@ -4773,6 +4788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae218862aa893546906aa3a247cfdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastMobility: 
   mobilityType: 0
 --- !u!54 &397545555
 Rigidbody:
@@ -5357,6 +5373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae218862aa893546906aa3a247cfdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastMobility: 
   mobilityType: 0
 --- !u!1 &475567532
 GameObject:
@@ -9143,6 +9160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae218862aa893546906aa3a247cfdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastMobility: 
   mobilityType: 0
 --- !u!54 &694863608
 Rigidbody:
@@ -10836,13 +10854,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4da614557b0694ca6b9bc07d673b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRider: 0
   isTheBus: 1
   targetNames:
   - MID
   position: {x: 0, y: 0, z: 0}
   changeTargetDistance: 3
+  shuffleTargets: 1
   targets: []
+  waitTimeShortMin: 0
+  waitTimeShortMax: 0
+  waitTimeLongMin: 0
+  waitTimeLongMax: 0
   waitTime: 3
+  randomScale: 0
+  xmin: 1
+  xmax: 1
+  ymin: 1
+  ymax: 1
+  zmin: 1
+  zmax: 1
   TurningMultiplier: 1
   obstacles: 0
 --- !u!195 &801522306
@@ -12769,7 +12800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7bf85cd0553174d9736363c1cbf57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 1
   BusStops: []
   AvailableScooters: []
 --- !u!1 &950341208
@@ -16061,6 +16091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae218862aa893546906aa3a247cfdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastMobility: 
   mobilityType: 0
 --- !u!54 &1207544173
 Rigidbody:
@@ -20459,6 +20490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae218862aa893546906aa3a247cfdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastMobility: 
   mobilityType: 0
 --- !u!54 &1536775655
 Rigidbody:
@@ -21272,7 +21304,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MIDbus: {fileID: 1999310783}
   ReMIDbus: {fileID: 1742362037}
-  Circlebus: {fileID: 656275259}
 --- !u!1 &1595358876
 GameObject:
   m_ObjectHideFlags: 0
@@ -23824,13 +23855,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4da614557b0694ca6b9bc07d673b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRider: 0
   isTheBus: 1
   targetNames:
   - RID
   position: {x: 0, y: 0, z: 0}
   changeTargetDistance: 3
+  shuffleTargets: 1
   targets: []
+  waitTimeShortMin: 0
+  waitTimeShortMax: 0
+  waitTimeLongMin: 0
+  waitTimeLongMax: 0
   waitTime: 3
+  randomScale: 0
+  xmin: 1
+  xmax: 1
+  ymin: 1
+  ymax: 1
+  zmin: 1
+  zmax: 1
   TurningMultiplier: 1
   obstacles: 0
 --- !u!195 &1742362039
@@ -25820,6 +25864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae218862aa893546906aa3a247cfdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastMobility: 
   mobilityType: 0
 --- !u!54 &1842423733
 Rigidbody:
@@ -27830,13 +27875,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4da614557b0694ca6b9bc07d673b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRider: 0
   isTheBus: 1
   targetNames:
   - MID
   position: {x: 0, y: 0, z: 0}
   changeTargetDistance: 3
+  shuffleTargets: 1
   targets: []
+  waitTimeShortMin: 0
+  waitTimeShortMax: 0
+  waitTimeLongMin: 0
+  waitTimeLongMax: 0
   waitTime: 3
+  randomScale: 0
+  xmin: 1
+  xmax: 1
+  ymin: 1
+  ymax: 1
+  zmin: 1
+  zmax: 1
   TurningMultiplier: 1
   obstacles: 0
 --- !u!195 &1999310785

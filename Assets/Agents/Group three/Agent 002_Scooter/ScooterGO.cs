@@ -7,7 +7,7 @@ public class ScooterGO : MonoBehaviour
 {
     NavMeshAgent agent;
     int t;
-    Transform target;
+    public Transform target;
     GameObject Rider;
 
     public GameObject[] targets;
@@ -18,7 +18,7 @@ public class ScooterGO : MonoBehaviour
     public bool ScooterPicked;
     public bool ScooterIsStopped;
 
-
+    float distanceToTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -81,28 +81,40 @@ public class ScooterGO : MonoBehaviour
             }
             else
             {
-                agent.speed = 5;
-                agent.acceleration = 5;
+                agent.speed = 8;
+                agent.acceleration = 12;
             }
 
             Rider = gameObject.transform.Find("Rider").gameObject;
-            agent.SetDestination(target.position);
-            //Debug.DrawLine(agent.transform.position,target.transform.position,Color.black);
-            float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
+            distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
             if (ReachTargetDistance > distanceToTarget) //have we reached our target
             {
+                //准备好scooter下次去的target
+
                 t++;
                 if (t == targets.Length)
                 {
                     t = 0;
-                }//准备好scooter下次去的target
+                }
+                target = targets[t].transform;
+
                 Rider.GetComponent<NavMeshAgent>().enabled = true;
+                Rider.GetComponent<MeshRenderer>().materials[0].color = new Color(42f / 255f, 58f / 255f, 231f / 255f); ;
                 Rider.transform.parent = null;
             }
+            else
+            {
+                agent.SetDestination(target.position);
+            }
+
 
         }
         else//没有Rider
         {
+            //Debug.DrawLine(agent.transform.position, target.transform.position, Color.black);
+
+
+
             agent.isStopped = true;
             ScooterAvaliable = true;
             //ScooterAvaliable = Switch(ScooterAvaliable,10);
@@ -125,4 +137,21 @@ public class ScooterGO : MonoBehaviour
         return objects;
     }
 
+    GameObject FindFarthest(GameObject[] targets)
+    {
+        GameObject farthest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject target in targets)
+        {
+            Vector3 diff = target.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance > distance)
+            {
+                farthest = target;
+                distance = curDistance;
+            }
+        }
+        return farthest;
+    }
 }
