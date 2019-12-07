@@ -42,21 +42,26 @@ public class ScooterRider : MonoBehaviour
         //找到最近的scooter
         closestScooter = FindNearest(UnpickedScooters);
 
-        //Debug.DrawLine(transform.position, closestScooter.transform.position, Color.red);
-        float dist = Vector3.Distance(transform.position, closestScooter.transform.position);
-        if (dist > 1f)
+        if(closestScooter!=null)
         {
-            agent.SetDestination(closestScooter.transform.position);
+            Debug.DrawLine(transform.position, closestScooter.transform.position, Color.red);
+
+            float dist = Vector3.Distance(transform.position, closestScooter.transform.position);
+            if (dist > 1f)
+            {
+                agent.SetDestination(closestScooter.transform.position);
+            }
+            else
+            {
+                transform.parent = closestScooter.transform;
+                Transform cube = closestScooter.transform.Find("Cube");
+                Vector3 StandingPoint = new Vector3(cube.position.x, transform.position.y + 0.2f, cube.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, StandingPoint, 1f);
+                GetComponent<NavMeshAgent>().enabled = false;
+                mode = "Scooter";
+            }
         }
-        else
-        {
-            transform.parent = closestScooter.transform;
-            Transform cube = closestScooter.transform.Find("Cube");
-            Vector3 StandingPoint = new Vector3(cube.position.x, transform.position.y + 0.2f, cube.position.z);
-            transform.position = Vector3.MoveTowards(transform.position, StandingPoint, 1f);
-            GetComponent<NavMeshAgent>().enabled = false;
-            mode = "Scooter";
-        }
+        
         return mode;
     }
 

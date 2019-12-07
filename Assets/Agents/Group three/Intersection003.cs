@@ -11,7 +11,6 @@ public class Intersection003 : MonoBehaviour
     [Header("Lights")]
     public GameObject[] trafficLights;
     public GameObject[] crosswalks;
-    float waited = 0;
 
 
     // Update is called once per frame
@@ -45,7 +44,7 @@ public class Intersection003 : MonoBehaviour
         crosswalks[2].SetActive(!l3);
         crosswalks[3].SetActive(!l4);
     }
-
+    float waited = 0;
     public bool Switch(bool ifswitchLights, float time)
     {
         //float waited = 0;
