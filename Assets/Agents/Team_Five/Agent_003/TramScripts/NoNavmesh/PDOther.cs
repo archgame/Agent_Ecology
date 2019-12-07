@@ -41,29 +41,29 @@ public class PDOther : MonoBehaviour
     {
         
         
-
-            if (tram.GetComponent<Go>().MyPath[i].Load == true)
+        if(tram.GetComponent<Go>() == null) { return; }
+        if (tram.GetComponent<Go>().MyPath[i].Load == true)
+        {
+            if (tram.GetComponent<Go>().waited > 2)
             {
-                if (tram.GetComponent<Go>().waited > 2)
+
+                gameObject.transform.position = Vector3.MoveTowards(transform.position, Bustarget.transform.position, PassengerSpeed * Time.deltaTime);
+                //Debug.Log("went to tram");                                      
+
+                if (tram.GetComponent<Go>().waited > 4)
                 {
+                //Debug.Log("parent on");
+                gameObject.transform.SetParent(Bustarget.transform);
+                gameObject.transform.localScale = new Vector3(x, y, z);
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+                gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                gameObject.GetComponent<Collider>().enabled = false;
 
-                  gameObject.transform.position = Vector3.MoveTowards(transform.position, Bustarget.transform.position, PassengerSpeed * Time.deltaTime);
-                  //Debug.Log("went to tram");                                      
-
-                  if (tram.GetComponent<Go>().waited > 4)
-                  {
-                    //Debug.Log("parent on");
-                    gameObject.transform.SetParent(Bustarget.transform);
-                    gameObject.transform.localScale = new Vector3(x, y, z);
-                    gameObject.GetComponent<MeshRenderer>().enabled = false;
-                    gameObject.GetComponent<NavMeshAgent>().enabled = false;
-                    gameObject.GetComponent<Collider>().enabled = false;
-
-
-                  }
 
                 }
+
             }
+        }
 
 
         if (tram.GetComponent<Go>().MyPath[i + ns].Load == true)
