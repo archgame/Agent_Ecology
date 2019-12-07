@@ -47,6 +47,12 @@ public class TrashTruck : MonoBehaviour
     DayNightCycle timeScript; //from scrip daynight
     bool nightTime = true;
 
+    [Header("Speeds")]
+    public float streetMin = 14;
+    public float streetMax = 16;
+    public float alleyMin = 8;
+    public float alleyMax = 10;
+
     #endregion
 
 
@@ -68,7 +74,7 @@ public class TrashTruck : MonoBehaviour
 
         timeScript = Camera.main.GetComponent<DayNightCycle>(); //get script DayNight
         float now = timeScript.time;
-        if (nightTime && now > 7200 && now < 72000) //daytime
+        if (nightTime && now > 7200 && now < 64800) //daytime
         {
             nightTime = false;
         }
@@ -76,6 +82,8 @@ public class TrashTruck : MonoBehaviour
         {
             nightTime = true;
         }
+
+        agent.speed = Random.Range(streetMin, streetMax);
     }
 
 
@@ -84,7 +92,7 @@ public class TrashTruck : MonoBehaviour
     {
         //time control from scrip
         float now = timeScript.time;
-        if (nightTime && now > 7200 && now < 72000) //daytime
+        if (nightTime && now > 7200 && now < 64800) //daytime
         {
             nightTime = false;
             targets = new GameObject[0];
@@ -92,7 +100,7 @@ public class TrashTruck : MonoBehaviour
         }
         if (!nightTime)
         {
-            if (now < 7200 || now > 72000) //nigh time
+            if (now < 7200 || now > 64800) //nigh time
             {
                 nightTime = true;
                 targets = new GameObject[0];
@@ -164,8 +172,8 @@ public class TrashTruck : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("alley")) //when it enters Alley, goes slow
         {
-           // Debug.Log("Slowdown");
-            agent.speed = 15;
+            // Debug.Log("Slowdown");
+            agent.speed = Random.Range(alleyMin, alleyMax);
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
@@ -181,7 +189,7 @@ public class TrashTruck : MonoBehaviour
         if (collision.gameObject.name.Contains("alley")) // when it exists Alley, goes faster
         {
             //Debug.Log("fast");
-            agent.speed = 20;
+            agent.speed = Random.Range(streetMin, streetMax);
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
