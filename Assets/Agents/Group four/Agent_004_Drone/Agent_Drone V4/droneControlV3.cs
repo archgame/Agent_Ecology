@@ -165,11 +165,11 @@ public class droneControlV3 : MonoBehaviour
                 getGoods = true;
             }
             
-            else if(goods.gameObject.CompareTag("dronetarget") && getGoods)
+            else if(goods.gameObject.CompareTag("dronetarget") && getGoods )
             {
                 
                 transform.DetachChildren();
-                getGoods = false;
+                //getGoods = false;
                 //print("1");
             }
 

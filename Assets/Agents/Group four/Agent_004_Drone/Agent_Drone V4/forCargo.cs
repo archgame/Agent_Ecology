@@ -46,7 +46,7 @@ public class forCargo : MonoBehaviour
         {
 
             //print("killllll");
-            Destroy(gameObject, 4f);
+            Destroy(gameObject, 6f);
         }
     }
 
