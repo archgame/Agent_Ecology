@@ -12,19 +12,14 @@ public class controlChild : MonoBehaviour
     {
         queueScript = GetComponent<NewQueue>();
         moveScript = GetComponent<move>();
-        if(queueScript != null)
-            queueScript.enabled = false;
-        if(moveScript != null)
-            moveScript.enabled = true;
+        queueScript.enabled = false;
+        moveScript.enabled = true;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //guard statement
-        if(moveScript == null || queueScript == null) { return; }
-
         if(moveScript.findFood == true && queueScript.finished == false)
         {
             moveScript.enabled = false;
