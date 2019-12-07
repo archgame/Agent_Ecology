@@ -73,7 +73,7 @@ public class Path : MonoBehaviour
             {
                 if (movingTo < PathSequence.Length - 1)
                 {
-                    Debug.Log("train moving");
+                    //Debug.Log("train moving");
                     movementDirection = 1;
                 }
                 else if (movingTo >= PathSequence.Length - 1)

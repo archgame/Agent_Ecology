@@ -97,7 +97,7 @@ public class Go : MonoBehaviour
         if (MyPath[i].Reached == true)
         {
             MyPath[i].Reached = false;
-            Debug.Log("Station");            
+            //Debug.Log("Station");            
 
             if (waiting == false)
             {
@@ -151,6 +151,22 @@ public class Go : MonoBehaviour
 
             }
 
+            //new delete?
+            if (MyPath[i].Load==true && i>0)
+            {
+                if (i != 1)
+                {
+                    MyPath[i - 1].Load = false;
+                }
+
+                else
+                {
+                    MyPath[MyPath.Length-1].Load = false;
+                    MyPath[i - 1].Load = false;
+                }
+            }
+
+            
            
         }
 

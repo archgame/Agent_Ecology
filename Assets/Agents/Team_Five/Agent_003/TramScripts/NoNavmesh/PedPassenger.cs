@@ -7,23 +7,26 @@ public class PedPassenger : MonoBehaviour
 {
     #region GLOBAL VARIABLES
     GameObject target;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
 
 
 
     public Vector3 position;
+    public GameObject tram;
 
     [Header("Target Info")]
     public float changeTargetDistance = 2;
     private int t;
     public GameObject[] targets;
+    public int x;
 
     [Header("Wait Times")]
     public float waitTimeStop = 0;
+    public float waitTimeTarget = 0;
 
 
     public float waitTime = 0;
-    private bool waiting = false;
+    private bool waiting = true;
     public float waited = 0;
 
 
@@ -47,7 +50,6 @@ public class PedPassenger : MonoBehaviour
         {
             position = target.transform.position;
             agent.SetDestination(position);
-
         }
 
         //original text if (!waiting) // (waiting == false) (1 == 0)
@@ -62,6 +64,45 @@ public class PedPassenger : MonoBehaviour
             else
             {
                 waited += Time.deltaTime;
+
+                if (waited > 0 && agent.isStopped ==true)
+                {
+                    if (x == 0)
+                    {
+                        if (tram.GetComponent<Go>().MyPath[x].Load == true)
+                        {
+                            Debug.Log("TO EIDE KAI THA PAEI 0");
+                            gameObject.GetComponent<PUpDoff>().enabled = true;
+                            gameObject.GetComponent<PedPassenger>().enabled = false;
+                        }
+
+                    }
+
+                    if (x == 4)
+                    {
+                        Debug.Log("4");
+                        if (tram.GetComponent<Go>().MyPath[x].Load == true)
+                        {
+                            Debug.Log("TO EIDE KAI THA PAEI 4");
+                            gameObject.GetComponent<PUpDoff>().enabled = true;
+                            gameObject.GetComponent<PedPassenger>().enabled = false;
+                        }
+
+
+                    }
+
+                    if (x != 0 && x != 4)
+                    {
+                        if (tram.GetComponent<Go>().MyPath[x].Load == true)
+                        {
+                            Debug.Log("TO EIDE KAI THA PAEI other");
+                            gameObject.GetComponent<PUpDoff>().enabled = true;
+                            gameObject.GetComponent<PedPassenger>().enabled = false;
+                        }
+
+
+                    }
+                }
             }
 
         } //if waiting
@@ -77,15 +118,14 @@ public class PedPassenger : MonoBehaviour
                 //type of stop
                 if (target.name.Contains("Station"))
                 {
-                    waitTime = waitTimeStop;
-                    gameObject.GetComponent<PedPassenger>().enabled = false;
-                    gameObject.GetComponent<PUpDoff>().enabled = true;
+                    waitTime = waitTimeStop;                
+
 
                 }
 
                 if (target.name.Contains("Target"))
                 {
-                    waitTime = 0;
+                    waitTime = waitTimeTarget;                   
                 }
 
                 t++;
