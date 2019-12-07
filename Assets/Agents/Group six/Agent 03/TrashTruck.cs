@@ -47,10 +47,20 @@ public class TrashTruck : MonoBehaviour
     DayNightCycle timeScript; //from scrip daynight
     bool nightTime = true;
 
+    [Header("Speeds")]
+    public float streetMin = 14;
+    public float streetMax = 16;
+    public float alleyMin = 8;
+    public float alleyMax = 10;
+
+    // Stop for Train and peddestrian
+    private int obstacles = 0;
+    private int trainsObstacles = 0;
+
     #endregion
 
 
-    //private int obstacles = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +78,7 @@ public class TrashTruck : MonoBehaviour
 
         timeScript = Camera.main.GetComponent<DayNightCycle>(); //get script DayNight
         float now = timeScript.time;
-        if (nightTime && now > 14400 && now < 57600) //daytime
+        if (nightTime && now > 7200 && now < 64800) //daytime
         {
             nightTime = false;
         }
@@ -76,6 +86,8 @@ public class TrashTruck : MonoBehaviour
         {
             nightTime = true;
         }
+
+        agent.speed = Random.Range(streetMin, streetMax);
     }
 
 
@@ -84,15 +96,33 @@ public class TrashTruck : MonoBehaviour
     {
         //time control from scrip
         float now = timeScript.time;
-        if (nightTime && now > 14400 && now < 57600) //daytime
+        float weekday = timeScript.days;
+        // days
+
+        if (nightTime && now > 7200 && now < 64800) //daytime
         {
+          
             nightTime = false;
-            targets = new GameObject[0];
-            GetTargets(new string[] { targetNames[1] });
+            // targets = new GameObject[0];
+            // GetTargets(new string[] { targetNames[1] });
+
+            if ((weekday == 0) || (weekday == 2) || (weekday == 4) ||( weekday == 6) ) // odd days
+            {
+                targets = new GameObject[0];
+                GetTargets(new string[] { targetNames[1] });
+               // Debug.Log("ODD days");
+            }
+            if ((weekday == 1) || (weekday == 3) || (weekday == 5) || (weekday == 7)) // odd days
+            {
+                targets = new GameObject[0];
+                GetTargets(new string[] { targetNames[2] });
+                //Debug.Log("Even Days");
+            }
+
         }
         if (!nightTime)
         {
-            if (now < 14400 || now > 57600) //nigh time
+            if (now < 7200 || now > 64800) //nigh time
             {
                 nightTime = true;
                 targets = new GameObject[0];
@@ -160,20 +190,37 @@ public class TrashTruck : MonoBehaviour
 
     }
 
-    /*
     void OnTriggerEnter(Collider collision)
     {
-        //Debug.Log("collision: " + collision.gameObject.name);
+        if (collision.gameObject.name.Contains("alley")) //when it enters Alley, goes slow
+        {
+            // Debug.Log("Slowdown");
+            agent.speed = Random.Range(alleyMin, alleyMax);
+        }
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
             obstacles++; //obstacles + 1 || or
         }
-            
+
+        //if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        if (collision.gameObject.tag == "Tram")
+        {
+            agent.isStopped = true;
+            trainsObstacles++; //obstacles + 1 || or
+        }
+
     }
+
     void OnTriggerExit(Collider collision)
     {
-        //Debug.Log("exited");
+        if (collision.gameObject.name.Contains("alley")) // when it exists Alley, goes faster
+        {
+            //Debug.Log("fast");
+            agent.speed = Random.Range(streetMin, streetMax);
+        }
+        // pedestrians
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             obstacles--;
@@ -182,25 +229,16 @@ public class TrashTruck : MonoBehaviour
         {
             agent.isStopped = false;
         }
-    }
 
-    */
-    void OnTriggerEnter(Collider alleycollision)
-    {
-        if (alleycollision.gameObject.name.Contains("alley")) //when it enters Alley, goes slow
+        //tramway stop
+
+        if (collision.gameObject.tag == "Tram")
         {
-            Debug.Log("Slowdown");
-            agent.speed = 15;
+            trainsObstacles--; //obstacles + 1 || or
         }
-
-    }
-
-    void OnTriggerExit(Collider alleycollision)
-    {
-        if (alleycollision.gameObject.name.Contains("alley")) // when it exists Alley, goes faster
+        if (trainsObstacles == 0)
         {
-            Debug.Log("fast");
-            agent.speed = 20;
+            agent.isStopped = false;
         }
     }
 

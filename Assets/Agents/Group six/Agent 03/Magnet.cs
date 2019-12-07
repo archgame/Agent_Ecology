@@ -7,28 +7,22 @@ public class Magnet : MonoBehaviour
 {
     void OnTriggerStay(Collider col)
     {
-        /*
-        if(col.gameObject.tag == "Agent")
-        {
-            Debug.Log("Stay" + col.gameObject.name);
-        }
-        */
-        
+
         //guard statement
         if(col.gameObject.tag != "Runner") { return; }
         // code goes here
-        Debug.Log("Stay" + col.gameObject.name);
+       // Debug.Log("Stay" + col.gameObject.name);
 
         NavMeshAgent agent = col.gameObject.GetComponent<NavMeshAgent>();
         if(agent == null) { return; }
         float speed = agent.velocity.magnitude * Time.deltaTime;
         Vector3 direction = col.gameObject.transform.position - transform.position;
-        Vector3 velocity = direction * speed*0.75f;
+        Vector3 velocity = direction * speed*0.1f;
 
         float angle = Vector3.Angle(velocity, agent.velocity);
-        if( angle < 90)
+        if( angle < 180)
         {
-            Debug.DrawRay(col.gameObject.transform.position, direction, Color.green);
+           // Debug.DrawRay(col.gameObject.transform.position, direction, Color.green);
             agent.velocity += velocity;
         }
         
