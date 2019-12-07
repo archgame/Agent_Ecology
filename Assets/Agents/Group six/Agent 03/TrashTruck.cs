@@ -50,7 +50,7 @@ public class TrashTruck : MonoBehaviour
     #endregion
 
 
-    //private int obstacles = 0;
+    private int obstacles = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +68,7 @@ public class TrashTruck : MonoBehaviour
 
         timeScript = Camera.main.GetComponent<DayNightCycle>(); //get script DayNight
         float now = timeScript.time;
-        if (nightTime && now > 14400 && now < 57600) //daytime
+        if (nightTime && now > 7200 && now < 72000) //daytime
         {
             nightTime = false;
         }
@@ -84,7 +84,7 @@ public class TrashTruck : MonoBehaviour
     {
         //time control from scrip
         float now = timeScript.time;
-        if (nightTime && now > 14400 && now < 57600) //daytime
+        if (nightTime && now > 7200 && now < 72000) //daytime
         {
             nightTime = false;
             targets = new GameObject[0];
@@ -92,7 +92,7 @@ public class TrashTruck : MonoBehaviour
         }
         if (!nightTime)
         {
-            if (now < 14400 || now > 57600) //nigh time
+            if (now < 7200 || now > 72000) //nigh time
             {
                 nightTime = true;
                 targets = new GameObject[0];
@@ -160,20 +160,30 @@ public class TrashTruck : MonoBehaviour
 
     }
 
-    /*
     void OnTriggerEnter(Collider collision)
     {
-        //Debug.Log("collision: " + collision.gameObject.name);
+        if (collision.gameObject.name.Contains("alley")) //when it enters Alley, goes slow
+        {
+           // Debug.Log("Slowdown");
+            agent.speed = 15;
+        }
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
             obstacles++; //obstacles + 1 || or
         }
-            
+
     }
+
     void OnTriggerExit(Collider collision)
     {
-        //Debug.Log("exited");
+        if (collision.gameObject.name.Contains("alley")) // when it exists Alley, goes faster
+        {
+            //Debug.Log("fast");
+            agent.speed = 20;
+        }
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             obstacles--;
@@ -181,26 +191,6 @@ public class TrashTruck : MonoBehaviour
         if (obstacles == 0)
         {
             agent.isStopped = false;
-        }
-    }
-
-    */
-    void OnTriggerEnter(Collider alleycollision)
-    {
-        if (alleycollision.gameObject.name.Contains("alley")) //when it enters Alley, goes slow
-        {
-            Debug.Log("Slowdown");
-            agent.speed = 15;
-        }
-
-    }
-
-    void OnTriggerExit(Collider alleycollision)
-    {
-        if (alleycollision.gameObject.name.Contains("alley")) // when it exists Alley, goes faster
-        {
-            Debug.Log("fast");
-            agent.speed = 20;
         }
     }
 
