@@ -38,8 +38,8 @@ public class WCDrawLine : MonoBehaviour
         //float x = Mathf.Lerp(0, dist, counter);
         Vector3 pointA = origin.transform.position;
         Vector3 pointB = destination.transform.position;
-        Debug.Log("pointA " + origin.name + "," + pointA);
-        Debug.Log("pointB " + destination.name + "," + pointB);
+        //Debug.Log("pointA " + origin.name + "," + pointA);
+        //Debug.Log("pointB " + destination.name + "," + pointB);
         //Debug.DrawLine(pointA, pointB, Color.magenta);
         //Vector3 pointAlongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
         //Vector3 pointAlongLine = pointA - pointB;
