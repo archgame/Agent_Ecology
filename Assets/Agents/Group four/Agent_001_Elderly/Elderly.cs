@@ -143,6 +143,21 @@ public class Elderly : MonoBehaviour
         {
             agent.isStopped = false;
         }
+
+        int CrosswalkArea2 = 1 << NavMesh.GetAreaFromName("TramwayCrosswalk");
+        //Debug.Log("Crosswalk " + CrosswalkArea);
+        if (CrosswalkArea2 == navHit.mask)
+        {
+            agent.isStopped = false;
+        }
+
+        int CrosswalkArea1 = 1 << NavMesh.GetAreaFromName("BikelaneCrosswalk");
+        //Debug.Log("Crosswalk " + CrosswalkArea);
+        if (CrosswalkArea1 == navHit.mask)
+        {
+            agent.isStopped = false;
+        }
+
         else
         {
 
