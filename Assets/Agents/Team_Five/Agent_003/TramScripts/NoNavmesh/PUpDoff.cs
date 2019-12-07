@@ -42,40 +42,46 @@ public class PUpDoff : MonoBehaviour
 
         if (tram.GetComponent<Go>().MyPath[i].Load== true)
         {
+           
             
-            gameObject.transform.position = Vector3.MoveTowards(transform.position, Bustarget.transform.position, PassengerSpeed * Time.deltaTime);
-           //Debug.Log("went to tram");                                      
 
-            if (tram.GetComponent<Go>().ReadyToGo == true)
-            {
-                //Debug.Log("parent on");
-                gameObject.transform.SetParent(Bustarget.transform);
-                gameObject.transform.localScale = new Vector3 (x,y,z);
-                gameObject.GetComponent<MeshRenderer>().enabled = false;
-                gameObject.GetComponent<NavMeshAgent>().enabled = false;
-                gameObject.GetComponent<Collider>().enabled = false;
-               
+                gameObject.transform.position = Vector3.MoveTowards(transform.position, Bustarget.transform.position, PassengerSpeed * Time.deltaTime);
+                //Debug.Log("went to tram");                                      
 
-            }
+                if (tram.GetComponent<Go>().ReadyToGo == true)
+                {
+                    //Debug.Log("parent on");
+                    gameObject.transform.SetParent(Bustarget.transform);
+                    gameObject.transform.localScale = new Vector3(x, y, z);
+                    gameObject.GetComponent<MeshRenderer>().enabled = false;
+                    gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                    gameObject.GetComponent<Collider>().enabled = false;
+
+
+                }
+            
 
         }
 
 
         if (tram.GetComponent<Go>().MyPath[i+ns].Load== true)
         {
-            //Debug.Log("reached drop off");
-            gameObject.transform.SetParent(null);
-            gameObject.transform.localScale = new Vector3(x, y, z);
-            gameObject.GetComponent<PedPassenger>().enabled = true;
-            gameObject.GetComponent<MeshRenderer>().enabled = true;
-            gameObject.GetComponent<Collider>().enabled = true;
-            //gameObject.transform.position = Vector3.MoveTowards(transform.position, Stoptarget.transform.position, PassengerSpeed * Time.deltaTime);
-            gameObject.GetComponent<NavMeshAgent>().enabled = true;
-            gameObject.GetComponent<PedPassenger>().agent.isStopped = false;
-            gameObject.GetComponent<PedPassenger>().agent.SetDestination(Stoptarget.transform.position);
+            
+            
+                //Debug.Log("reached drop off");
+                gameObject.transform.SetParent(null);
+                gameObject.transform.localScale = new Vector3(x, y, z);
+                gameObject.GetComponent<PedPassenger>().enabled = true;
+                gameObject.GetComponent<MeshRenderer>().enabled = true;
+                gameObject.GetComponent<Collider>().enabled = true;
+                //gameObject.transform.position = Vector3.MoveTowards(transform.position, Stoptarget.transform.position, PassengerSpeed * Time.deltaTime);
+                gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                gameObject.GetComponent<PedPassenger>().agent.isStopped = false;
+                gameObject.GetComponent<PedPassenger>().agent.SetDestination(Stoptarget.transform.position);
 
-            gameObject.GetComponent<PedPassenger>().waited = gameObject.GetComponent<PedPassenger>().waitTimeStop;
-            gameObject.GetComponent<PedPassenger>().waitTime = 0;
+                gameObject.GetComponent<PedPassenger>().waited = gameObject.GetComponent<PedPassenger>().waitTimeStop;
+                gameObject.GetComponent<PedPassenger>().waitTime = 0;
+            
             
             tram.GetComponent<Go>().MyPath[i].Load = false; // new delete?
 
