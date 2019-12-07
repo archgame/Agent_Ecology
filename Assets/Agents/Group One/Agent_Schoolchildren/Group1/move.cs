@@ -35,39 +35,11 @@ public class move : MonoBehaviour
 
         //scale the gameobject randomly
 
-        /*
-        if (randomScale)
-        {
-            float x = Random.Range(xmin, xmax);
-            float y = Random.Range(ymin, ymax);
-            float z = Random.Range(zmin, zmax);
-            transform.localScale = new Vector3(x, y, z);
-        }
-        */
-
         //grab targets using tags
         if (targets.Length == 0)
         {
             //get all game objects tagged with "Target"
             targets = GameObject.FindGameObjectsWithTag("childtargets");
-
-            /*
-            List<GameObject> targetList = new List<GameObject>();           
-            foreach(GameObject go in targets) //search all "Target" game objects
-            {
-                //Debug.Log("go: " + go.name);
-                foreach (string targetName in targetNames)
-                {
-                    //Debug.Log("targetName: " + targetName);
-                    // "Target" contains: "Tar", "Targ", "get", ! "Trgt"
-                    if (go.name.Contains(targetName)) //if GameObject has the same name as targetName, add to list
-                    {
-                        targetList.Add(go);
-                    }
-                }
-            }
-            targets = targetList.ToArray(); //Convert List to Array, because other code is still using array
-            */
         }
 
         //shuffle targets
@@ -89,7 +61,7 @@ public class move : MonoBehaviour
         foreach (GameObject go in Player)
         {
             float distance = Vector3.Distance(transform.position, go.transform.position);
-            Debug.Log("Distance: " + distance);
+            //Debug.Log("Distance: " + distance);
             if (!Doglover)
             {
 
@@ -112,65 +84,54 @@ public class move : MonoBehaviour
                     Vector3 dirToPlayer = transform.position - go.transform.position;
                     Vector3 newPos2 = transform.position - dirToPlayer;
                     agent.SetDestination(newPos2);
-                    
                 }
-                
+
             }
             //original text if (!waiting) // (waiting == false) (1 == 0)
             if (waiting) // (waiting == false) (1 == 0)
-        {
-            if (waited > waitTime)
             {
-                waiting = false;
-                agent.isStopped = false;
-                waited = 0;
-            }
-            else
-            {
-                waited += Time.deltaTime;
-            }
-
-        } //if waiting
-        else
-        {
-            //see agent's next destination
-            Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
-
-            float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
-            //change target once it is reached
-            if (changeTargetDistance > distanceToTarget) //have we reached our target
-            {
-                if (target.name.Contains("nearFoodTruck") && findFood == false)
+                if (waited > waitTime)
                 {
-                    findFood = true;
+                    waiting = false;
+                    agent.isStopped = false;
+                    waited = 0;
                 }
                 else
                 {
-                    t++;
-                    if (t == targets.Length)
-                    {
-                        t = 0;
-                    }
-                    //Debug.Log(this.name + " Change Target: " + t);
-                    target = targets[t].transform;
-                    agent.SetDestination(target.position); //each frame set the agent's destination to the target position
-
-                    waiting = true;
-                    agent.isStopped = true;
+                    waited += Time.deltaTime;
                 }
-            } // changeTargetDistance test
-        }
 
-       
-            /*
-            if (Doglover)
+            } //if waiting
+            else
             {
-                if (distance <EnemyDistanceRun )
-                {
+                //see agent's next destination
+                Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
-                }
+                float distanceToTarget = Vector3.Distance(agent.transform.position, target.position);
+                //change target once it is reached
+                if (changeTargetDistance > distanceToTarget) //have we reached our target
+                {
+                    if (target.name.Contains("nearFoodTruck") && findFood == false)
+                    {
+                        findFood = true;
+                    }
+                    else
+                    {
+                        t++;
+                        if (t == targets.Length)
+                        {
+                            t = 0;
+                        }
+                        //Debug.Log(this.name + " Change Target: " + t);
+                        target = targets[t].transform;
+                        agent.SetDestination(target.position); //each frame set the agent's destination to the target position
+
+                        waiting = true;
+                        agent.isStopped = true;
+                    }
+                } // changeTargetDistance test
             }
-            */
+
         }
 
 
@@ -179,11 +140,11 @@ public class move : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
         Debug.Log("collision: " + collision.gameObject.name);
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
             obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
-        }       
+        }
     }
 
     void OnTriggerExit(Collider collision)

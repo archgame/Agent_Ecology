@@ -169,7 +169,7 @@ public class droneControlV3 : MonoBehaviour
             {
                 
                 transform.DetachChildren();
-                getGoods = false;
+                //getGoods = false;
                 //print("1");
             }
 

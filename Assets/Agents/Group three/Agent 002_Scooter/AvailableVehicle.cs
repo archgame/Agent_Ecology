@@ -27,6 +27,8 @@ public class AvailableVehicle : MonoBehaviour
         //找到所有avaliable scooter
         foreach (GameObject Scooter in Scooters)
         {
+            if(Scooter == null) { return; }
+            if(Scooter.GetComponent<ScooterGO>() == null) { return; }
             if (Scooter.GetComponent<ScooterGO>().ScooterAvaliable)
             {
                 ScooterList.Add(Scooter);

@@ -78,7 +78,7 @@ public class Tracker : MonoBehaviour
         }
         if (Input.GetKeyDown("a"))
         {
-            SetGlobalGameObject("Scooter");
+            SetGlobalGameObject("Riders");
         }
         if (Input.GetKeyDown("e"))
         {
