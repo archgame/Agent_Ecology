@@ -78,6 +78,64 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &4062121019823738533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3891723119999231610}
+  - component: {fileID: 8490948363873636765}
+  - component: {fileID: 8599772261719677349}
+  m_Layer: 0
+  m_Name: Magnet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3891723119999231610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062121019823738533}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.11803818, y: 0.2744717, z: -0.13}
+  m_LocalScale: {x: 1, y: 0.83333325, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7962548156717066720}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8490948363873636765
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062121019823738533}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 6
+  m_Height: 0.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8599772261719677349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062121019823738533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4921c7300168cca41b993ff631ea3592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4905232261377802961
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +262,7 @@ Transform:
   m_Children:
   - {fileID: 5017682644683402313}
   - {fileID: 1171305401401516340}
+  - {fileID: 3891723119999231610}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -249,6 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc141565aa8ebb343be7e61e7c563612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetNames: []
   targets:
   - {fileID: 0}
   - {fileID: 0}
@@ -256,6 +316,7 @@ MonoBehaviour:
   - {fileID: 0}
   changeTargetDistance: 3
   shuffletargets: 0
+  waitTime: 0
   randomScale: 1
   xmin: 0.5
   xmax: 1.25
