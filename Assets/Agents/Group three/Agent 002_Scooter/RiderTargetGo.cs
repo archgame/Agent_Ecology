@@ -111,7 +111,7 @@ public class RiderTargetGo : MonoBehaviour
 
     void OnTriggerExit(Collider collision)
     {
-        Debug.Log(obstacles);
+       // Debug.Log(obstacles);
         if (obstacles < 0)
         {
             obstacles = 0;

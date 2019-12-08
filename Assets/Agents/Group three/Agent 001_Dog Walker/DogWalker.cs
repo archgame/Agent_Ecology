@@ -82,7 +82,7 @@ public class DogWalker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distance = 6;
+        distance = 10;
         float dist = Vector3.Distance(from.transform.position, transform.position);
         //Debug.Log(dist);
         if (dist > distance)

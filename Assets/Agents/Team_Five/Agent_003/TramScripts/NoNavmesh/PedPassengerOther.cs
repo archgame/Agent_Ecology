@@ -45,112 +45,117 @@ public class PedPassengerOther : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (target.transform.position != position)
+        if (agent.GetComponent<NavMeshAgent>().enabled == true)
         {
-            position = target.transform.position;
-            agent.SetDestination(position);
-        }
-
-        //original text if (!waiting) // (waiting == false) (1 == 0)
-        if (waiting) // (waiting == false) (1 == 0)
-        {
-            if (waited > waitTime)
+            if (target.transform.position != position)
             {
-                waiting = false;
-                agent.isStopped = false;
-                waited = 0;
+                position = target.transform.position;
+                agent.SetDestination(position);
             }
+
+            //original text if (!waiting) // (waiting == false) (1 == 0)
+            if (waiting) // (waiting == false) (1 == 0)
+            {
+                if (waited > waitTime)
+                {
+                    waiting = false;
+                    agent.isStopped = false;
+                    waited = 0;
+                }
+                else
+                {
+                    waited += Time.deltaTime;
+
+                    if (agent == null) { return; }
+                    if (agent.enabled == false) { return; }
+
+                    if (waited > 0 && agent.isStopped == true)
+                    {
+                        if (x == 0)
+                        {
+                            if (tram.GetComponent<Go>() == null) { return; }
+                            if (tram.GetComponent<Go>().MyPath[x].Load == true)
+                            {
+                                //Debug.Log("TO EIDE KAI THA PAEI 0");
+                                gameObject.GetComponent<PDOther>().enabled = true;
+                                gameObject.GetComponent<PedPassengerOther>().enabled = false;
+                            }
+
+                        }
+
+                        if (x == 4)
+                        {
+                            if (tram.GetComponent<Go>() == null) { return; }
+                            // Debug.Log("4");
+                            if (tram.GetComponent<Go>().MyPath[x].Load == true)
+                            {
+                                // Debug.Log("TO EIDE KAI THA PAEI 4");
+                                gameObject.GetComponent<PDOther>().enabled = true;
+                                gameObject.GetComponent<PedPassengerOther>().enabled = false;
+                            }
+
+
+                        }
+
+                        if (x != 0 && x != 4)
+                        {
+                            if (tram.GetComponent<Go>() == null) { return; }
+                            //Debug.Log("null no Go: " + tram.name);
+                            //Debug.Log("x" + x);
+                            //Debug.Log("path link" + tram.GetComponent<Go>().MyPath.Length);
+
+                            if (tram.GetComponent<Go>().MyPath[x].Load == true)
+                            {
+                                //Debug.Log("TO EIDE KAI THA PAEI other");
+                                gameObject.GetComponent<PDOther>().enabled = true;
+                                gameObject.GetComponent<PedPassengerOther>().enabled = false;
+                            }
+
+
+                        }
+                    }
+                }
+
+            } //if waiting
             else
             {
-                waited += Time.deltaTime;
+                //see agent's next destination
+                Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
 
-                if(agent == null) { return; }
-                if(agent.enabled == false) { return; }
-
-                if (waited > 0 && agent.isStopped == true)
+                float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
+                //change target once it is reached
+                if (changeTargetDistance > distanceToTarget) //have we reached our target
                 {
-                    if (x == 0)
+                    //type of stop
+                    if (target.name.Contains("Station"))
                     {
-                        if (tram.GetComponent<Go>() == null) { return; }
-                        if (tram.GetComponent<Go>().MyPath[x].Load == true)
-                        {
-                            //Debug.Log("TO EIDE KAI THA PAEI 0");
-                            gameObject.GetComponent<PDOther>().enabled = true;
-                            gameObject.GetComponent<PedPassengerOther>().enabled = false;
-                        }
-
-                    }
-
-                    if (x == 4)
-                    {
-                        if (tram.GetComponent<Go>() == null) { return; }
-                        // Debug.Log("4");
-                        if (tram.GetComponent<Go>().MyPath[x].Load == true)
-                        {
-                           // Debug.Log("TO EIDE KAI THA PAEI 4");
-                            gameObject.GetComponent<PDOther>().enabled = true;
-                            gameObject.GetComponent<PedPassengerOther>().enabled = false;
-                        }
+                        waitTime = waitTimeStop;
 
 
                     }
 
-                    if (x != 0 && x != 4)
+                    if (target.name.Contains("Target"))
                     {
-                        if (tram.GetComponent<Go>() == null) { return; }
-                            //Debug.Log("null no Go: " + tram.name);
-                        Debug.Log("x" + x);
-                        Debug.Log("path link" + tram.GetComponent<Go>().MyPath.Length);
-                        
-                        if (tram.GetComponent<Go>().MyPath[x].Load == true)
-                        {
-                            //Debug.Log("TO EIDE KAI THA PAEI other");
-                            gameObject.GetComponent<PDOther>().enabled = true;
-                            gameObject.GetComponent<PedPassengerOther>().enabled = false;
-                        }
-
-
+                        waitTime = waitTimeTarget;
                     }
-                }
+
+                    t++;
+                    if (t == targets.Length)
+                    {
+                        t = 0;
+                    }
+                    //Debug.Log(this.name + " Change Target: " + t);
+                    target = targets[t];
+                    if (agent.GetComponent<NavMeshAgent>().enabled == true)
+                    {
+                        agent.SetDestination(target.transform.position); //each frame set the agent's destination to the target position
+
+                        waiting = true;
+                        agent.isStopped = true;
+                    }
+
+                } // changeTargetDistance test
             }
-
-        } //if waiting
-        else
-        {
-            //see agent's next destination
-            Debug.DrawLine(transform.position, agent.steeringTarget, Color.black);
-
-            float distanceToTarget = Vector3.Distance(agent.transform.position, target.transform.position);
-            //change target once it is reached
-            if (changeTargetDistance > distanceToTarget) //have we reached our target
-            {
-                //type of stop
-                if (target.name.Contains("Station"))
-                {
-                    waitTime = waitTimeStop;
-
-
-                }
-
-                if (target.name.Contains("Target"))
-                {
-                    waitTime = waitTimeTarget;
-                }
-
-                t++;
-                if (t == targets.Length)
-                {
-                    t = 0;
-                }
-                //Debug.Log(this.name + " Change Target: " + t);
-                target = targets[t];
-                agent.SetDestination(target.transform.position); //each frame set the agent's destination to the target position
-
-                waiting = true;
-                agent.isStopped = true;
-
-            } // changeTargetDistance test
         }
     }
 

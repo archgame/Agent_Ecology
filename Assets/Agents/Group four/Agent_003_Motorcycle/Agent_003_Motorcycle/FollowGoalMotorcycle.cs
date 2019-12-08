@@ -30,46 +30,7 @@ public class FollowGoalMotorcycle : MonoBehaviour {
 		this.transform.Translate(0,0,speed*Time.deltaTime);
 	}
 
-    void OnTriggerEnter(Collider collision)
-    {
-        //Debug.Log("collision: " + collision.gameObject.name);
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
-        {
-          
-            agent.isStopped = true;
-            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
-        }
-        /*if (collision.gameObject.name.Contains("RedLight"))
-        {
   
-            agent.isStopped = true;
-            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
-        }
-        if (collision.gameObject.name.Contains("GreenLight"))
-        {
-            obstacles--; //count as obstacle removal
-            if (obstacles == 0) //once there are zero obstacles, start the agent moving
-            {
-                agent.isStopped = false;
-            }
-        }*/
-    }
-
-    void OnTriggerExit(Collider collision)
-    {
-        //Debug.Log("exited");
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
-        {
-            obstacles--; //obstacles = obstacles - 1; || obstacles -= 1;
-        }
-        if (obstacles == 0) //once there are zero obstacles, start the agent moving
-        {
-            if (agent != null)
-            {
-                agent.isStopped = false;
-            }
-        }
-    }
 
     private int obstacles = 0;
 }

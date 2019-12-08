@@ -117,7 +117,7 @@ public class Go : MonoBehaviour
                     
                     i = i + 1;
                     
-                    Debug.Log(" i = i + 1");
+                    //Debug.Log(" i = i + 1");
 
                     if (i <= MyPath.Length - 1)
                     {

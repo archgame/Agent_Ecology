@@ -82,7 +82,7 @@ public class socialDog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distance = 5;
+        distance = 10;
         float dist = Vector3.Distance(from.transform.position, transform.position);
         //Debug.Log(dist);
         if (dist > distance)

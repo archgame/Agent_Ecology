@@ -219,32 +219,10 @@ public class Motorcycle : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collision)
-    {
-        //Debug.Log("collision: " + collision.gameObject.name);
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
-        {
-            agent.isStopped = true;
-            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
-        }
-        /*if (collision.gameObject.name.Contains("RedLight"))
-        {
-            agent.isStopped = true;
-            obstacles++; // obstacles = obstacles + 1; || obstacles += 1;
-        }
-        if (collision.gameObject.name.Contains("GreenLight"))
-        {
-            obstacles--; //count as obstacle removal
-            if (obstacles == 0) //once there are zero obstacles, start the agent moving
-            {
-                agent.isStopped = false;
-            }
-        }*/
-    }
+
 
     
 
-    private int obstacles = 0;
 
     GameObject[] Shuffle(GameObject[] objects)
     {

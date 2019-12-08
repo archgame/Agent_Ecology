@@ -30,7 +30,7 @@ public class NewQueue : MonoBehaviour
     {
         foodTrucks = GameObject.FindGameObjectsWithTag("IceCreamTruck");
         foodTruck = GetClosestTruck(foodTrucks);
-        Debug.DrawLine(transform.position, foodTruck.transform.position, Color.green, 10f);
+        //Debug.DrawLine(transform.position, foodTruck.transform.position, Color.green, 10f);
 
         //board = GameObject.FindGameObjectWithTag("board");
         getBoard = foodTruck.GetComponent<Board>();

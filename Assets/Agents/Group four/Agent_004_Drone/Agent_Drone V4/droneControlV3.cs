@@ -74,7 +74,7 @@ public class droneControlV3 : MonoBehaviour
         //      GetComponent<droneControlV2>().transform.position.y - h,
         //      GetComponent<droneControlV2>().transform.position.z);
 
-        Debug.Log("newlocaldroneendPos " + newlocaldroneendPos);
+       // Debug.Log("newlocaldroneendPos " + newlocaldroneendPos);
        
         //Debug.Log("localdronestartPos " + localdronestartPos);
         //Debug.Log("localdroneendPos " + localdroneendPos);

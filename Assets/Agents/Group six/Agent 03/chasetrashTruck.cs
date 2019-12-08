@@ -10,7 +10,7 @@ public class chasetrashTruck : MonoBehaviour
     {
         //guard statement
         if (col.gameObject.tag != "Dog") { return; }
-        Debug.Log("Stay: " + col.gameObject.name);
+       // Debug.Log("Stay: " + col.gameObject.name);
 
         NavMeshAgent agent = col.gameObject.GetComponent<NavMeshAgent>();
         if (agent == null) { return; }
@@ -18,7 +18,7 @@ public class chasetrashTruck : MonoBehaviour
         float speed = agent.velocity.magnitude * Time.deltaTime;
         Vector3 direction = transform.position - col.gameObject.transform.position;
 
-        Vector3 velocity = direction * speed * 0.1f;
+        Vector3 velocity = direction * speed * 0.2f;
         float angle = Vector3.Angle(velocity, agent.velocity);
         if (angle < 90)
         {

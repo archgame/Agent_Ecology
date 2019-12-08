@@ -139,7 +139,7 @@ public class move : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("collision: " + collision.gameObject.name);
+       // Debug.Log("collision: " + collision.gameObject.name);
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             agent.isStopped = true;
@@ -149,7 +149,7 @@ public class move : MonoBehaviour
 
     void OnTriggerExit(Collider collision)
     {
-        Debug.Log("exited");
+       // Debug.Log("exited");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pedestrian"))
         {
             obstacles--; //obstacles = obstacles - 1; || obstacles -= 1;

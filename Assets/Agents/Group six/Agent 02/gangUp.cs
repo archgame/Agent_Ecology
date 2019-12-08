@@ -100,21 +100,29 @@ public class gangUp : MonoBehaviour
 
     void OnTriggerStay(Collider collision)
     {
+        
+
         if (wheelNumber == wheelerNumber)
         {
             strike = true;
             //Debug.Log("STRIKE");
             alphamade.GetComponent<GoForRoller>().GO = enabled;
 
-            if (collision.gameObject.GetComponent<GoForRoller>().alpha == false)
+            if (collision.gameObject.GetComponent<GoForRoller>() != null)
             {
-                collision.gameObject.GetComponent<GoForRoller>().GO = true;
+                if (collision.gameObject.GetComponent<GoForRoller>().alpha == false)
+                {
+                    collision.gameObject.GetComponent<GoForRoller>().GO = true;
+                }
             }
         }
 
-        
-        if (collision.gameObject.GetComponent<GoForRoller>().alpha == false)
-            collision.gameObject.GetComponent<GoForRoller>().leader = theleader;
+
+        if (collision.gameObject.GetComponent<GoForRoller>() != null)
+        {
+            if (collision.gameObject.GetComponent<GoForRoller>().alpha == false)
+                collision.gameObject.GetComponent<GoForRoller>().leader = theleader;
+        }
             
 
 
