@@ -119,7 +119,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 93cd4d4d4b23abd4793828c0a6124499, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &85562829 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1112265234998473926, guid: 604b86be61323b44ba48366aef5fb426,
@@ -173,6 +173,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ice Cream Trucks
+      objectReference: {fileID: 0}
+    - target: {fileID: 85068379653971418, guid: 27625dd546e984749987226d888afb81,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 85068379653971419, guid: 27625dd546e984749987226d888afb81,
         type: 3}
@@ -243,6 +248,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: School Children
       objectReference: {fileID: 0}
+    - target: {fileID: 126235161429904858, guid: b498de0e4cda2034eb3c5e83b19231e8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 126235161429904853, guid: b498de0e4cda2034eb3c5e83b19231e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -311,6 +321,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ebikes
+      objectReference: {fileID: 0}
+    - target: {fileID: 964009297507191756, guid: 1d18cc1a596ede04fbb79cdb0b4a49ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 964009297507191757, guid: 1d18cc1a596ede04fbb79cdb0b4a49ed,
         type: 3}
@@ -381,6 +396,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Target1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1112265235866138618, guid: 604b86be61323b44ba48366aef5fb426,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1112265235866138617, guid: 604b86be61323b44ba48366aef5fb426,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -450,6 +470,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: People test
       objectReference: {fileID: 0}
+    - target: {fileID: 2127014488849118925, guid: 3b202568561129f478b593519b3b9d87,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2127014488849118926, guid: 3b202568561129f478b593519b3b9d87,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -518,6 +543,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: rignt (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581859242258957427, guid: 5f9d55f9f1a70514f847ea8809e507c8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4581859242258957426, guid: 5f9d55f9f1a70514f847ea8809e507c8,
         type: 3}
@@ -912,6 +942,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: left (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320165289909776211, guid: 17aa1969057c8ab4d84b84df00295be9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5320165289909776210, guid: 17aa1969057c8ab4d84b84df00295be9,
         type: 3}
